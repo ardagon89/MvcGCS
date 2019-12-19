@@ -19,5 +19,9 @@ namespace GCS.Models
         public DbSet<GCS.Models.Company> Companies { get; set; }
 
         public DbSet<GCS.Models.Outcome> Outcome { get; set; }
+
+        public DbSet<GCS.Models.OutcomeAssessmentViewModel> OutcomeAssessmentViewModel { get; set; }
+
+        public DbSet<GCS.Models.Assessment> Assessment { get; set; }
     }
 }

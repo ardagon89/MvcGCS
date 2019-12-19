@@ -1,0 +1,169 @@
+﻿@model GCS.Models.Assessment
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Assessment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Company_id" class="control-label"></label>
+                <input asp-for="Company_id" class="form-control" />
+                <span asp-validation-for="Company_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Assessment_date" class="control-label"></label>
+                <input asp-for="Assessment_date" class="form-control" />
+                <span asp-validation-for="Assessment_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vision_agreement" class="control-label"></label>
+                <input asp-for="Vision_agreement" class="form-control" />
+                <span asp-validation-for="Vision_agreement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Core_values_agreement" class="control-label"></label>
+                <input asp-for="Core_values_agreement" class="form-control" />
+                <span asp-validation-for="Core_values_agreement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mission_statement_agreement" class="control-label"></label>
+                <input asp-for="Mission_statement_agreement" class="form-control" />
+                <span asp-validation-for="Mission_statement_agreement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vision_outcome_agreement" class="control-label"></label>
+                <input asp-for="Vision_outcome_agreement" class="form-control" />
+                <span asp-validation-for="Vision_outcome_agreement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Competitive_strategy_agreement" class="control-label"></label>
+                <input asp-for="Competitive_strategy_agreement" class="form-control" />
+                <span asp-validation-for="Competitive_strategy_agreement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Company_composite_score" class="control-label"></label>
+                <input asp-for="Company_composite_score" class="form-control" />
+                <span asp-validation-for="Company_composite_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Strat_people_score" class="control-label"></label>
+                <input asp-for="Strat_people_score" class="form-control" />
+                <span asp-validation-for="Strat_people_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Strat_resources_score" class="control-label"></label>
+                <input asp-for="Strat_resources_score" class="form-control" />
+                <span asp-validation-for="Strat_resources_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Strat_processes_score" class="control-label"></label>
+                <input asp-for="Strat_processes_score" class="form-control" />
+                <span asp-validation-for="Strat_processes_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Strat_culture_score" class="control-label"></label>
+                <input asp-for="Strat_culture_score" class="form-control" />
+                <span asp-validation-for="Strat_culture_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Strat_composite_score" class="control-label"></label>
+                <input asp-for="Strat_composite_score" class="form-control" />
+                <span asp-validation-for="Strat_composite_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Stake_people_score" class="control-label"></label>
+                <input asp-for="Stake_people_score" class="form-control" />
+                <span asp-validation-for="Stake_people_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Stake_resources_score" class="control-label"></label>
+                <input asp-for="Stake_resources_score" class="form-control" />
+                <span asp-validation-for="Stake_resources_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Stake_processes_score" class="control-label"></label>
+                <input asp-for="Stake_processes_score" class="form-control" />
+                <span asp-validation-for="Stake_processes_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Stake_culture_score" class="control-label"></label>
+                <input asp-for="Stake_culture_score" class="form-control" />
+                <span asp-validation-for="Stake_culture_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Stake_composite_score" class="control-label"></label>
+                <input asp-for="Stake_composite_score" class="form-control" />
+                <span asp-validation-for="Stake_composite_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Oper_people_score" class="control-label"></label>
+                <input asp-for="Oper_people_score" class="form-control" />
+                <span asp-validation-for="Oper_people_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Oper_resources_score" class="control-label"></label>
+                <input asp-for="Oper_resources_score" class="form-control" />
+                <span asp-validation-for="Oper_resources_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Oper_processes_score" class="control-label"></label>
+                <input asp-for="Oper_processes_score" class="form-control" />
+                <span asp-validation-for="Oper_processes_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Oper_culture_score" class="control-label"></label>
+                <input asp-for="Oper_culture_score" class="form-control" />
+                <span asp-validation-for="Oper_culture_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Oper_composite_score" class="control-label"></label>
+                <input asp-for="Oper_composite_score" class="form-control" />
+                <span asp-validation-for="Oper_composite_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Risk_people_score" class="control-label"></label>
+                <input asp-for="Risk_people_score" class="form-control" />
+                <span asp-validation-for="Risk_people_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Risk_resources_score" class="control-label"></label>
+                <input asp-for="Risk_resources_score" class="form-control" />
+                <span asp-validation-for="Risk_resources_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Risk_processes_score" class="control-label"></label>
+                <input asp-for="Risk_processes_score" class="form-control" />
+                <span asp-validation-for="Risk_processes_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Risk_culture_score" class="control-label"></label>
+                <input asp-for="Risk_culture_score" class="form-control" />
+                <span asp-validation-for="Risk_culture_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Risk_composite_score" class="control-label"></label>
+                <input asp-for="Risk_composite_score" class="form-control" />
+                <span asp-validation-for="Risk_composite_score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
