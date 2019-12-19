@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GCS.Models.User>
+﻿@model IEnumerable<GCS.Models.UserCompanyViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,43 +13,43 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Company_id)
+                @Html.DisplayNameFor(model => model.company.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Fname)
+                @Html.DisplayNameFor(model => model.user.Fname)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Lname)
+                @Html.DisplayNameFor(model => model.user.Lname)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address)
+                @Html.DisplayNameFor(model => model.user.Address)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Phone)
+                @Html.DisplayNameFor(model => model.user.Phone)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                @Html.DisplayNameFor(model => model.user.Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Password)
+                @Html.DisplayNameFor(model => model.user.Password)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Is_admin)
+                @Html.DisplayNameFor(model => model.user.Is_admin)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Gender)
+                @Html.DisplayNameFor(model => model.user.Gender)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Race)
+                @Html.DisplayNameFor(model => model.user.Race)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Role)
+                @Html.DisplayNameFor(model => model.user.Role)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Company_length)
+                @Html.DisplayNameFor(model => model.user.Company_length)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Role_length)
+                @Html.DisplayNameFor(model => model.user.Role_length)
             </th>
 
             <th></th>
@@ -59,49 +59,49 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Company_id)
+                @Html.DisplayFor(modelItem => item.company.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Fname)
+                @Html.DisplayFor(modelItem => item.user.Fname)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Lname)
+                @Html.DisplayFor(modelItem => item.user.Lname)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Address)
+                @Html.DisplayFor(modelItem => item.user.Address)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Phone)
+                @Html.DisplayFor(modelItem => item.user.Phone)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Email)
+                @Html.DisplayFor(modelItem => item.user.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Password)
+                @Html.DisplayFor(modelItem => item.user.Password)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Is_admin)
+                @Html.DisplayFor(modelItem => item.user.Is_admin)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Gender)
+                @Html.DisplayFor(modelItem => item.user.Gender)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Race)
+                @Html.DisplayFor(modelItem => item.user.Race)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Role)
+                @Html.DisplayFor(modelItem => item.user.Role)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Company_length)
+                @Html.DisplayFor(modelItem => item.user.Company_length)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Role_length)
+                @Html.DisplayFor(modelItem => item.user.Role_length)
             </td>
 
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.user.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.user.Id">Details</a>
+                <a asp-action="Delete" asp-route-id="@item.user.Id">Delete</a>
             </td>
         </tr>
 }

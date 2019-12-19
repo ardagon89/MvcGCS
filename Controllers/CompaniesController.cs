@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using GCS.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GCS.Models;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace GCS.Controllers
 {
@@ -21,7 +22,25 @@ namespace GCS.Controllers
         // GET: Companies
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Company.ToListAsync());
+            List<Company> companies = await _context.Companies
+                .FromSql(@"
+        SELECT [id]
+      ,[name]
+      ,[address]
+      ,[email]
+      ,[website]
+      ,[phone]
+      ,[vision]
+      ,[mission]
+      ,[value]
+      ,[type]
+      ,[revenue_band]
+      ,[employee_band]
+      ,[stage]
+  FROM [company]
+  where deleted_on is null").ToListAsync();
+
+            return View(companies);
         }
 
         // GET: Companies/Details/5
@@ -32,8 +51,26 @@ namespace GCS.Controllers
                 return NotFound();
             }
 
-            var company = await _context.Company
+            var company = await _context.Companies
+                .FromSql(@"
+        SELECT [id]
+      ,[name]
+      ,[address]
+      ,[email]
+      ,[website]
+      ,[phone]
+      ,[vision]
+      ,[mission]
+      ,[value]
+      ,[type]
+      ,[revenue_band]
+      ,[employee_band]
+      ,[stage]
+  FROM [company]
+  where deleted_on is null and id={0}", id)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
+
             if (company == null)
             {
                 return NotFound();
@@ -57,8 +94,53 @@ namespace GCS.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(company);
-                await _context.SaveChangesAsync();
+                await _context.Database.ExecuteSqlCommandAsync(@"
+INSERT INTO [company]
+           ([name]
+           ,[address]
+           ,[email]
+           ,[website]
+           ,[phone]
+           ,[inserted_on]
+           ,[inserted_by]
+           ,[vision]
+           ,[mission]
+           ,[value]
+           ,[type]
+           ,[revenue_band]
+           ,[employee_band]
+           ,[stage])
+     VALUES
+           (@name
+           ,@address
+           ,@email
+           ,@website
+           ,@phone
+           ,GETDATE()
+           ,@inserted_by
+           ,@vision
+           ,@mission
+           ,@value
+           ,@type
+           ,@revenue_band
+           ,@employee_band
+           ,@stage)",
+             new SqlParameter("@name", (object)company.Name ?? DBNull.Value),
+             new SqlParameter("@address", (object)company.Address ?? DBNull.Value),
+             new SqlParameter("@email", (object)company.Email ?? DBNull.Value),
+             new SqlParameter("@website", (object)company.Website ?? DBNull.Value),
+             new SqlParameter("@phone", (object)company.Phone ?? DBNull.Value),
+             new SqlParameter("@inserted_by", (object)1 ?? DBNull.Value),
+             new SqlParameter("@vision", (object)company.Vision ?? DBNull.Value),
+             new SqlParameter("@mission", (object)company.Mission ?? DBNull.Value),
+             new SqlParameter("@value", (object)company.Value ?? DBNull.Value),
+             new SqlParameter("@type", (object)company.Type ?? DBNull.Value),
+             new SqlParameter("@revenue_band", (object)company.Revenue_band ?? DBNull.Value),
+             new SqlParameter("@employee_band", (object)company.Employee_band ?? DBNull.Value),
+             new SqlParameter("@stage", (object)company.Stage ?? DBNull.Value)
+             );
+                //_context.Add(company);
+                //await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(company);
@@ -72,7 +154,26 @@ namespace GCS.Controllers
                 return NotFound();
             }
 
-            var company = await _context.Company.FindAsync(id);
+            //var company = await _context.Companies.FindAsync(id);
+            var company = await _context.Companies
+                .FromSql(@"
+        SELECT [id]
+      ,[name]
+      ,[address]
+      ,[email]
+      ,[website]
+      ,[phone]
+      ,[vision]
+      ,[mission]
+      ,[value]
+      ,[type]
+      ,[revenue_band]
+      ,[employee_band]
+      ,[stage]
+  FROM [company]
+  where deleted_on is null and id={0}", id)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
             if (company == null)
             {
                 return NotFound();
@@ -96,8 +197,39 @@ namespace GCS.Controllers
             {
                 try
                 {
-                    _context.Update(company);
-                    await _context.SaveChangesAsync();
+                    //_context.Update(company);
+                    //await _context.SaveChangesAsync();
+                    await _context.Database.ExecuteSqlCommandAsync(@"update [company]
+   SET [name] = @name
+      ,[address] = @address
+      ,[email] = @email
+      ,[website] = @website
+      ,[phone] = @phone
+      ,[updated_on] = GETDATE()
+      ,[updated_by] = @updated_by
+      ,[vision] = @vision
+      ,[mission] = @mission
+      ,[value] = @value
+      ,[type] = @type
+      ,[revenue_band] = @revenue_band
+      ,[employee_band] = @employee_band
+      ,[stage] = @stage
+ WHERE deleted_on is null and id=@id",
+             new SqlParameter("@name", (object)company.Name ?? DBNull.Value),
+             new SqlParameter("@address", (object)company.Address ?? DBNull.Value),
+             new SqlParameter("@email", (object)company.Email ?? DBNull.Value),
+             new SqlParameter("@website", (object)company.Website ?? DBNull.Value),
+             new SqlParameter("@phone", (object)company.Phone ?? DBNull.Value),
+             new SqlParameter("@updated_by", (object)1 ?? DBNull.Value),
+             new SqlParameter("@vision", (object)company.Vision ?? DBNull.Value),
+             new SqlParameter("@mission", (object)company.Mission ?? DBNull.Value),
+             new SqlParameter("@value", (object)company.Value ?? DBNull.Value),
+             new SqlParameter("@type", (object)company.Type ?? DBNull.Value),
+             new SqlParameter("@revenue_band", (object)company.Revenue_band ?? DBNull.Value),
+             new SqlParameter("@employee_band", (object)company.Employee_band ?? DBNull.Value),
+             new SqlParameter("@stage", (object)company.Stage ?? DBNull.Value),
+             new SqlParameter("@id", id)
+             );
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -123,7 +255,25 @@ namespace GCS.Controllers
                 return NotFound();
             }
 
-            var company = await _context.Company
+            //var company = await _context.Companies
+            //    .FirstOrDefaultAsync(m => m.Id == id);
+            var company = await _context.Companies
+                .FromSql(@"
+        SELECT [id]
+      ,[name]
+      ,[address]
+      ,[email]
+      ,[website]
+      ,[phone]
+      ,[vision]
+      ,[mission]
+      ,[value]
+      ,[type]
+      ,[revenue_band]
+      ,[employee_band]
+      ,[stage]
+  FROM [company]
+  where deleted_on is null and id={0}", id)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (company == null)
             {
@@ -138,15 +288,21 @@ namespace GCS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var company = await _context.Company.FindAsync(id);
-            _context.Company.Remove(company);
-            await _context.SaveChangesAsync();
+            //var company = await _context.Companies.FindAsync(id);
+            //_context.Companies.Remove(company);
+            //await _context.SaveChangesAsync();
+            await _context.Database.ExecuteSqlCommandAsync(@"update [company]
+set deleted_by=@deleted_by, deleted_on=GETDATE()
+where deleted_on is null and id=@id",
+             new SqlParameter("@deleted_by", 1),
+             new SqlParameter("@id", id)
+             );
             return RedirectToAction(nameof(Index));
         }
 
         private bool CompanyExists(int id)
         {
-            return _context.Company.Any(e => e.Id == id);
+            return _context.Companies.Any(e => e.Id == id);
         }
     }
 }

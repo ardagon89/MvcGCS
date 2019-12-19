@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace GCS.Controllers
         // GET: Users
         public async Task<IActionResult> Index()
         {
-            return View(await _context.User
+            List<User> users = await _context.Users
                 .FromSql(@"
         SELECT [id]
       ,COALESCE([company_id], 0) company_id
@@ -37,7 +38,21 @@ namespace GCS.Controllers
       ,[company_length]
       ,[role_length]
 FROM [user] 
-where deleted_on is null").ToListAsync());
+where deleted_on is null").ToListAsync();
+
+            List<Company> companies = await _context.Companies.ToListAsync();
+
+            var innerJoin = users.Join(// outer sequence 
+                      companies,  // inner sequence 
+                      user => user.Company_id,    // outerKeySelector
+                      company => company.Id,  // innerKeySelector
+                      (user, company) => new UserCompanyViewModel // result selector
+                      {
+                          user = user,
+                          company = company
+                      });
+
+            return View(innerJoin);
         }
 
         // GET: Users/Details/5
@@ -48,7 +63,7 @@ where deleted_on is null").ToListAsync());
                 return NotFound();
             }
 
-            var user = await _context.User.FromSql(@"
+            var user = await _context.Users.FromSql(@"
         SELECT [id]
       ,COALESCE([company_id], 0) company_id
       ,[fname]
@@ -65,17 +80,26 @@ where deleted_on is null").ToListAsync());
       ,[role_length]
 FROM [user] 
 where deleted_on is null and id={0}", id).FirstOrDefaultAsync<User>();
+
             if (user == null)
             {
                 return NotFound();
             }
+            var company = await _context.Companies.FirstOrDefaultAsync(m => m.Id == user.Company_id);
 
-            return View(user);
+            UserCompanyViewModel uc = new UserCompanyViewModel();
+            uc.user = user;
+            uc.company = company;
+
+            return View(uc);
         }
 
         // GET: Users/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            List<Company> companylist = new List<Company>();
+            companylist = (await _context.Companies.ToListAsync());
+            ViewBag.CompanyList = companylist;
             return View();
         }
 
@@ -149,7 +173,7 @@ INSERT INTO [user]
                 return NotFound();
             }
 
-            var user = await _context.User.FromSql(@"
+            var user = await _context.Users.FromSql(@"
         SELECT [id]
       ,COALESCE([company_id], 0) company_id
       ,[fname]
@@ -165,6 +189,11 @@ INSERT INTO [user]
       ,[company_length]
       ,[role_length]
 FROM [user] where deleted_on is null and id={0}", id).FirstOrDefaultAsync<User>();
+
+            List<Company> companylist = new List<Company>();
+            companylist = (await _context.Companies.ToListAsync());
+            ViewBag.CompanyList = companylist;
+
             if (user == null)
             {
                 return NotFound();
@@ -235,7 +264,7 @@ where deleted_on is null and id=@id",
                 return NotFound();
             }
 
-            var user = await _context.User.FromSql(@"
+            var user = await _context.Users.FromSql(@"
         SELECT [id]
       ,COALESCE([company_id], 0) company_id
       ,[fname]
@@ -256,8 +285,13 @@ FROM [user] where deleted_on is null and id={0}", id).FirstOrDefaultAsync<User>(
             {
                 return NotFound();
             }
+            var company = await _context.Companies.FirstOrDefaultAsync(m => m.Id == user.Company_id);
 
-            return View(user);
+            UserCompanyViewModel uc = new UserCompanyViewModel();
+            uc.user = user;
+            uc.company = company;
+
+            return View(uc);
         }
 
         // POST: Users/Delete/5
@@ -280,7 +314,7 @@ where deleted_on is null and id=@id",
         //Has to be changed to only select users where deleted_on is null
         private bool UserExists(int id)
         {
-            return _context.User.Any(e => e.Id == id);
+            return _context.Users.Any(e => e.Id == id);
         }
     }
 }
