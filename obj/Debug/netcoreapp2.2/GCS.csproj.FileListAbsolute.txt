@@ -85,3 +85,9 @@ C:\Users\shari\source\repos\MvcGCS\bin\Debug\netcoreapp2.2\GCS.Views.dll
 C:\Users\shari\source\repos\MvcGCS\bin\Debug\netcoreapp2.2\GCS.Views.pdb
 C:\Users\shari\source\repos\MvcGCS\obj\Debug\netcoreapp2.2\GCS.Views.pdb
 C:\Users\shari\source\repos\MvcGCS\obj\Debug\netcoreapp2.2\GCS.csproj.CopyComplete
+C:\Users\shari\source\repos\MvcGCS\obj\Debug\netcoreapp2.2\GCS.csprojAssemblyReference.cache
+C:\Users\shari\source\repos\MvcGCS\obj\Debug\netcoreapp2.2\Razor\Views\Outcomes\Create.g.cshtml.cs
+C:\Users\shari\source\repos\MvcGCS\obj\Debug\netcoreapp2.2\Razor\Views\Outcomes\Delete.g.cshtml.cs
+C:\Users\shari\source\repos\MvcGCS\obj\Debug\netcoreapp2.2\Razor\Views\Outcomes\Details.g.cshtml.cs
+C:\Users\shari\source\repos\MvcGCS\obj\Debug\netcoreapp2.2\Razor\Views\Outcomes\Edit.g.cshtml.cs
+C:\Users\shari\source\repos\MvcGCS\obj\Debug\netcoreapp2.2\Razor\Views\Outcomes\Index.g.cshtml.cs

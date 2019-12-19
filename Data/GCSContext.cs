@@ -17,5 +17,7 @@ namespace GCS.Models
         public DbSet<GCS.Models.User> Users { get; set; }
 
         public DbSet<GCS.Models.Company> Companies { get; set; }
+
+        public DbSet<GCS.Models.Outcome> Outcome { get; set; }
     }
 }
