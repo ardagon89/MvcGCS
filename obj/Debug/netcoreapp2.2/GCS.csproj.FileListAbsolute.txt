@@ -100,3 +100,4 @@ C:\Users\shari\source\repos\MvcGCS\obj\Debug\netcoreapp2.2\Razor\Views\Assessmen
 C:\Users\shari\source\repos\MvcGCS\obj\Debug\netcoreapp2.2\Razor\Views\Assessments\Details.g.cshtml.cs
 C:\Users\shari\source\repos\MvcGCS\obj\Debug\netcoreapp2.2\Razor\Views\Assessments\Edit.g.cshtml.cs
 C:\Users\shari\source\repos\MvcGCS\obj\Debug\netcoreapp2.2\Razor\Views\Assessments\Index.g.cshtml.cs
+C:\Users\shari\source\repos\MvcGCS\obj\Debug\netcoreapp2.2\GCS.csprojAssemblyReference.cache
