@@ -5,7 +5,125 @@
 }
 
 <h1>Edit</h1>
+<script language="" type="text/javascript">
+    function update_agreement_score() {
+        jQuery(document).ready(function ($) {
+            var Vision_agreement = 0;
+            var Core_values_agreement = 0;
+            var Mission_statement_agreement = 0;
+            var Vision_outcome_agreement = 0;
+            var Competitive_strategy_agreement = 0;
+            var count = 0;
 
+            if ($("#Vision_agreement").val() == "Complete agreement") {
+                Vision_agreement = 100;
+                count += 1;
+            }
+            else if ($("#Vision_agreement").val() == "Mostly agree") {
+                Vision_agreement = 75;
+                count += 1;
+            }
+            else if ($("#Vision_agreement").val() == "Agree as much as disagree") {
+                Vision_agreement = 50;
+                count += 1;
+            }
+            else if ($("#Vision_agreement").val() == "Mostly disagree") {
+                Vision_agreement = 25;
+                count += 1;
+            }
+            else if ($("#Vision_agreement").val() == "Do not agree") {
+                Vision_agreement = 0;
+                count += 1;
+            }
+
+            if ($("#Core_values_agreement").val() == "Complete agreement") {
+                Core_values_agreement = 100;
+                count += 1;
+            }
+            else if ($("#Core_values_agreement").val() == "Mostly agree") {
+                Core_values_agreement = 75;
+                count += 1;
+            }
+            else if ($("#Core_values_agreement").val() == "Agree as much as disagree") {
+                Core_values_agreement = 50;
+                count += 1;
+            }
+            else if ($("#Core_values_agreement").val() == "Mostly disagree") {
+                Core_values_agreement = 25;
+                count += 1;
+            }
+            else if ($("#Core_values_agreement").val() == "Do not agree") {
+                Core_values_agreement = 0;
+                count += 1;
+            }
+
+            if ($("#Mission_statement_agreement").val() == "Complete agreement") {
+                Mission_statement_agreement = 100;
+                count += 1;
+            }
+            else if ($("#Mission_statement_agreement").val() == "Mostly agree") {
+                Mission_statement_agreement = 75;
+                count += 1;
+            }
+            else if ($("#Mission_statement_agreement").val() == "Agree as much as disagree") {
+                Mission_statement_agreement = 50;
+                count += 1;
+            }
+            else if ($("#Mission_statement_agreement").val() == "Mostly disagree") {
+                Mission_statement_agreement = 25;
+                count += 1;
+            }
+            else if ($("#Mission_statement_agreement").val() == "Do not agree") {
+                Mission_statement_agreement = 0;
+                count += 1;
+            }
+
+            if ($("#Vision_outcome_agreement").val() == "Complete agreement") {
+                Vision_outcome_agreement = 100;
+                count += 1;
+            }
+            else if ($("#Vision_outcome_agreement").val() == "Mostly agree") {
+                Vision_outcome_agreement = 75;
+                count += 1;
+            }
+            else if ($("#Vision_outcome_agreement").val() == "Agree as much as disagree") {
+                Vision_outcome_agreement = 50;
+                count += 1;
+            }
+            else if ($("#Vision_outcome_agreement").val() == "Mostly disagree") {
+                Vision_outcome_agreement = 25;
+                count += 1;
+            }
+            else if ($("#Vision_outcome_agreement").val() == "Do not agree") {
+                Vision_outcome_agreement = 0;
+                count += 1;
+            }
+
+            if ($("#Competitive_strategy_agreement").val() == "Complete agreement") {
+                Competitive_strategy_agreement = 100;
+                count += 1;
+            }
+            else if ($("#Competitive_strategy_agreement").val() == "Mostly agree") {
+                Competitive_strategy_agreement = 75;
+                count += 1;
+            }
+            else if ($("#Competitive_strategy_agreement").val() == "Agree as much as disagree") {
+                Competitive_strategy_agreement = 50;
+                count += 1;
+            }
+            else if ($("#Competitive_strategy_agreement").val() == "Mostly disagree") {
+                Competitive_strategy_agreement = 25;
+                count += 1;
+            }
+            else if ($("#Competitive_strategy_agreement").val() == "Do not agree") {
+                Competitive_strategy_agreement = 0;
+                count += 1;
+            }
+
+            $("#Company_composite_score").val((Vision_agreement + Core_values_agreement + Mission_statement_agreement + Vision_outcome_agreement + Competitive_strategy_agreement) / count);
+});
+    }
+</script>
 <h4>Assessment</h4>
 <hr />
 <div class="row">
@@ -15,12 +133,12 @@
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="Company_id" class="control-label"></label>
-                <input asp-for="Company_id" class="form-control" />
+                <input asp-for="Company_id" class="form-control" readonly="readonly" />
                 <span asp-validation-for="Company_id" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Assessment_date" class="control-label"></label>
-                <input asp-for="Assessment_date" class="form-control" />
+                <input asp-for="Assessment_date" class="form-control" readonly="readonly" />
                 <span asp-validation-for="Assessment_date" class="text-danger"></span>
             </div>
             <hr />
@@ -28,35 +146,35 @@
                 <label asp-for="Vision_agreement" class="control-label">Vision</label>
                 <textarea class="form-control" readonly="readonly">@ViewBag.company.Vision</textarea>
                 <label asp-for="Vision_agreement" class="control-label">Agreement</label>
-                <select asp-for="Vision_agreement" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdownlist, "Code", "Description"))"></select>
+                <select asp-for="Vision_agreement" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdownlist, "Code", "Description"))" onchange="update_agreement_score()"></select>
                 <span asp-validation-for="Vision_agreement" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Core_values_agreement" class="control-label">Core Values</label>
                 <textarea class="form-control" readonly="readonly">@ViewBag.company.Value</textarea>
                 <label asp-for="Core_values_agreement" class="control-label">Agreement</label>
-                <select asp-for="Core_values_agreement" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdownlist, "Code", "Description"))"></select>
+                <select asp-for="Core_values_agreement" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdownlist, "Code", "Description"))" onchange="update_agreement_score()"></select>
                 <span asp-validation-for="Core_values_agreement" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Mission_statement_agreement" class="control-label">Mission Statement</label>
                 <textarea class="form-control" readonly="readonly">@ViewBag.company.Mission</textarea>
                 <label asp-for="Mission_statement_agreement" class="control-label">Agreement</label>
-                <select asp-for="Mission_statement_agreement" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdownlist, "Code", "Description"))"></select>
+                <select asp-for="Mission_statement_agreement" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdownlist, "Code", "Description"))" onchange="update_agreement_score()"></select>
                 <span asp-validation-for="Mission_statement_agreement" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Vision_outcome_agreement" class="control-label">Vision Outcome</label>
                 <textarea class="form-control" readonly="readonly">@ViewBag.company.Mission</textarea>
                 <label asp-for="Vision_outcome_agreement" class="control-label">Agreement</label>
-                <select asp-for="Vision_outcome_agreement" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdownlist, "Code", "Description"))"></select>
+                <select asp-for="Vision_outcome_agreement" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdownlist, "Code", "Description"))" onchange="update_agreement_score()"></select>
                 <span asp-validation-for="Vision_outcome_agreement" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Competitive_strategy_agreement" class="control-label">Competitive Strategy</label>
                 <textarea class="form-control" readonly="readonly">@ViewBag.company.Mission</textarea>
                 <label asp-for="Competitive_strategy_agreement" class="control-label">Agreement</label>
-                <select asp-for="Competitive_strategy_agreement" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdownlist, "Code", "Description"))"></select>
+                <select asp-for="Competitive_strategy_agreement" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdownlist, "Code", "Description"))" onchange="update_agreement_score()"></select>
                 <span asp-validation-for="Competitive_strategy_agreement" class="text-danger"></span>
             </div>
             <div class="form-group">
