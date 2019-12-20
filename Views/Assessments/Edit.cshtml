@@ -120,7 +120,164 @@
                 count += 1;
             }
 
-            $("#Company_composite_score").val((Vision_agreement + Core_values_agreement + Mission_statement_agreement + Vision_outcome_agreement + Competitive_strategy_agreement) / count);
+            if (count == 0) {
+                $("#Company_composite_score").val(0);
+            }
+            else {
+                $("#Company_composite_score").val((Vision_agreement + Core_values_agreement + Mission_statement_agreement + Vision_outcome_agreement + Competitive_strategy_agreement) / count);
+            }
+});
+    }
+
+    function update_strategy_score() {
+        jQuery(document).ready(function ($) {
+            var Strat_people_score = 0;
+            var Strat_resources_score = 0;
+            var Strat_processes_score = 0;
+            var Strat_culture_score = 0;
+            var count = 0;
+
+            if ($("#Strat_people_score").val() != "") {
+                Strat_people_score = parseInt($("#Strat_people_score").val());
+                count += 1;
+            }
+
+            if ($("#Strat_resources_score").val() != "") {
+                Strat_resources_score = parseInt($("#Strat_resources_score").val());
+                count += 1;
+            }
+
+            if ($("#Strat_processes_score").val() != "") {
+                Strat_processes_score = parseInt($("#Strat_processes_score").val());
+                count += 1;
+            }
+
+            if ($("#Strat_culture_score").val() != "") {
+                Strat_culture_score = parseInt($("#Strat_culture_score").val());
+                count += 1;
+            }
+
+            if (count == 0) {
+                $("#Strat_composite_score").val(0);
+            }
+            else {
+                $("#Strat_composite_score").val((Strat_people_score + Strat_resources_score + Strat_processes_score + Strat_culture_score) / count);
+            }
+            
+});
+    }
+
+    function update_stakeholder_score() {
+        jQuery(document).ready(function ($) {
+            var Stake_people_score = 0;
+            var Stake_resources_score = 0;
+            var Stake_processes_score = 0;
+            var Stake_culture_score = 0;
+            var count = 0;
+
+            if ($("#Stake_people_score").val() != "") {
+                Stake_people_score = parseInt($("#Stake_people_score").val());
+                count += 1;
+            }
+
+            if ($("#Stake_resources_score").val() != "") {
+                Stake_resources_score = parseInt($("#Stake_resources_score").val());
+                count += 1;
+            }
+
+            if ($("#Stake_processes_score").val() != "") {
+                Stake_processes_score = parseInt($("#Stake_processes_score").val());
+                count += 1;
+            }
+
+            if ($("#Stake_culture_score").val() != "") {
+                Stake_culture_score = parseInt($("#Stake_culture_score").val());
+                count += 1;
+            }
+
+            if (count == 0) {
+                $("#Stake_composite_score").val(0);
+            }
+            else {
+                $("#Stake_composite_score").val((Stake_people_score + Stake_resources_score + Stake_processes_score + Stake_culture_score) / count);
+            }
+            
+});
+    }
+
+    function update_operational_score() {
+        jQuery(document).ready(function ($) {
+            var Oper_people_score = 0;
+            var Oper_resources_score = 0;
+            var Oper_processes_score = 0;
+            var Oper_culture_score = 0;
+            var count = 0;
+
+            if ($("#Oper_people_score").val() != "") {
+                Oper_people_score = parseInt($("#Oper_people_score").val());
+                count += 1;
+            }
+
+            if ($("#Oper_resources_score").val() != "") {
+                Oper_resources_score = parseInt($("#Oper_resources_score").val());
+                count += 1;
+            }
+
+            if ($("#Oper_processes_score").val() != "") {
+                Oper_processes_score = parseInt($("#Oper_processes_score").val());
+                count += 1;
+            }
+
+            if ($("#Oper_culture_score").val() != "") {
+                Oper_culture_score = parseInt($("#Oper_culture_score").val());
+                count += 1;
+            }
+
+            if (count == 0) {
+                $("#Oper_composite_score").val(0);
+            }
+            else {
+                $("#Oper_composite_score").val((Oper_people_score + Oper_resources_score + Oper_processes_score + Oper_culture_score) / count);
+            }
+            
+});
+    }
+
+    function update_risk_score() {
+        jQuery(document).ready(function ($) {
+            var Risk_people_score = 0;
+            var Risk_resources_score = 0;
+            var Risk_processes_score = 0;
+            var Risk_culture_score = 0;
+            var count = 0;
+
+            if ($("#Risk_people_score").val() != "") {
+                Risk_people_score = parseInt($("#Risk_people_score").val());
+                count += 1;
+            }
+
+            if ($("#Risk_resources_score").val() != "") {
+                Risk_resources_score = parseInt($("#Risk_resources_score").val());
+                count += 1;
+            }
+
+            if ($("#Risk_processes_score").val() != "") {
+                Risk_processes_score = parseInt($("#Risk_processes_score").val());
+                count += 1;
+            }
+
+            if ($("#Risk_culture_score").val() != "") {
+                Risk_culture_score = parseInt($("#Risk_culture_score").val());
+                count += 1;
+            }
+
+            if (count == 0) {
+                $("#Risk_composite_score").val(0);
+            }
+            else {
+                $("#Risk_composite_score").val((Risk_people_score + Risk_resources_score + Risk_processes_score + Risk_culture_score) / count);
+            }
+            
 });
     }
 </script>
@@ -192,7 +349,7 @@
                     <label asp-for="Strat_people_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_ro_outcome_val_1</label>
                     <label class="control-label">: @ViewBag.outcome.strat_ro_outcome_desc_1</label>
                 </div>
-                <select asp-for="Strat_people_score" class="form-control" asp-items="@(new SelectList(@ViewBag.peopleratinglist, "Code", "Description"))"></select>
+                <select asp-for="Strat_people_score" class="form-control" asp-items="@(new SelectList(@ViewBag.peopleratinglist, "Code", "Description"))" onchange="update_strategy_score()"></select>
                 <span asp-validation-for="Strat_people_score" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -204,7 +361,7 @@
                     <label asp-for="Strat_resources_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_ro_outcome_val_2</label>
                     <label class="control-label">: @ViewBag.outcome.strat_ro_outcome_desc_2</label>
                 </div>
-                <select asp-for="Strat_resources_score" class="form-control" asp-items="@(new SelectList(@ViewBag.resourcesratinglist, "Code", "Description"))"></select>
+                <select asp-for="Strat_resources_score" class="form-control" asp-items="@(new SelectList(@ViewBag.resourcesratinglist, "Code", "Description"))" onchange="update_strategy_score()"></select>
                 <span asp-validation-for="Strat_resources_score" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -216,7 +373,7 @@
                     <label asp-for="Strat_processes_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_ro_outcome_val_3</label>
                     <label class="control-label">: @ViewBag.outcome.strat_ro_outcome_desc_3</label>
                 </div>
-                <select asp-for="Strat_processes_score" class="form-control" asp-items="@(new SelectList(@ViewBag.processesratinglist, "Code", "Description"))"></select>
+                <select asp-for="Strat_processes_score" class="form-control" asp-items="@(new SelectList(@ViewBag.processesratinglist, "Code", "Description"))" onchange="update_strategy_score()"></select>
                 <span asp-validation-for="Strat_processes_score" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -228,7 +385,7 @@
                     <label asp-for="Strat_culture_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_ro_outcome_val_4</label>
                     <label class="control-label">: @ViewBag.outcome.strat_ro_outcome_desc_4</label>
                 </div>
-                <select asp-for="Strat_culture_score" class="form-control" asp-items="@(new SelectList(@ViewBag.cultureratinglist, "Code", "Description"))"></select>
+                <select asp-for="Strat_culture_score" class="form-control" asp-items="@(new SelectList(@ViewBag.cultureratinglist, "Code", "Description"))" onchange="update_strategy_score()"></select>
                 <span asp-validation-for="Strat_culture_score" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -253,7 +410,7 @@
                     <label asp-for="Stake_people_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_ro_outcome_val_1</label>
                     <label class="control-label">: @ViewBag.outcome.stake_ro_outcome_desc_1</label>
                 </div>
-                <select asp-for="Stake_people_score" class="form-control" asp-items="@(new SelectList(@ViewBag.peopleratinglist, "Code", "Description"))"></select>
+                <select asp-for="Stake_people_score" class="form-control" asp-items="@(new SelectList(@ViewBag.peopleratinglist, "Code", "Description"))" onchange="update_stakeholder_score()"></select>
                 <span asp-validation-for="Stake_people_score" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -265,7 +422,7 @@
                     <label asp-for="Stake_resources_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_ro_outcome_val_2</label>
                     <label class="control-label">: @ViewBag.outcome.stake_ro_outcome_desc_2</label>
                 </div>
-                <select asp-for="Stake_resources_score" class="form-control" asp-items="@(new SelectList(@ViewBag.resourcesratinglist, "Code", "Description"))"></select>
+                <select asp-for="Stake_resources_score" class="form-control" asp-items="@(new SelectList(@ViewBag.resourcesratinglist, "Code", "Description"))" onchange="update_stakeholder_score()"></select>
                 <span asp-validation-for="Stake_resources_score" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -277,7 +434,7 @@
                     <label asp-for="Stake_processes_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_ro_outcome_val_3</label>
                     <label class="control-label">: @ViewBag.outcome.stake_ro_outcome_desc_3</label>
                 </div>
-                <select asp-for="Stake_processes_score" class="form-control" asp-items="@(new SelectList(@ViewBag.processesratinglist, "Code", "Description"))"></select>
+                <select asp-for="Stake_processes_score" class="form-control" asp-items="@(new SelectList(@ViewBag.processesratinglist, "Code", "Description"))" onchange="update_stakeholder_score()"></select>
                 <span asp-validation-for="Stake_processes_score" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -289,7 +446,7 @@
                     <label asp-for="Stake_culture_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_ro_outcome_val_4</label>
                     <label class="control-label">: @ViewBag.outcome.stake_ro_outcome_desc_4</label>
                 </div>
-                <select asp-for="Stake_culture_score" class="form-control" asp-items="@(new SelectList(@ViewBag.cultureratinglist, "Code", "Description"))"></select>
+                <select asp-for="Stake_culture_score" class="form-control" asp-items="@(new SelectList(@ViewBag.cultureratinglist, "Code", "Description"))" onchange="update_stakeholder_score()"></select>
                 <span asp-validation-for="Stake_culture_score" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -314,7 +471,7 @@
                     <label asp-for="Oper_people_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_ro_outcome_val_1</label>
                     <label class="control-label">: @ViewBag.outcome.oper_ro_outcome_desc_1</label>
                 </div>
-                <select asp-for="Oper_people_score" class="form-control" asp-items="@(new SelectList(@ViewBag.peopleratinglist, "Code", "Description"))"></select>
+                <select asp-for="Oper_people_score" class="form-control" asp-items="@(new SelectList(@ViewBag.peopleratinglist, "Code", "Description"))" onchange="update_operational_score()"></select>
                 <span asp-validation-for="Oper_people_score" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -326,7 +483,7 @@
                     <label asp-for="Oper_resources_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_ro_outcome_val_2</label>
                     <label class="control-label">: @ViewBag.outcome.oper_ro_outcome_desc_2</label>
                 </div>
-                <select asp-for="Oper_resources_score" class="form-control" asp-items="@(new SelectList(@ViewBag.resourcesratinglist, "Code", "Description"))"></select>
+                <select asp-for="Oper_resources_score" class="form-control" asp-items="@(new SelectList(@ViewBag.resourcesratinglist, "Code", "Description"))" onchange="update_operational_score()"></select>
                 <span asp-validation-for="Oper_resources_score" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -338,7 +495,7 @@
                     <label asp-for="Oper_processes_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_ro_outcome_val_3</label>
                     <label class="control-label">: @ViewBag.outcome.oper_ro_outcome_desc_3</label>
                 </div>
-                <select asp-for="Oper_processes_score" class="form-control" asp-items="@(new SelectList(@ViewBag.processesratinglist, "Code", "Description"))"></select>
+                <select asp-for="Oper_processes_score" class="form-control" asp-items="@(new SelectList(@ViewBag.processesratinglist, "Code", "Description"))" onchange="update_operational_score()"></select>
                 <span asp-validation-for="Oper_processes_score" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -350,7 +507,7 @@
                     <label asp-for="Oper_culture_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_ro_outcome_val_4</label>
                     <label class="control-label">: @ViewBag.outcome.oper_ro_outcome_desc_4</label>
                 </div>
-                <select asp-for="Oper_culture_score" class="form-control" asp-items="@(new SelectList(@ViewBag.cultureratinglist, "Code", "Description"))"></select>
+                <select asp-for="Oper_culture_score" class="form-control" asp-items="@(new SelectList(@ViewBag.cultureratinglist, "Code", "Description"))" onchange="update_operational_score()"></select>
                 <span asp-validation-for="Oper_culture_score" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -375,7 +532,7 @@
                     <label asp-for="Risk_people_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_ro_outcome_val_1</label>
                     <label class="control-label">: @ViewBag.outcome.risk_ro_outcome_desc_1</label>
                 </div>
-                <select asp-for="Risk_people_score" class="form-control" asp-items="@(new SelectList(@ViewBag.peopleratinglist, "Code", "Description"))"></select>
+                <select asp-for="Risk_people_score" class="form-control" asp-items="@(new SelectList(@ViewBag.peopleratinglist, "Code", "Description"))" onchange="update_risk_score()"></select>
                 <span asp-validation-for="Risk_people_score" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -387,7 +544,7 @@
                     <label asp-for="Risk_resources_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_ro_outcome_val_2</label>
                     <label class="control-label">: @ViewBag.outcome.risk_ro_outcome_desc_2</label>
                 </div>
-                <select asp-for="Risk_resources_score" class="form-control" asp-items="@(new SelectList(@ViewBag.resourcesratinglist, "Code", "Description"))"></select>
+                <select asp-for="Risk_resources_score" class="form-control" asp-items="@(new SelectList(@ViewBag.resourcesratinglist, "Code", "Description"))" onchange="update_risk_score()"></select>
                 <span asp-validation-for="Risk_resources_score" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -399,7 +556,7 @@
                     <label asp-for="Risk_processes_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_ro_outcome_val_3</label>
                     <label class="control-label">: @ViewBag.outcome.risk_ro_outcome_desc_3</label>
                 </div>
-                <select asp-for="Risk_processes_score" class="form-control" asp-items="@(new SelectList(@ViewBag.processesratinglist, "Code", "Description"))"></select>
+                <select asp-for="Risk_processes_score" class="form-control" asp-items="@(new SelectList(@ViewBag.processesratinglist, "Code", "Description"))" onchange="update_risk_score()"></select>
                 <span asp-validation-for="Risk_processes_score" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -411,7 +568,7 @@
                     <label asp-for="Risk_culture_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_ro_outcome_val_4</label>
                     <label class="control-label">: @ViewBag.outcome.risk_ro_outcome_desc_4</label>
                 </div>
-                <select asp-for="Risk_culture_score" class="form-control" asp-items="@(new SelectList(@ViewBag.cultureratinglist, "Code", "Description"))"></select>
+                <select asp-for="Risk_culture_score" class="form-control" asp-items="@(new SelectList(@ViewBag.cultureratinglist, "Code", "Description"))" onchange="update_risk_score()"></select>
                 <span asp-validation-for="Risk_culture_score" class="text-danger"></span>
             </div>
             <div class="form-group">
