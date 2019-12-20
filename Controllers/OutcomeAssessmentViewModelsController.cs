@@ -58,7 +58,7 @@ namespace GCS
         // GET: OutcomeAssessmentViewModels/Create
         public IActionResult Create()
         {
-            OutcomeAssessmentViewModel oa = new OutcomeAssessmentViewModel();
+            /*OutcomeAssessmentViewModel oa = new OutcomeAssessmentViewModel();
             Assessment a =  _context.Assessment
                 .FirstOrDefault(m => m.Id == 1);
             Outcome o = _context.Outcome
@@ -67,7 +67,8 @@ namespace GCS
             oa.outcome = o;
             oa.guid = Guid.NewGuid();
 
-            return View(oa);
+            return View(oa);*/
+            return View();
         }
 
         // POST: OutcomeAssessmentViewModels/Create

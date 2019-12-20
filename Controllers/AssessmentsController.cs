@@ -77,6 +77,28 @@ namespace GCS
             {
                 return NotFound();
             }
+            
+            ViewBag.dropdownlist = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Assessment-Agreement").ToListAsync();
+
+            ViewBag.peopleratinglist = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Assessment-People").ToListAsync();
+
+            ViewBag.resourcesratinglist = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Assessment-Resources").ToListAsync();
+
+            ViewBag.processesratinglist = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Assessment-Processes").ToListAsync();
+
+            ViewBag.cultureratinglist = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Assessment-Culture").ToListAsync();
+
+            ViewBag.company = await _context.Companies
+                .FirstOrDefaultAsync(c => c.Id == assessment.Company_id);
+
+            ViewBag.outcome = await _context.Outcome
+                .FirstOrDefaultAsync(m => m.Company_id == assessment.Company_id && m.Assessment_date == assessment.Assessment_date);
+
             return View(assessment);
         }
 

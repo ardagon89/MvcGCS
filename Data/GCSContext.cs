@@ -23,5 +23,6 @@ namespace GCS.Models
         public DbSet<GCS.Models.OutcomeAssessmentViewModel> OutcomeAssessmentViewModel { get; set; }
 
         public DbSet<GCS.Models.Assessment> Assessment { get; set; }
+        public DbSet<GCS.Models.Dropdown_code> Dropdown_Code { get; set; }
     }
 }
