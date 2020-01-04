@@ -4,7 +4,14 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="#">Assessment</a>
+    </li>
+    <li class="breadcrumb-item active">Edit</li>
+</ol>
+<hr />
 <script language="" type="text/javascript">
     function update_agreement_score() {
         jQuery(document).ready(function ($) {
@@ -126,7 +133,7 @@
             else {
                 $("#Company_composite_score").val((Vision_agreement + Core_values_agreement + Mission_statement_agreement + Vision_outcome_agreement + Competitive_strategy_agreement) / count);
             }
-});
+        });
     }
 
     function update_strategy_score() {
@@ -163,8 +170,8 @@
             else {
                 $("#Strat_composite_score").val((Strat_people_score + Strat_resources_score + Strat_processes_score + Strat_culture_score) / count);
             }
-            
-});
+
+        });
     }
 
     function update_stakeholder_score() {
@@ -201,8 +208,8 @@
             else {
                 $("#Stake_composite_score").val((Stake_people_score + Stake_resources_score + Stake_processes_score + Stake_culture_score) / count);
             }
-            
-});
+
+        });
     }
 
     function update_operational_score() {
@@ -239,8 +246,8 @@
             else {
                 $("#Oper_composite_score").val((Oper_people_score + Oper_resources_score + Oper_processes_score + Oper_culture_score) / count);
             }
-            
-});
+
+        });
     }
 
     function update_risk_score() {
@@ -277,323 +284,643 @@
             else {
                 $("#Risk_composite_score").val((Risk_people_score + Risk_resources_score + Risk_processes_score + Risk_culture_score) / count);
             }
-            
-});
+
+        });
     }
 </script>
-<h4>Assessment</h4>
-<hr />
+
 <div class="row">
-    <div class="col-md-4">
+    <div class="container">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Company_id" class="control-label"></label>
-                <input asp-for="Company_id" class="form-control" readonly="readonly" />
-                <span asp-validation-for="Company_id" class="text-danger"></span>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Company_id" class="control-label"></label>
+                            <select asp-for="Company_id" class="form-control" asp-items="@(new SelectList(@ViewBag.company, "Id", "Name"))"></select>
+                            <span asp-validation-for="Company_id" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Assessment_date" class="control-label"></label>
+                            <input asp-for="Assessment_date" class="form-control" readonly="readonly" />
+                            <span asp-validation-for="Assessment_date" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="height: 0.5px; background: #808080;">
+
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Vision_agreement" class="control-label">Vision</label>
+                            <textarea class="form-control" readonly="readonly">@ViewBag.company[0].Vision</textarea>
+                            <label asp-for="Vision_agreement" class="control-label">Agreement</label>
+                            <select asp-for="Vision_agreement" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdownlist, "Code", "Description"))" onchange="update_agreement_score()"></select>
+                            <span asp-validation-for="Vision_agreement" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Core_values_agreement" class="control-label">Core Values</label>
+                            <textarea class="form-control" readonly="readonly">@ViewBag.company[0].Value</textarea>
+                            <label asp-for="Core_values_agreement" class="control-label">Agreement</label>
+                            <select asp-for="Core_values_agreement" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdownlist, "Code", "Description"))" onchange="update_agreement_score()"></select>
+                            <span asp-validation-for="Core_values_agreement" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="height: 0.5px; background: #808080;">
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Mission_statement_agreement" class="control-label">Mission Statement</label>
+                            <textarea class="form-control" readonly="readonly">@ViewBag.company[0].Mission</textarea>
+                            <label asp-for="Mission_statement_agreement" class="control-label">Agreement</label>
+                            <select asp-for="Mission_statement_agreement" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdownlist, "Code", "Description"))" onchange="update_agreement_score()"></select>
+                            <span asp-validation-for="Mission_statement_agreement" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <!--vision and mission not matching-->                    <label asp-for="Vision_outcome_agreement" class="control-label">Mission Outcome</label>
+                            <textarea class="form-control" readonly="readonly">@ViewBag.company[0].Outcome</textarea>
+                            <label asp-for="Vision_outcome_agreement" class="control-label">Agreement</label>
+                            <select asp-for="Vision_outcome_agreement" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdownlist, "Code", "Description"))" onchange="update_agreement_score()"></select>
+                            <span asp-validation-for="Vision_outcome_agreement" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="height: 0.5px; background: #808080;">
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Competitive_strategy_agreement" class="control-label">Competitive Strategy</label>
+                            <textarea class="form-control" readonly="readonly">@ViewBag.company[0].Strategy</textarea>
+                            <label asp-for="Competitive_strategy_agreement" class="control-label">Agreement</label>
+                            <select asp-for="Competitive_strategy_agreement" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdownlist, "Code", "Description"))" onchange="update_agreement_score()"></select>
+                            <span asp-validation-for="Competitive_strategy_agreement" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Company_composite_score" class="control-label"></label>
+                            <input asp-for="Company_composite_score" class="form-control" />
+                            <span asp-validation-for="Company_composite_score" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="height: 1px; background: #808080;">
+
+            <div><p><b>Strategy Management(Formulation, Communication/Alignment, Review, Revision)</b></p></div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-label-group">
+                            <p><u>Financial Outcomes</u></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-label-group">
+                            <p><u>Relationship Outcomes</u></p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="Assessment_date" class="control-label"></label>
-                <input asp-for="Assessment_date" class="form-control" readonly="readonly" />
-                <span asp-validation-for="Assessment_date" class="text-danger"></span>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Strat_people_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_fo_outcome_val_1</label>
+                            <label class="control-label">: @ViewBag.outcome.strat_fo_outcome_desc_1</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Strat_people_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_ro_outcome_val_1</label>
+                            <label class="control-label">: @ViewBag.outcome.strat_ro_outcome_desc_1</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <!--peoplerating-->        <select asp-for="Strat_people_score" class="form-control" asp-items="@(new SelectList(@ViewBag.peopleratinglist, "Code", "Description"))" onchange="update_strategy_score()"></select>
+                            <span asp-validation-for="Strat_people_score" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <hr />
+
             <div class="form-group">
-                <label asp-for="Vision_agreement" class="control-label">Vision</label>
-                <textarea class="form-control" readonly="readonly">@ViewBag.company.Vision</textarea>
-                <label asp-for="Vision_agreement" class="control-label">Agreement</label>
-                <select asp-for="Vision_agreement" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdownlist, "Code", "Description"))" onchange="update_agreement_score()"></select>
-                <span asp-validation-for="Vision_agreement" class="text-danger"></span>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Strat_resources_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_fo_outcome_val_2</label>
+                            <label class="control-label">: @ViewBag.outcome.strat_fo_outcome_desc_2</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Strat_resources_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_ro_outcome_val_2</label>
+                            <label class="control-label">: @ViewBag.outcome.strat_ro_outcome_desc_2</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select asp-for="Strat_resources_score" class="form-control" asp-items="@(new SelectList(@ViewBag.resourcesratinglist, "Code", "Description"))" onchange="update_strategy_score()"></select>
+                            <span asp-validation-for="Strat_resources_score" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="form-group">
-                <label asp-for="Core_values_agreement" class="control-label">Core Values</label>
-                <textarea class="form-control" readonly="readonly">@ViewBag.company.Value</textarea>
-                <label asp-for="Core_values_agreement" class="control-label">Agreement</label>
-                <select asp-for="Core_values_agreement" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdownlist, "Code", "Description"))" onchange="update_agreement_score()"></select>
-                <span asp-validation-for="Core_values_agreement" class="text-danger"></span>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Strat_processes_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_fo_outcome_val_3</label>
+                            <label class="control-label">: @ViewBag.outcome.strat_fo_outcome_desc_3</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Strat_processes_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_ro_outcome_val_3</label>
+                            <label class="control-label">: @ViewBag.outcome.strat_ro_outcome_desc_3</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select asp-for="Strat_processes_score" class="form-control" asp-items="@(new SelectList(@ViewBag.processesratinglist, "Code", "Description"))" onchange="update_strategy_score()"></select>
+                            <span asp-validation-for="Strat_processes_score" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="form-group">
-                <label asp-for="Mission_statement_agreement" class="control-label">Mission Statement</label>
-                <textarea class="form-control" readonly="readonly">@ViewBag.company.Mission</textarea>
-                <label asp-for="Mission_statement_agreement" class="control-label">Agreement</label>
-                <select asp-for="Mission_statement_agreement" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdownlist, "Code", "Description"))" onchange="update_agreement_score()"></select>
-                <span asp-validation-for="Mission_statement_agreement" class="text-danger"></span>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Strat_culture_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_fo_outcome_val_4</label>
+                            <label class="control-label">: @ViewBag.outcome.strat_fo_outcome_desc_4</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Strat_culture_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_ro_outcome_val_4</label>
+                            <label class="control-label">: @ViewBag.outcome.strat_ro_outcome_desc_4</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select asp-for="Strat_culture_score" class="form-control" asp-items="@(new SelectList(@ViewBag.cultureratinglist, "Code", "Description"))" onchange="update_strategy_score()"></select>
+                            <span asp-validation-for="Strat_culture_score" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="form-group">
-                <label asp-for="Vision_outcome_agreement" class="control-label">Vision Outcome</label>
-                <textarea class="form-control" readonly="readonly">@ViewBag.company.Mission</textarea>
-                <label asp-for="Vision_outcome_agreement" class="control-label">Agreement</label>
-                <select asp-for="Vision_outcome_agreement" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdownlist, "Code", "Description"))" onchange="update_agreement_score()"></select>
-                <span asp-validation-for="Vision_outcome_agreement" class="text-danger"></span>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Strat_composite_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_fo_outcome_val_5</label>
+                            <label class="control-label">: @ViewBag.outcome.strat_fo_outcome_desc_5</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Strat_composite_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_ro_outcome_val_5</label>
+                            <label class="control-label">: @ViewBag.outcome.strat_ro_outcome_desc_5</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input asp-for="Strat_composite_score" class="form-control" />
+                            <span asp-validation-for="Strat_composite_score" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <hr style="height: 1px; background: #808080;">
+
+            <!--Stakeholder-->
+            <div><p><b>Stakeholder Management(Employees, Investors/Owners, Business Partners, Regulators)</b></p></div>
             <div class="form-group">
-                <label asp-for="Competitive_strategy_agreement" class="control-label">Competitive Strategy</label>
-                <textarea class="form-control" readonly="readonly">@ViewBag.company.Mission</textarea>
-                <label asp-for="Competitive_strategy_agreement" class="control-label">Agreement</label>
-                <select asp-for="Competitive_strategy_agreement" class="form-control" asp-items="@(new SelectList(@ViewBag.dropdownlist, "Code", "Description"))" onchange="update_agreement_score()"></select>
-                <span asp-validation-for="Competitive_strategy_agreement" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Company_composite_score" class="control-label"></label>
-                <input asp-for="Company_composite_score" class="form-control" />
-                <span asp-validation-for="Company_composite_score" class="text-danger"></span>
-            </div>
-            <hr />
-            <div class="form-group">
-                <div>
-                    <label asp-for="Strat_people_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_fo_outcome_val_1</label>
-                    <label class="control-label">: @ViewBag.outcome.strat_fo_outcome_desc_1</label>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-label-group">
+                            <p><u>Financial Outcomes</u></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-label-group">
+                            <p><u>Relationship Outcomes</u></p>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label asp-for="Strat_people_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_ro_outcome_val_1</label>
-                    <label class="control-label">: @ViewBag.outcome.strat_ro_outcome_desc_1</label>
-                </div>
-                <select asp-for="Strat_people_score" class="form-control" asp-items="@(new SelectList(@ViewBag.peopleratinglist, "Code", "Description"))" onchange="update_strategy_score()"></select>
-                <span asp-validation-for="Strat_people_score" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div>
-                    <label asp-for="Strat_resources_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_fo_outcome_val_2</label>
-                    <label class="control-label">: @ViewBag.outcome.strat_fo_outcome_desc_2</label>
-                </div>
-                <div>
-                    <label asp-for="Strat_resources_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_ro_outcome_val_2</label>
-                    <label class="control-label">: @ViewBag.outcome.strat_ro_outcome_desc_2</label>
-                </div>
-                <select asp-for="Strat_resources_score" class="form-control" asp-items="@(new SelectList(@ViewBag.resourcesratinglist, "Code", "Description"))" onchange="update_strategy_score()"></select>
-                <span asp-validation-for="Strat_resources_score" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div>
-                    <label asp-for="Strat_processes_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_fo_outcome_val_3</label>
-                    <label class="control-label">: @ViewBag.outcome.strat_fo_outcome_desc_3</label>
-                </div>
-                <div>
-                    <label asp-for="Strat_processes_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_ro_outcome_val_3</label>
-                    <label class="control-label">: @ViewBag.outcome.strat_ro_outcome_desc_3</label>
-                </div>
-                <select asp-for="Strat_processes_score" class="form-control" asp-items="@(new SelectList(@ViewBag.processesratinglist, "Code", "Description"))" onchange="update_strategy_score()"></select>
-                <span asp-validation-for="Strat_processes_score" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div>
-                    <label asp-for="Strat_culture_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_fo_outcome_val_4</label>
-                    <label class="control-label">: @ViewBag.outcome.strat_fo_outcome_desc_4</label>
-                </div>
-                <div>
-                    <label asp-for="Strat_culture_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_ro_outcome_val_4</label>
-                    <label class="control-label">: @ViewBag.outcome.strat_ro_outcome_desc_4</label>
-                </div>
-                <select asp-for="Strat_culture_score" class="form-control" asp-items="@(new SelectList(@ViewBag.cultureratinglist, "Code", "Description"))" onchange="update_strategy_score()"></select>
-                <span asp-validation-for="Strat_culture_score" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div>
-                    <label asp-for="Strat_composite_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_fo_outcome_val_5</label>
-                    <label class="control-label">: @ViewBag.outcome.strat_fo_outcome_desc_5</label>
-                </div>
-                <div>
-                    <label asp-for="Strat_composite_score" class="control-label" style="font-weight:500">@ViewBag.outcome.strat_ro_outcome_val_5</label>
-                    <label class="control-label">: @ViewBag.outcome.strat_ro_outcome_desc_5</label>
-                </div>
-                <input asp-for="Strat_composite_score" class="form-control" />
-                <span asp-validation-for="Strat_composite_score" class="text-danger"></span>
-            </div>
-            <hr />
-            <div class="form-group">
-                <div>
-                    <label asp-for="Stake_people_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_fo_outcome_val_1</label>
-                    <label class="control-label">: @ViewBag.outcome.stake_fo_outcome_desc_1</label>
-                </div>
-                <div>
-                    <label asp-for="Stake_people_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_ro_outcome_val_1</label>
-                    <label class="control-label">: @ViewBag.outcome.stake_ro_outcome_desc_1</label>
-                </div>
-                <select asp-for="Stake_people_score" class="form-control" asp-items="@(new SelectList(@ViewBag.peopleratinglist, "Code", "Description"))" onchange="update_stakeholder_score()"></select>
-                <span asp-validation-for="Stake_people_score" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div>
-                    <label asp-for="Stake_resources_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_fo_outcome_val_2</label>
-                    <label class="control-label">: @ViewBag.outcome.stake_fo_outcome_desc_2</label>
-                </div>
-                <div>
-                    <label asp-for="Stake_resources_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_ro_outcome_val_2</label>
-                    <label class="control-label">: @ViewBag.outcome.stake_ro_outcome_desc_2</label>
-                </div>
-                <select asp-for="Stake_resources_score" class="form-control" asp-items="@(new SelectList(@ViewBag.resourcesratinglist, "Code", "Description"))" onchange="update_stakeholder_score()"></select>
-                <span asp-validation-for="Stake_resources_score" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div>
-                    <label asp-for="Stake_processes_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_fo_outcome_val_3</label>
-                    <label class="control-label">: @ViewBag.outcome.stake_fo_outcome_desc_3</label>
-                </div>
-                <div>
-                    <label asp-for="Stake_processes_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_ro_outcome_val_3</label>
-                    <label class="control-label">: @ViewBag.outcome.stake_ro_outcome_desc_3</label>
-                </div>
-                <select asp-for="Stake_processes_score" class="form-control" asp-items="@(new SelectList(@ViewBag.processesratinglist, "Code", "Description"))" onchange="update_stakeholder_score()"></select>
-                <span asp-validation-for="Stake_processes_score" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <div>
-                    <label asp-for="Stake_culture_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_fo_outcome_val_4</label>
-                    <label class="control-label">: @ViewBag.outcome.stake_fo_outcome_desc_4</label>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Stake_people_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_fo_outcome_val_1</label>
+                            <label class="control-label">: @ViewBag.outcome.stake_fo_outcome_desc_1</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Stake_people_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_ro_outcome_val_1</label>
+                            <label class="control-label">: @ViewBag.outcome.stake_ro_outcome_desc_1</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select asp-for="Stake_people_score" class="form-control" asp-items="@(new SelectList(@ViewBag.peopleratinglist, "Code", "Description"))" onchange="update_stakeholder_score()"></select>
+                            <span asp-validation-for="Stake_people_score" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label asp-for="Stake_culture_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_ro_outcome_val_4</label>
-                    <label class="control-label">: @ViewBag.outcome.stake_ro_outcome_desc_4</label>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Stake_resources_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_fo_outcome_val_2</label>
+                            <label class="control-label">: @ViewBag.outcome.stake_fo_outcome_desc_2</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Stake_resources_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_ro_outcome_val_2</label>
+                            <label class="control-label">: @ViewBag.outcome.stake_ro_outcome_desc_2</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select asp-for="Stake_resources_score" class="form-control" asp-items="@(new SelectList(@ViewBag.resourcesratinglist, "Code", "Description"))" onchange="update_stakeholder_score()"></select>
+                            <span asp-validation-for="Stake_resources_score" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
-                <select asp-for="Stake_culture_score" class="form-control" asp-items="@(new SelectList(@ViewBag.cultureratinglist, "Code", "Description"))" onchange="update_stakeholder_score()"></select>
-                <span asp-validation-for="Stake_culture_score" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Stake_processes_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_fo_outcome_val_3</label>
+                            <label class="control-label">: @ViewBag.outcome.stake_fo_outcome_desc_3</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Stake_processes_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_ro_outcome_val_3</label>
+                            <label class="control-label">: @ViewBag.outcome.stake_ro_outcome_desc_3</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select asp-for="Stake_processes_score" class="form-control" asp-items="@(new SelectList(@ViewBag.processesratinglist, "Code", "Description"))" onchange="update_stakeholder_score()"></select>
+                            <span asp-validation-for="Stake_processes_score" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Stake_culture_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_fo_outcome_val_4</label>
+                            <label class="control-label">: @ViewBag.outcome.stake_fo_outcome_desc_4</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Stake_culture_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_ro_outcome_val_4</label>
+                            <label class="control-label">: @ViewBag.outcome.stake_ro_outcome_desc_4</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select asp-for="Stake_culture_score" class="form-control" asp-items="@(new SelectList(@ViewBag.cultureratinglist, "Code", "Description"))" onchange="update_stakeholder_score()"></select>
+                            <span asp-validation-for="Stake_culture_score" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Stake_composite_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_fo_outcome_val_5</label>
+                            <label class="control-label">: @ViewBag.outcome.stake_fo_outcome_desc_5</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Stake_composite_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_ro_outcome_val_5</label>
+                            <label class="control-label">: @ViewBag.outcome.stake_ro_outcome_desc_5</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input asp-for="Stake_composite_score" class="form-control" />
+                            <span asp-validation-for="Stake_composite_score" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="height: 1px; background: #808080;">
+
+
+            <!--Operations-->
+            <div><p><b>Operations Management(Finance/Accounting, Technology/Systems, Product/Services, Production, Innovation/R&D)</b></p></div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-label-group">
+                            <p><u>Financial Outcomes</u></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-label-group">
+                            <p><u>Relationship Outcomes</u></p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
-                <div>
-                    <label asp-for="Stake_composite_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_fo_outcome_val_5</label>
-                    <label class="control-label">: @ViewBag.outcome.stake_fo_outcome_desc_5</label>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Oper_people_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_fo_outcome_val_1</label>
+                            <label class="control-label">: @ViewBag.outcome.oper_fo_outcome_desc_1</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Oper_people_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_ro_outcome_val_1</label>
+                            <label class="control-label">: @ViewBag.outcome.oper_ro_outcome_desc_1</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select asp-for="Oper_people_score" class="form-control" asp-items="@(new SelectList(@ViewBag.peopleratinglist, "Code", "Description"))" onchange="update_operational_score()"></select>
+                            <span asp-validation-for="Oper_people_score" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label asp-for="Stake_composite_score" class="control-label" style="font-weight:500">@ViewBag.outcome.stake_ro_outcome_val_5</label>
-                    <label class="control-label">: @ViewBag.outcome.stake_ro_outcome_desc_5</label>
-                </div>
-                <input asp-for="Stake_composite_score" class="form-control" />
-                <span asp-validation-for="Stake_composite_score" class="text-danger"></span>
             </div>
-            <hr />
+
             <div class="form-group">
-                <div>
-                    <label asp-for="Oper_people_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_fo_outcome_val_1</label>
-                    <label class="control-label">: @ViewBag.outcome.oper_fo_outcome_desc_1</label>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Oper_resources_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_fo_outcome_val_2</label>
+                            <label class="control-label">: @ViewBag.outcome.oper_fo_outcome_desc_2</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Oper_resources_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_ro_outcome_val_2</label>
+                            <label class="control-label">: @ViewBag.outcome.oper_ro_outcome_desc_2</label>>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select asp-for="Oper_resources_score" class="form-control" asp-items="@(new SelectList(@ViewBag.resourcesratinglist, "Code", "Description"))" onchange="update_operational_score()"></select>
+                            <span asp-validation-for="Oper_resources_score" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label asp-for="Oper_people_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_ro_outcome_val_1</label>
-                    <label class="control-label">: @ViewBag.outcome.oper_ro_outcome_desc_1</label>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Oper_processes_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_fo_outcome_val_3</label>
+                            <label class="control-label">: @ViewBag.outcome.oper_fo_outcome_desc_3</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Oper_processes_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_ro_outcome_val_3</label>
+                            <label class="control-label">: @ViewBag.outcome.oper_ro_outcome_desc_3</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select asp-for="Oper_processes_score" class="form-control" asp-items="@(new SelectList(@ViewBag.processesratinglist, "Code", "Description"))" onchange="update_operational_score()"></select>
+                            <span asp-validation-for="Oper_processes_score" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
-                <select asp-for="Oper_people_score" class="form-control" asp-items="@(new SelectList(@ViewBag.peopleratinglist, "Code", "Description"))" onchange="update_operational_score()"></select>
-                <span asp-validation-for="Oper_people_score" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Oper_culture_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_fo_outcome_val_4</label>
+                            <label class="control-label">: @ViewBag.outcome.oper_fo_outcome_desc_4</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Oper_culture_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_ro_outcome_val_4</label>
+                            <label class="control-label">: @ViewBag.outcome.oper_ro_outcome_desc_4</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select asp-for="Oper_culture_score" class="form-control" asp-items="@(new SelectList(@ViewBag.cultureratinglist, "Code", "Description"))" onchange="update_operational_score()"></select>
+                            <span asp-validation-for="Oper_culture_score" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Oper_composite_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_fo_outcome_val_5</label>
+                            <label class="control-label">: @ViewBag.outcome.oper_fo_outcome_desc_5</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Oper_composite_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_ro_outcome_val_5</label>
+                            <label class="control-label">: @ViewBag.outcome.oper_ro_outcome_desc_5</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input asp-for="Oper_composite_score" class="form-control" />
+                            <span asp-validation-for="Oper_composite_score" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="height: 1px; background: #808080;">
+
+            <!--Risk-->
+            <div><p><b>Risk Management(HR, Operations, Security, Strategy Disruption)</b></p></div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-label-group">
+                            <p><u>Financial Outcomes</u></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-label-group">
+                            <p><u>Relationship Outcomes</u></p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
-                <div>
-                    <label asp-for="Oper_resources_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_fo_outcome_val_2</label>
-                    <label class="control-label">: @ViewBag.outcome.oper_fo_outcome_desc_2</label>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Risk_people_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_fo_outcome_val_1</label>
+                            <label class="control-label">: @ViewBag.outcome.risk_fo_outcome_desc_1</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Risk_people_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_ro_outcome_val_1</label>
+                            <label class="control-label">: @ViewBag.outcome.risk_ro_outcome_desc_1</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select asp-for="Risk_people_score" class="form-control" asp-items="@(new SelectList(@ViewBag.peopleratinglist, "Code", "Description"))" onchange="update_risk_score()"></select>
+                            <span asp-validation-for="Risk_people_score" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label asp-for="Oper_resources_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_ro_outcome_val_2</label>
-                    <label class="control-label">: @ViewBag.outcome.oper_ro_outcome_desc_2</label>
-                </div>
-                <select asp-for="Oper_resources_score" class="form-control" asp-items="@(new SelectList(@ViewBag.resourcesratinglist, "Code", "Description"))" onchange="update_operational_score()"></select>
-                <span asp-validation-for="Oper_resources_score" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <div>
-                    <label asp-for="Oper_processes_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_fo_outcome_val_3</label>
-                    <label class="control-label">: @ViewBag.outcome.oper_fo_outcome_desc_3</label>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Risk_resources_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_fo_outcome_val_2</label>
+                            <label class="control-label">: @ViewBag.outcome.risk_fo_outcome_desc_2</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Risk_resources_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_ro_outcome_val_2</label>
+                            <label class="control-label">: @ViewBag.outcome.risk_ro_outcome_desc_2</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select asp-for="Risk_resources_score" class="form-control" asp-items="@(new SelectList(@ViewBag.resourcesratinglist, "Code", "Description"))" onchange="update_risk_score()"></select>
+                            <span asp-validation-for="Risk_resources_score" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label asp-for="Oper_processes_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_ro_outcome_val_3</label>
-                    <label class="control-label">: @ViewBag.outcome.oper_ro_outcome_desc_3</label>
-                </div>
-                <select asp-for="Oper_processes_score" class="form-control" asp-items="@(new SelectList(@ViewBag.processesratinglist, "Code", "Description"))" onchange="update_operational_score()"></select>
-                <span asp-validation-for="Oper_processes_score" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <div>
-                    <label asp-for="Oper_culture_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_fo_outcome_val_4</label>
-                    <label class="control-label">: @ViewBag.outcome.oper_fo_outcome_desc_4</label>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Risk_processes_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_fo_outcome_val_3</label>
+                            <label class="control-label">: @ViewBag.outcome.risk_fo_outcome_desc_3</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Risk_processes_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_ro_outcome_val_3</label>
+                            <label class="control-label">: @ViewBag.outcome.risk_ro_outcome_desc_3</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select asp-for="Risk_processes_score" class="form-control" asp-items="@(new SelectList(@ViewBag.processesratinglist, "Code", "Description"))" onchange="update_risk_score()"></select>
+                            <span asp-validation-for="Risk_processes_score" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label asp-for="Oper_culture_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_ro_outcome_val_4</label>
-                    <label class="control-label">: @ViewBag.outcome.oper_ro_outcome_desc_4</label>
-                </div>
-                <select asp-for="Oper_culture_score" class="form-control" asp-items="@(new SelectList(@ViewBag.cultureratinglist, "Code", "Description"))" onchange="update_operational_score()"></select>
-                <span asp-validation-for="Oper_culture_score" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <div>
-                    <label asp-for="Oper_composite_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_fo_outcome_val_5</label>
-                    <label class="control-label">: @ViewBag.outcome.oper_fo_outcome_desc_5</label>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Risk_culture_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_fo_outcome_val_4</label>
+                            <label class="control-label">: @ViewBag.outcome.risk_fo_outcome_desc_4</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Risk_culture_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_ro_outcome_val_4</label>
+                            <label class="control-label">: @ViewBag.outcome.risk_ro_outcome_desc_4</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select asp-for="Risk_culture_score" class="form-control" asp-items="@(new SelectList(@ViewBag.cultureratinglist, "Code", "Description"))" onchange="update_risk_score()"></select>
+                            <span asp-validation-for="Risk_culture_score" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label asp-for="Oper_composite_score" class="control-label" style="font-weight:500">@ViewBag.outcome.oper_ro_outcome_val_5</label>
-                    <label class="control-label">: @ViewBag.outcome.oper_ro_outcome_desc_5</label>
-                </div>
-                <input asp-for="Oper_composite_score" class="form-control" />
-                <span asp-validation-for="Oper_composite_score" class="text-danger"></span>
             </div>
-            <hr />
+
             <div class="form-group">
-                <div>
-                    <label asp-for="Risk_people_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_fo_outcome_val_1</label>
-                    <label class="control-label">: @ViewBag.outcome.risk_fo_outcome_desc_1</label>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Risk_composite_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_fo_outcome_val_5</label>
+                            <label class="control-label">: @ViewBag.outcome.risk_fo_outcome_desc_5</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Risk_composite_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_ro_outcome_val_5</label>
+                            <label class="control-label">: @ViewBag.outcome.risk_ro_outcome_desc_5</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input asp-for="Risk_composite_score" class="form-control" />
+                            <span asp-validation-for="Risk_composite_score" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label asp-for="Risk_people_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_ro_outcome_val_1</label>
-                    <label class="control-label">: @ViewBag.outcome.risk_ro_outcome_desc_1</label>
-                </div>
-                <select asp-for="Risk_people_score" class="form-control" asp-items="@(new SelectList(@ViewBag.peopleratinglist, "Code", "Description"))" onchange="update_risk_score()"></select>
-                <span asp-validation-for="Risk_people_score" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <div>
-                    <label asp-for="Risk_resources_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_fo_outcome_val_2</label>
-                    <label class="control-label">: @ViewBag.outcome.risk_fo_outcome_desc_2</label>
-                </div>
-                <div>
-                    <label asp-for="Risk_resources_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_ro_outcome_val_2</label>
-                    <label class="control-label">: @ViewBag.outcome.risk_ro_outcome_desc_2</label>
-                </div>
-                <select asp-for="Risk_resources_score" class="form-control" asp-items="@(new SelectList(@ViewBag.resourcesratinglist, "Code", "Description"))" onchange="update_risk_score()"></select>
-                <span asp-validation-for="Risk_resources_score" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div>
-                    <label asp-for="Risk_processes_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_fo_outcome_val_3</label>
-                    <label class="control-label">: @ViewBag.outcome.risk_fo_outcome_desc_3</label>
-                </div>
-                <div>
-                    <label asp-for="Risk_processes_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_ro_outcome_val_3</label>
-                    <label class="control-label">: @ViewBag.outcome.risk_ro_outcome_desc_3</label>
-                </div>
-                <select asp-for="Risk_processes_score" class="form-control" asp-items="@(new SelectList(@ViewBag.processesratinglist, "Code", "Description"))" onchange="update_risk_score()"></select>
-                <span asp-validation-for="Risk_processes_score" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div>
-                    <label asp-for="Risk_culture_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_fo_outcome_val_4</label>
-                    <label class="control-label">: @ViewBag.outcome.risk_fo_outcome_desc_4</label>
-                </div>
-                <div>
-                    <label asp-for="Risk_culture_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_ro_outcome_val_4</label>
-                    <label class="control-label">: @ViewBag.outcome.risk_ro_outcome_desc_4</label>
-                </div>
-                <select asp-for="Risk_culture_score" class="form-control" asp-items="@(new SelectList(@ViewBag.cultureratinglist, "Code", "Description"))" onchange="update_risk_score()"></select>
-                <span asp-validation-for="Risk_culture_score" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div>
-                    <label asp-for="Risk_composite_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_fo_outcome_val_5</label>
-                    <label class="control-label">: @ViewBag.outcome.risk_fo_outcome_desc_5</label>
-                </div>
-                <div>
-                    <label asp-for="Risk_composite_score" class="control-label" style="font-weight:500">@ViewBag.outcome.risk_ro_outcome_val_5</label>
-                    <label class="control-label">: @ViewBag.outcome.risk_ro_outcome_desc_5</label>
-                </div>
-                <input asp-for="Risk_composite_score" class="form-control" />
-                <span asp-validation-for="Risk_composite_score" class="text-danger"></span>
-            </div>
+            <hr style="height: 1px; background: #808080;">
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index"><input type="button" value="Cancel" class="btn btn-primary" /> </a>
             </div>
         </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+            @section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            }

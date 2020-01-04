@@ -17,10 +17,25 @@ namespace GCS
         {
             _context = context;
         }
+        public Boolean IsLoggedIn()
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return false;
+            }
+            return true;
+        }
 
         // GET: OutcomeAssessmentViewModels
         public async Task<IActionResult> Index()
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
+
             OutcomeAssessmentViewModel oa = new OutcomeAssessmentViewModel();
             Assessment a =await _context.Assessment
                 .FirstOrDefaultAsync(m => m.Id == 1);
@@ -40,6 +55,11 @@ namespace GCS
         // GET: OutcomeAssessmentViewModels/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
             if (id == null)
             {
                 return NotFound();
@@ -58,6 +78,11 @@ namespace GCS
         // GET: OutcomeAssessmentViewModels/Create
         public IActionResult Create()
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
             /*OutcomeAssessmentViewModel oa = new OutcomeAssessmentViewModel();
             Assessment a =  _context.Assessment
                 .FirstOrDefault(m => m.Id == 1);
@@ -78,6 +103,11 @@ namespace GCS
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("guid")] OutcomeAssessmentViewModel outcomeAssessmentViewModel)
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
             if (ModelState.IsValid)
             {
                 outcomeAssessmentViewModel.guid = Guid.NewGuid();
@@ -97,6 +127,11 @@ namespace GCS
         // GET: OutcomeAssessmentViewModels/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
             if (id == null)
             {
                 return NotFound();
@@ -117,6 +152,11 @@ namespace GCS
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("guid")] OutcomeAssessmentViewModel outcomeAssessmentViewModel)
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
             if (id != outcomeAssessmentViewModel.guid)
             {
                 return NotFound();
@@ -148,6 +188,11 @@ namespace GCS
         // GET: OutcomeAssessmentViewModels/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
             if (id == null)
             {
                 return NotFound();
@@ -168,6 +213,11 @@ namespace GCS
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
             var outcomeAssessmentViewModel = await _context.OutcomeAssessmentViewModel.FindAsync(id);
             _context.OutcomeAssessmentViewModel.Remove(outcomeAssessmentViewModel);
             await _context.SaveChangesAsync();

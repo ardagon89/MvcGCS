@@ -12977,11 +12977,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\shari\\source\\repos\\MvcGCS\\GCS.csproj",
+      "projectUniqueName": "C:\\Users\\shari\\source\\repos\\MvcGCS-master\\GCS.csproj",
       "projectName": "GCS",
-      "projectPath": "C:\\Users\\shari\\source\\repos\\MvcGCS\\GCS.csproj",
+      "projectPath": "C:\\Users\\shari\\source\\repos\\MvcGCS-master\\GCS.csproj",
       "packagesPath": "C:\\Users\\shari\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\shari\\source\\repos\\MvcGCS\\obj\\",
+      "outputPath": "C:\\Users\\shari\\source\\repos\\MvcGCS-master\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

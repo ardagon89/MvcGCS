@@ -1,6 +1,5 @@
 ﻿using GCS.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -19,20 +18,43 @@ namespace GCS.Controllers
             _context = context;
         }
 
+        public Boolean IsLoggedIn()
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return false;
+            }
+            return true;
+        }
+
         // GET: Companies
         public async Task<IActionResult> Index()
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
+
             List<Company> companies = await _context.Companies
                 .FromSql(@"
         SELECT [id]
       ,[name]
-      ,[address]
+      ,[address1]
+        ,[address2]
+        ,[city]
+        ,[state]
+        ,[zip]
+        ,[country]
       ,[email]
       ,[website]
       ,[phone]
       ,[vision]
       ,[mission]
       ,[value]
+      ,[outcome]
+      ,[strategy]
       ,[type]
       ,[revenue_band]
       ,[employee_band]
@@ -46,6 +68,11 @@ namespace GCS.Controllers
         // GET: Companies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
             if (id == null)
             {
                 return NotFound();
@@ -55,13 +82,20 @@ namespace GCS.Controllers
                 .FromSql(@"
         SELECT [id]
       ,[name]
-      ,[address]
+      ,[address1]
+        ,[address2]
+        ,[city]
+        ,[state]
+        ,[zip]
+        ,[country]
       ,[email]
       ,[website]
       ,[phone]
       ,[vision]
       ,[mission]
       ,[value]
+      ,[outcome]
+      ,[strategy]
       ,[type]
       ,[revenue_band]
       ,[employee_band]
@@ -80,8 +114,21 @@ namespace GCS.Controllers
         }
 
         // GET: Companies/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
+            ViewBag.RevenueList = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Company-Revenue").ToListAsync();
+            ViewBag.CompTypeList = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Type-Company").ToListAsync();
+            ViewBag.StageList = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Company-Stage").ToListAsync();
+            ViewBag.EmployeeList = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Company-Employees").ToListAsync();
             return View();
         }
 
@@ -90,14 +137,24 @@ namespace GCS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Address,Email,Website,Phone,Vision,Mission,Value,Type,Revenue_band,Employee_band,Stage")] Company company)
+        public async Task<IActionResult> Create([Bind("Id,Name,Address1,Address2,City,State,Zip,Country,Email,Website,Phone,Vision,Mission,Value,Type,Revenue_band,Employee_band,Stage")] Company company)
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
             if (ModelState.IsValid)
             {
                 await _context.Database.ExecuteSqlCommandAsync(@"
 INSERT INTO [company]
            ([name]
-           ,[address]
+           ,[address1]
+            ,[address2]
+            ,[city]
+            ,[state]
+            ,[zip]
+            ,[country]
            ,[email]
            ,[website]
            ,[phone]
@@ -112,7 +169,12 @@ INSERT INTO [company]
            ,[stage])
      VALUES
            (@name
-           ,@address
+           ,@address1
+            ,@address2
+            ,@city
+            ,@state
+            ,@zip
+            ,@country
            ,@email
            ,@website
            ,@phone
@@ -126,11 +188,16 @@ INSERT INTO [company]
            ,@employee_band
            ,@stage)",
              new SqlParameter("@name", (object)company.Name ?? DBNull.Value),
-             new SqlParameter("@address", (object)company.Address ?? DBNull.Value),
+             new SqlParameter("@address1", (object)company.Address1 ?? DBNull.Value),
+             new SqlParameter("@address2", (object)company.Address2 ?? DBNull.Value),
+             new SqlParameter("@city", (object)company.City ?? DBNull.Value),
+             new SqlParameter("@state", (object)company.State ?? DBNull.Value),
+             new SqlParameter("@zip", (object)company.Zip ?? DBNull.Value),
+             new SqlParameter("@country", (object)company.Country ?? DBNull.Value),
              new SqlParameter("@email", (object)company.Email ?? DBNull.Value),
              new SqlParameter("@website", (object)company.Website ?? DBNull.Value),
              new SqlParameter("@phone", (object)company.Phone ?? DBNull.Value),
-             new SqlParameter("@inserted_by", (object)1 ?? DBNull.Value),
+             new SqlParameter("@inserted_by", (object)User.Identity.Name ?? DBNull.Value),
              new SqlParameter("@vision", (object)company.Vision ?? DBNull.Value),
              new SqlParameter("@mission", (object)company.Mission ?? DBNull.Value),
              new SqlParameter("@value", (object)company.Value ?? DBNull.Value),
@@ -149,6 +216,19 @@ INSERT INTO [company]
         // GET: Companies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
+            ViewBag.RevenueList = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Company-Revenue").ToListAsync();
+            ViewBag.CompTypeList = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Type-Company").ToListAsync();
+            ViewBag.StageList = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Company-Stage").ToListAsync();
+            ViewBag.EmployeeList = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Company-Employees").ToListAsync();
             if (id == null)
             {
                 return NotFound();
@@ -159,13 +239,20 @@ INSERT INTO [company]
                 .FromSql(@"
         SELECT [id]
       ,[name]
-      ,[address]
+      ,[address1]
+    ,[address2]
+    ,[city]
+    ,[state]
+    ,[zip]
+    ,[country]
       ,[email]
       ,[website]
       ,[phone]
       ,[vision]
       ,[mission]
       ,[value]
+      ,[outcome]
+      ,[strategy]
       ,[type]
       ,[revenue_band]
       ,[employee_band]
@@ -186,8 +273,13 @@ INSERT INTO [company]
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Address,Email,Website,Phone,Vision,Mission,Value,Type,Revenue_band,Employee_band,Stage")] Company company)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Address1,Address2,City,State,Zip,Country,Email,Website,Phone,Vision,Mission,Value,Type,Revenue_band,Employee_band,Stage")] Company company)
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
             if (id != company.Id)
             {
                 return NotFound();
@@ -201,7 +293,12 @@ INSERT INTO [company]
                     //await _context.SaveChangesAsync();
                     await _context.Database.ExecuteSqlCommandAsync(@"update [company]
    SET [name] = @name
-      ,[address] = @address
+      ,[address1] = @address1
+    ,[address2] = @address2
+    ,[city] = @city
+    ,[state] = @state
+    ,[zip] = @zip
+    ,[country] = @country
       ,[email] = @email
       ,[website] = @website
       ,[phone] = @phone
@@ -216,11 +313,16 @@ INSERT INTO [company]
       ,[stage] = @stage
  WHERE deleted_on is null and id=@id",
              new SqlParameter("@name", (object)company.Name ?? DBNull.Value),
-             new SqlParameter("@address", (object)company.Address ?? DBNull.Value),
+             new SqlParameter("@address1", (object)company.Address1 ?? DBNull.Value),
+             new SqlParameter("@address2", (object)company.Address2 ?? DBNull.Value),
+             new SqlParameter("@city", (object)company.City ?? DBNull.Value),
+             new SqlParameter("@state", (object)company.State ?? DBNull.Value),
+             new SqlParameter("@zip", (object)company.Zip ?? DBNull.Value),
+             new SqlParameter("@country", (object)company.Country ?? DBNull.Value),
              new SqlParameter("@email", (object)company.Email ?? DBNull.Value),
              new SqlParameter("@website", (object)company.Website ?? DBNull.Value),
              new SqlParameter("@phone", (object)company.Phone ?? DBNull.Value),
-             new SqlParameter("@updated_by", (object)1 ?? DBNull.Value),
+             new SqlParameter("@updated_by", (object)User.Identity.Name ?? DBNull.Value),
              new SqlParameter("@vision", (object)company.Vision ?? DBNull.Value),
              new SqlParameter("@mission", (object)company.Mission ?? DBNull.Value),
              new SqlParameter("@value", (object)company.Value ?? DBNull.Value),
@@ -250,6 +352,11 @@ INSERT INTO [company]
         // GET: Companies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
             if (id == null)
             {
                 return NotFound();
@@ -261,13 +368,20 @@ INSERT INTO [company]
                 .FromSql(@"
         SELECT [id]
       ,[name]
-      ,[address]
+      ,[address1]
+        ,[address2]
+        ,[city]
+        ,[state]
+        ,[zip]
+        ,[country]
       ,[email]
       ,[website]
       ,[phone]
       ,[vision]
       ,[mission]
       ,[value]
+      ,[outcome]
+      ,[strategy]
       ,[type]
       ,[revenue_band]
       ,[employee_band]
@@ -288,13 +402,18 @@ INSERT INTO [company]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
             //var company = await _context.Companies.FindAsync(id);
             //_context.Companies.Remove(company);
             //await _context.SaveChangesAsync();
             await _context.Database.ExecuteSqlCommandAsync(@"update [company]
 set deleted_by=@deleted_by, deleted_on=GETDATE()
 where deleted_on is null and id=@id",
-             new SqlParameter("@deleted_by", 1),
+             new SqlParameter("@deleted_by", User.Identity.Name),
              new SqlParameter("@id", id)
              );
             return RedirectToAction(nameof(Index));

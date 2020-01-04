@@ -4,435 +4,1129 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>Outcome</h4>
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="#">Outcomes</a>
+    </li>
+    <li class="breadcrumb-item active">Create</li>
+</ol>
 <hr />
+
 <div class="row">
-    <div class="col-md-4">
+    <div class="container">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Company_id" class="control-label"></label>
-                <input asp-for="Company_id" class="form-control" />
-                <span asp-validation-for="Company_id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Assessment_date" class="control-label"></label>
-                <input asp-for="Assessment_date" class="form-control" />
-                <span asp-validation-for="Assessment_date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="strat_fo_outcome_val_1" class="control-label"></label>
-                <input asp-for="strat_fo_outcome_val_1" class="form-control" />
-                <span asp-validation-for="strat_fo_outcome_val_1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="strat_fo_outcome_desc_1" class="control-label"></label>
-                <input asp-for="strat_fo_outcome_desc_1" class="form-control" />
-                <span asp-validation-for="strat_fo_outcome_desc_1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="strat_fo_outcome_val_2" class="control-label"></label>
-                <input asp-for="strat_fo_outcome_val_2" class="form-control" />
-                <span asp-validation-for="strat_fo_outcome_val_2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="strat_fo_outcome_desc_2" class="control-label"></label>
-                <input asp-for="strat_fo_outcome_desc_2" class="form-control" />
-                <span asp-validation-for="strat_fo_outcome_desc_2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="strat_fo_outcome_val_3" class="control-label"></label>
-                <input asp-for="strat_fo_outcome_val_3" class="form-control" />
-                <span asp-validation-for="strat_fo_outcome_val_3" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="strat_fo_outcome_desc_3" class="control-label"></label>
-                <input asp-for="strat_fo_outcome_desc_3" class="form-control" />
-                <span asp-validation-for="strat_fo_outcome_desc_3" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="strat_fo_outcome_val_4" class="control-label"></label>
-                <input asp-for="strat_fo_outcome_val_4" class="form-control" />
-                <span asp-validation-for="strat_fo_outcome_val_4" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="strat_fo_outcome_desc_4" class="control-label"></label>
-                <input asp-for="strat_fo_outcome_desc_4" class="form-control" />
-                <span asp-validation-for="strat_fo_outcome_desc_4" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="strat_fo_outcome_val_5" class="control-label"></label>
-                <input asp-for="strat_fo_outcome_val_5" class="form-control" />
-                <span asp-validation-for="strat_fo_outcome_val_5" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="strat_fo_outcome_desc_5" class="control-label"></label>
-                <input asp-for="strat_fo_outcome_desc_5" class="form-control" />
-                <span asp-validation-for="strat_fo_outcome_desc_5" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="strat_ro_outcome_val_1" class="control-label"></label>
-                <input asp-for="strat_ro_outcome_val_1" class="form-control" />
-                <span asp-validation-for="strat_ro_outcome_val_1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="strat_ro_outcome_desc_1" class="control-label"></label>
-                <input asp-for="strat_ro_outcome_desc_1" class="form-control" />
-                <span asp-validation-for="strat_ro_outcome_desc_1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="strat_ro_outcome_val_2" class="control-label"></label>
-                <input asp-for="strat_ro_outcome_val_2" class="form-control" />
-                <span asp-validation-for="strat_ro_outcome_val_2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="strat_ro_outcome_desc_2" class="control-label"></label>
-                <input asp-for="strat_ro_outcome_desc_2" class="form-control" />
-                <span asp-validation-for="strat_ro_outcome_desc_2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="strat_ro_outcome_val_3" class="control-label"></label>
-                <input asp-for="strat_ro_outcome_val_3" class="form-control" />
-                <span asp-validation-for="strat_ro_outcome_val_3" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="strat_ro_outcome_desc_3" class="control-label"></label>
-                <input asp-for="strat_ro_outcome_desc_3" class="form-control" />
-                <span asp-validation-for="strat_ro_outcome_desc_3" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="strat_ro_outcome_val_4" class="control-label"></label>
-                <input asp-for="strat_ro_outcome_val_4" class="form-control" />
-                <span asp-validation-for="strat_ro_outcome_val_4" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="strat_ro_outcome_desc_4" class="control-label"></label>
-                <input asp-for="strat_ro_outcome_desc_4" class="form-control" />
-                <span asp-validation-for="strat_ro_outcome_desc_4" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="strat_ro_outcome_val_5" class="control-label"></label>
-                <input asp-for="strat_ro_outcome_val_5" class="form-control" />
-                <span asp-validation-for="strat_ro_outcome_val_5" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="strat_ro_outcome_desc_5" class="control-label"></label>
-                <input asp-for="strat_ro_outcome_desc_5" class="form-control" />
-                <span asp-validation-for="strat_ro_outcome_desc_5" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="stake_fo_outcome_val_1" class="control-label"></label>
-                <input asp-for="stake_fo_outcome_val_1" class="form-control" />
-                <span asp-validation-for="stake_fo_outcome_val_1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="stake_fo_outcome_desc_1" class="control-label"></label>
-                <input asp-for="stake_fo_outcome_desc_1" class="form-control" />
-                <span asp-validation-for="stake_fo_outcome_desc_1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="stake_fo_outcome_val_2" class="control-label"></label>
-                <input asp-for="stake_fo_outcome_val_2" class="form-control" />
-                <span asp-validation-for="stake_fo_outcome_val_2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="stake_fo_outcome_desc_2" class="control-label"></label>
-                <input asp-for="stake_fo_outcome_desc_2" class="form-control" />
-                <span asp-validation-for="stake_fo_outcome_desc_2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="stake_fo_outcome_val_3" class="control-label"></label>
-                <input asp-for="stake_fo_outcome_val_3" class="form-control" />
-                <span asp-validation-for="stake_fo_outcome_val_3" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="stake_fo_outcome_desc_3" class="control-label"></label>
-                <input asp-for="stake_fo_outcome_desc_3" class="form-control" />
-                <span asp-validation-for="stake_fo_outcome_desc_3" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="stake_fo_outcome_val_4" class="control-label"></label>
-                <input asp-for="stake_fo_outcome_val_4" class="form-control" />
-                <span asp-validation-for="stake_fo_outcome_val_4" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="stake_fo_outcome_desc_4" class="control-label"></label>
-                <input asp-for="stake_fo_outcome_desc_4" class="form-control" />
-                <span asp-validation-for="stake_fo_outcome_desc_4" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="stake_fo_outcome_val_5" class="control-label"></label>
-                <input asp-for="stake_fo_outcome_val_5" class="form-control" />
-                <span asp-validation-for="stake_fo_outcome_val_5" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="stake_fo_outcome_desc_5" class="control-label"></label>
-                <input asp-for="stake_fo_outcome_desc_5" class="form-control" />
-                <span asp-validation-for="stake_fo_outcome_desc_5" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="stake_ro_outcome_val_1" class="control-label"></label>
-                <input asp-for="stake_ro_outcome_val_1" class="form-control" />
-                <span asp-validation-for="stake_ro_outcome_val_1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="stake_ro_outcome_desc_1" class="control-label"></label>
-                <input asp-for="stake_ro_outcome_desc_1" class="form-control" />
-                <span asp-validation-for="stake_ro_outcome_desc_1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="stake_ro_outcome_val_2" class="control-label"></label>
-                <input asp-for="stake_ro_outcome_val_2" class="form-control" />
-                <span asp-validation-for="stake_ro_outcome_val_2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="stake_ro_outcome_desc_2" class="control-label"></label>
-                <input asp-for="stake_ro_outcome_desc_2" class="form-control" />
-                <span asp-validation-for="stake_ro_outcome_desc_2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="stake_ro_outcome_val_3" class="control-label"></label>
-                <input asp-for="stake_ro_outcome_val_3" class="form-control" />
-                <span asp-validation-for="stake_ro_outcome_val_3" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="stake_ro_outcome_desc_3" class="control-label"></label>
-                <input asp-for="stake_ro_outcome_desc_3" class="form-control" />
-                <span asp-validation-for="stake_ro_outcome_desc_3" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="stake_ro_outcome_val_4" class="control-label"></label>
-                <input asp-for="stake_ro_outcome_val_4" class="form-control" />
-                <span asp-validation-for="stake_ro_outcome_val_4" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="stake_ro_outcome_desc_4" class="control-label"></label>
-                <input asp-for="stake_ro_outcome_desc_4" class="form-control" />
-                <span asp-validation-for="stake_ro_outcome_desc_4" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="stake_ro_outcome_val_5" class="control-label"></label>
-                <input asp-for="stake_ro_outcome_val_5" class="form-control" />
-                <span asp-validation-for="stake_ro_outcome_val_5" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="stake_ro_outcome_desc_5" class="control-label"></label>
-                <input asp-for="stake_ro_outcome_desc_5" class="form-control" />
-                <span asp-validation-for="stake_ro_outcome_desc_5" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="oper_fo_outcome_val_1" class="control-label"></label>
-                <input asp-for="oper_fo_outcome_val_1" class="form-control" />
-                <span asp-validation-for="oper_fo_outcome_val_1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="oper_fo_outcome_desc_1" class="control-label"></label>
-                <input asp-for="oper_fo_outcome_desc_1" class="form-control" />
-                <span asp-validation-for="oper_fo_outcome_desc_1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="oper_fo_outcome_val_2" class="control-label"></label>
-                <input asp-for="oper_fo_outcome_val_2" class="form-control" />
-                <span asp-validation-for="oper_fo_outcome_val_2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="oper_fo_outcome_desc_2" class="control-label"></label>
-                <input asp-for="oper_fo_outcome_desc_2" class="form-control" />
-                <span asp-validation-for="oper_fo_outcome_desc_2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="oper_fo_outcome_val_3" class="control-label"></label>
-                <input asp-for="oper_fo_outcome_val_3" class="form-control" />
-                <span asp-validation-for="oper_fo_outcome_val_3" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="oper_fo_outcome_desc_3" class="control-label"></label>
-                <input asp-for="oper_fo_outcome_desc_3" class="form-control" />
-                <span asp-validation-for="oper_fo_outcome_desc_3" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="oper_fo_outcome_val_4" class="control-label"></label>
-                <input asp-for="oper_fo_outcome_val_4" class="form-control" />
-                <span asp-validation-for="oper_fo_outcome_val_4" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="oper_fo_outcome_desc_4" class="control-label"></label>
-                <input asp-for="oper_fo_outcome_desc_4" class="form-control" />
-                <span asp-validation-for="oper_fo_outcome_desc_4" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="oper_fo_outcome_val_5" class="control-label"></label>
-                <input asp-for="oper_fo_outcome_val_5" class="form-control" />
-                <span asp-validation-for="oper_fo_outcome_val_5" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="oper_fo_outcome_desc_5" class="control-label"></label>
-                <input asp-for="oper_fo_outcome_desc_5" class="form-control" />
-                <span asp-validation-for="oper_fo_outcome_desc_5" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="oper_ro_outcome_val_1" class="control-label"></label>
-                <input asp-for="oper_ro_outcome_val_1" class="form-control" />
-                <span asp-validation-for="oper_ro_outcome_val_1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="oper_ro_outcome_desc_1" class="control-label"></label>
-                <input asp-for="oper_ro_outcome_desc_1" class="form-control" />
-                <span asp-validation-for="oper_ro_outcome_desc_1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="oper_ro_outcome_val_2" class="control-label"></label>
-                <input asp-for="oper_ro_outcome_val_2" class="form-control" />
-                <span asp-validation-for="oper_ro_outcome_val_2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="oper_ro_outcome_desc_2" class="control-label"></label>
-                <input asp-for="oper_ro_outcome_desc_2" class="form-control" />
-                <span asp-validation-for="oper_ro_outcome_desc_2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="oper_ro_outcome_val_3" class="control-label"></label>
-                <input asp-for="oper_ro_outcome_val_3" class="form-control" />
-                <span asp-validation-for="oper_ro_outcome_val_3" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="oper_ro_outcome_desc_3" class="control-label"></label>
-                <input asp-for="oper_ro_outcome_desc_3" class="form-control" />
-                <span asp-validation-for="oper_ro_outcome_desc_3" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="oper_ro_outcome_val_4" class="control-label"></label>
-                <input asp-for="oper_ro_outcome_val_4" class="form-control" />
-                <span asp-validation-for="oper_ro_outcome_val_4" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="oper_ro_outcome_desc_4" class="control-label"></label>
-                <input asp-for="oper_ro_outcome_desc_4" class="form-control" />
-                <span asp-validation-for="oper_ro_outcome_desc_4" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="oper_ro_outcome_val_5" class="control-label"></label>
-                <input asp-for="oper_ro_outcome_val_5" class="form-control" />
-                <span asp-validation-for="oper_ro_outcome_val_5" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="oper_ro_outcome_desc_5" class="control-label"></label>
-                <input asp-for="oper_ro_outcome_desc_5" class="form-control" />
-                <span asp-validation-for="oper_ro_outcome_desc_5" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="risk_fo_outcome_val_1" class="control-label"></label>
-                <input asp-for="risk_fo_outcome_val_1" class="form-control" />
-                <span asp-validation-for="risk_fo_outcome_val_1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="risk_fo_outcome_desc_1" class="control-label"></label>
-                <input asp-for="risk_fo_outcome_desc_1" class="form-control" />
-                <span asp-validation-for="risk_fo_outcome_desc_1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="risk_fo_outcome_val_2" class="control-label"></label>
-                <input asp-for="risk_fo_outcome_val_2" class="form-control" />
-                <span asp-validation-for="risk_fo_outcome_val_2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="risk_fo_outcome_desc_2" class="control-label"></label>
-                <input asp-for="risk_fo_outcome_desc_2" class="form-control" />
-                <span asp-validation-for="risk_fo_outcome_desc_2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="risk_fo_outcome_val_3" class="control-label"></label>
-                <input asp-for="risk_fo_outcome_val_3" class="form-control" />
-                <span asp-validation-for="risk_fo_outcome_val_3" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="risk_fo_outcome_desc_3" class="control-label"></label>
-                <input asp-for="risk_fo_outcome_desc_3" class="form-control" />
-                <span asp-validation-for="risk_fo_outcome_desc_3" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="risk_fo_outcome_val_4" class="control-label"></label>
-                <input asp-for="risk_fo_outcome_val_4" class="form-control" />
-                <span asp-validation-for="risk_fo_outcome_val_4" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="risk_fo_outcome_desc_4" class="control-label"></label>
-                <input asp-for="risk_fo_outcome_desc_4" class="form-control" />
-                <span asp-validation-for="risk_fo_outcome_desc_4" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="risk_fo_outcome_val_5" class="control-label"></label>
-                <input asp-for="risk_fo_outcome_val_5" class="form-control" />
-                <span asp-validation-for="risk_fo_outcome_val_5" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="risk_fo_outcome_desc_5" class="control-label"></label>
-                <input asp-for="risk_fo_outcome_desc_5" class="form-control" />
-                <span asp-validation-for="risk_fo_outcome_desc_5" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="risk_ro_outcome_val_1" class="control-label"></label>
-                <input asp-for="risk_ro_outcome_val_1" class="form-control" />
-                <span asp-validation-for="risk_ro_outcome_val_1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="risk_ro_outcome_desc_1" class="control-label"></label>
-                <input asp-for="risk_ro_outcome_desc_1" class="form-control" />
-                <span asp-validation-for="risk_ro_outcome_desc_1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="risk_ro_outcome_val_2" class="control-label"></label>
-                <input asp-for="risk_ro_outcome_val_2" class="form-control" />
-                <span asp-validation-for="risk_ro_outcome_val_2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="risk_ro_outcome_desc_2" class="control-label"></label>
-                <input asp-for="risk_ro_outcome_desc_2" class="form-control" />
-                <span asp-validation-for="risk_ro_outcome_desc_2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="risk_ro_outcome_val_3" class="control-label"></label>
-                <input asp-for="risk_ro_outcome_val_3" class="form-control" />
-                <span asp-validation-for="risk_ro_outcome_val_3" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="risk_ro_outcome_desc_3" class="control-label"></label>
-                <input asp-for="risk_ro_outcome_desc_3" class="form-control" />
-                <span asp-validation-for="risk_ro_outcome_desc_3" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="risk_ro_outcome_val_4" class="control-label"></label>
-                <input asp-for="risk_ro_outcome_val_4" class="form-control" />
-                <span asp-validation-for="risk_ro_outcome_val_4" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="risk_ro_outcome_desc_4" class="control-label"></label>
-                <input asp-for="risk_ro_outcome_desc_4" class="form-control" />
-                <span asp-validation-for="risk_ro_outcome_desc_4" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="risk_ro_outcome_val_5" class="control-label"></label>
-                <input asp-for="risk_ro_outcome_val_5" class="form-control" />
-                <span asp-validation-for="risk_ro_outcome_val_5" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="risk_ro_outcome_desc_5" class="control-label"></label>
-                <input asp-for="risk_ro_outcome_desc_5" class="form-control" />
-                <span asp-validation-for="risk_ro_outcome_desc_5" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Company_id" class="control-label">Company Name</label>
+                            <select asp-for="Company_id" class="form-control" asp-items="@(new SelectList(@ViewBag.companies, "Id", "Name"))"></select>
+                            <span asp-validation-for="Company_id" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Assessment_date" class="control-label">Assessment Date</label>
+                            <input asp-for="Assessment_date" class="form-control" />
+                            <span asp-validation-for="Assessment_date" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="height: 0.5px; background: #808080;">
+            <div><p><b>Strategy Management(Formulation, Communication/Alignment, Review, Revision)</b></p></div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <b><u><i href="#" data-toggle="tooltip" title="Rev Growth&#0010;Net Profit&#0010;Gross Margins&#0010;Capitalization&#0010;Price Strategy">* Financial Outcomes</i></u></b>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <b><u><i href="#" data-toggle="tooltip" title="Market Share&#0010;Market Share Growth&#0010;Digital Traffic&#0010;Digital Lead Conv&#0010;Net Promoter Score">* Relationship Outcomes</i></u></b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="strat_fo_outcome_val_1" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="strat_fo_outcome_desc_1" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="strat_ro_outcome_val_1" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="strat_ro_outcome_desc_1" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="strat_fo_outcome_val_2" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="strat_fo_outcome_desc_2" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="strat_ro_outcome_val_2" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="strat_ro_outcome_desc_2" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="strat_fo_outcome_val_3" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="strat_fo_outcome_desc_3" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="strat_ro_outcome_val_3" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="strat_ro_outcome_desc_3" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="strat_fo_outcome_val_4" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="strat_fo_outcome_desc_4" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="strat_ro_outcome_val_4" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="strat_ro_outcome_desc_4" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="strat_fo_outcome_val_5" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="strat_fo_outcome_desc_5" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="strat_ro_outcome_val_5" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="strat_ro_outcome_desc_5" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="height: 0.5px; background: #808080;">
+
+            <!--Stakeholder-->
+            <div><p><b>Stakeholder Management(Employees, Investors/Owners, Business Partners, Regulators)</b></p></div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <b><u><i href="#" data-toggle="tooltip" title="ROTCE&#0010;Cust Acq Cost&#0010;Cust Profitability&#0010;Profitability/Empl&#0010;Revenue/Empl">* Financial Outcomes</i></u></b>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <b><u><i href="#" data-toggle="tooltip" title="Employee Turnover&#0010;Customer Retention&#0010;Customer Complaints&#0010;Returns/Def Products&#0010;Business Partner Satisfaction">* Relationship Outcomes</i></u></b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="stake_fo_outcome_val_1" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="stake_fo_outcome_desc_1" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="stake_ro_outcome_val_1" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="stake_ro_outcome_desc_1" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="stake_fo_outcome_val_2" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="stake_fo_outcome_desc_2" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="stake_ro_outcome_val_2" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="stake_ro_outcome_desc_2" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="stake_fo_outcome_val_3" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="stake_fo_outcome_desc_3" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="stake_ro_outcome_val_3" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="stake_ro_outcome_desc_3" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="stake_fo_outcome_val_4" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="stake_fo_outcome_desc_4" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="stake_ro_outcome_val_4" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="stake_ro_outcome_desc_4" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="stake_fo_outcome_val_5" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="stake_fo_outcome_desc_5" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="stake_ro_outcome_val_5" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="stake_ro_outcome_desc_5" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="height: 0.5px; background: #808080;">
+
+
+            <!--Operations-->
+            <div><p><b>Operations Management(Finance/Accounting, Technology/Systems, Product/Services, Production, Innovation/R&D)</b></p></div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <b><u><i href="#" data-toggle="tooltip" title="Operation Costs&#0010;Liquidity Costs&#0010;ROI&#0010;Comp Costs&#0010;R&D Costs">* Financial Outcomes</i></u></b>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <b><u><i href="#" data-toggle="tooltip" title="Operating Eff Ratio&#0010;Inventory Ratio&#0010;Sys Up/Down Time &#0010;Patents Filed&#0010;Employee Efficiency">* Relationship Outcomes</i></u></b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="oper_fo_outcome_val_1" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="oper_fo_outcome_desc_1" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="oper_ro_outcome_val_1" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="oper_ro_outcome_desc_1" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="oper_fo_outcome_val_2" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="oper_fo_outcome_desc_2" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="oper_ro_outcome_val_2" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="oper_ro_outcome_desc_2" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="oper_fo_outcome_val_3" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="oper_fo_outcome_desc_3" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="oper_ro_outcome_val_3" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="oper_ro_outcome_desc_3" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="oper_fo_outcome_val_4" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="oper_fo_outcome_desc_4" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="oper_ro_outcome_val_4" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="oper_ro_outcome_desc_4" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="oper_fo_outcome_val_5" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="oper_fo_outcome_desc_5" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="oper_ro_outcome_val_5" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="oper_ro_outcome_desc_5" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="height: 0.5px; background: #808080;">
+
+
+            <!--Risk Management-->
+            <div><p><b>Risk Management(HR, Operations, Security, Strategy Disruption)</b></p></div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <b><u><i href="#" data-toggle="tooltip" title="Ins Costs&#0010;Uninsured Costs&#0010;Credit Losses&#0010;Theft Losses&#0010;Rev Loss to Competitors">* Financial Outcomes</i></u></b>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <b><u><i href="#" data-toggle="tooltip" title="Insurance Claims&#0010;Cyber Risks Incidents&#0010;Legal Cases/Litigation&#0010;Regulatory Ratings&#0010;Audit Exceptions">* Relationship Outcomes</i></u></b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="risk_fo_outcome_val_1" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="risk_fo_outcome_desc_1" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="risk_ro_outcome_val_1" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="risk_ro_outcome_desc_1" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="risk_fo_outcome_val_2" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="risk_fo_outcome_desc_2" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="risk_ro_outcome_val_2" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="risk_ro_outcome_desc_2" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="risk_fo_outcome_val_3" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="risk_fo_outcome_desc_3" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-label-group">
+                            <input asp-for="risk_ro_outcome_val_3" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="risk_ro_outcome_desc_3" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="risk_fo_outcome_val_4" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="risk_fo_outcome_desc_4" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="risk_ro_outcome_val_4" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="risk_ro_outcome_desc_4" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="risk_fo_outcome_val_5" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="risk_fo_outcome_desc_5" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input asp-for="risk_ro_outcome_val_5" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input asp-for="risk_ro_outcome_desc_5" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="height: 0.5px; background: #808080;">
+
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index"><input type="button" value="Cancel" class="btn btn-primary" /> </a>
+            </div>
+
+
+        </form>  
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+            @*<div class="row">
+                    <div class="col-md-4">
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Company_id" class="control-label"></label>
+                                <input asp-for="Company_id" class="form-control" />
+                                <span asp-validation-for="Company_id" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Assessment_date" class="control-label"></label>
+                                <input asp-for="Assessment_date" class="form-control" />
+                                <span asp-validation-for="Assessment_date" class="text-danger"></span>
+                            </div> //
+                            <div class="form-group">
+                                <label asp-for="strat_fo_outcome_val_1" class="control-label"></label>
+                                <input asp-for="strat_fo_outcome_val_1" class="form-control" />
+                                <span asp-validation-for="strat_fo_outcome_val_1" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="strat_fo_outcome_desc_1" class="control-label"></label>
+                                <input asp-for="strat_fo_outcome_desc_1" class="form-control" />
+                                <span asp-validation-for="strat_fo_outcome_desc_1" class="text-danger"></span>
+                            </div>//
+                            <div class="form-group">
+                                <label asp-for="strat_fo_outcome_val_2" class="control-label"></label>
+                                <input asp-for="strat_fo_outcome_val_2" class="form-control" />
+                                <span asp-validation-for="strat_fo_outcome_val_2" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="strat_fo_outcome_desc_2" class="control-label"></label>
+                                <input asp-for="strat_fo_outcome_desc_2" class="form-control" />
+                                <span asp-validation-for="strat_fo_outcome_desc_2" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="strat_fo_outcome_val_3" class="control-label"></label>
+                                <input asp-for="strat_fo_outcome_val_3" class="form-control" />
+                                <span asp-validation-for="strat_fo_outcome_val_3" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="strat_fo_outcome_desc_3" class="control-label"></label>
+                                <input asp-for="strat_fo_outcome_desc_3" class="form-control" />
+                                <span asp-validation-for="strat_fo_outcome_desc_3" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="strat_fo_outcome_val_4" class="control-label"></label>
+                                <input asp-for="strat_fo_outcome_val_4" class="form-control" />
+                                <span asp-validation-for="strat_fo_outcome_val_4" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="strat_fo_outcome_desc_4" class="control-label"></label>
+                                <input asp-for="strat_fo_outcome_desc_4" class="form-control" />
+                                <span asp-validation-for="strat_fo_outcome_desc_4" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="strat_fo_outcome_val_5" class="control-label"></label>
+                                <input asp-for="strat_fo_outcome_val_5" class="form-control" />
+                                <span asp-validation-for="strat_fo_outcome_val_5" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="strat_fo_outcome_desc_5" class="control-label"></label>
+                                <input asp-for="strat_fo_outcome_desc_5" class="form-control" />
+                                <span asp-validation-for="strat_fo_outcome_desc_5" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="strat_ro_outcome_val_1" class="control-label"></label>
+                                <input asp-for="strat_ro_outcome_val_1" class="form-control" />
+                                <span asp-validation-for="strat_ro_outcome_val_1" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="strat_ro_outcome_desc_1" class="control-label"></label>
+                                <input asp-for="strat_ro_outcome_desc_1" class="form-control" />
+                                <span asp-validation-for="strat_ro_outcome_desc_1" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="strat_ro_outcome_val_2" class="control-label"></label>
+                                <input asp-for="strat_ro_outcome_val_2" class="form-control" />
+                                <span asp-validation-for="strat_ro_outcome_val_2" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="strat_ro_outcome_desc_2" class="control-label"></label>
+                                <input asp-for="strat_ro_outcome_desc_2" class="form-control" />
+                                <span asp-validation-for="strat_ro_outcome_desc_2" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="strat_ro_outcome_val_3" class="control-label"></label>
+                                <input asp-for="strat_ro_outcome_val_3" class="form-control" />
+                                <span asp-validation-for="strat_ro_outcome_val_3" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="strat_ro_outcome_desc_3" class="control-label"></label>
+                                <input asp-for="strat_ro_outcome_desc_3" class="form-control" />
+                                <span asp-validation-for="strat_ro_outcome_desc_3" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="strat_ro_outcome_val_4" class="control-label"></label>
+                                <input asp-for="strat_ro_outcome_val_4" class="form-control" />
+                                <span asp-validation-for="strat_ro_outcome_val_4" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="strat_ro_outcome_desc_4" class="control-label"></label>
+                                <input asp-for="strat_ro_outcome_desc_4" class="form-control" />
+                                <span asp-validation-for="strat_ro_outcome_desc_4" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="strat_ro_outcome_val_5" class="control-label"></label>
+                                <input asp-for="strat_ro_outcome_val_5" class="form-control" />
+                                <span asp-validation-for="strat_ro_outcome_val_5" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="strat_ro_outcome_desc_5" class="control-label"></label>
+                                <input asp-for="strat_ro_outcome_desc_5" class="form-control" />
+                                <span asp-validation-for="strat_ro_outcome_desc_5" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="stake_fo_outcome_val_1" class="control-label"></label>
+                                <input asp-for="stake_fo_outcome_val_1" class="form-control" />
+                                <span asp-validation-for="stake_fo_outcome_val_1" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="stake_fo_outcome_desc_1" class="control-label"></label>
+                                <input asp-for="stake_fo_outcome_desc_1" class="form-control" />
+                                <span asp-validation-for="stake_fo_outcome_desc_1" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="stake_fo_outcome_val_2" class="control-label"></label>
+                                <input asp-for="stake_fo_outcome_val_2" class="form-control" />
+                                <span asp-validation-for="stake_fo_outcome_val_2" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="stake_fo_outcome_desc_2" class="control-label"></label>
+                                <input asp-for="stake_fo_outcome_desc_2" class="form-control" />
+                                <span asp-validation-for="stake_fo_outcome_desc_2" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="stake_fo_outcome_val_3" class="control-label"></label>
+                                <input asp-for="stake_fo_outcome_val_3" class="form-control" />
+                                <span asp-validation-for="stake_fo_outcome_val_3" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="stake_fo_outcome_desc_3" class="control-label"></label>
+                                <input asp-for="stake_fo_outcome_desc_3" class="form-control" />
+                                <span asp-validation-for="stake_fo_outcome_desc_3" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="stake_fo_outcome_val_4" class="control-label"></label>
+                                <input asp-for="stake_fo_outcome_val_4" class="form-control" />
+                                <span asp-validation-for="stake_fo_outcome_val_4" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="stake_fo_outcome_desc_4" class="control-label"></label>
+                                <input asp-for="stake_fo_outcome_desc_4" class="form-control" />
+                                <span asp-validation-for="stake_fo_outcome_desc_4" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="stake_fo_outcome_val_5" class="control-label"></label>
+                                <input asp-for="stake_fo_outcome_val_5" class="form-control" />
+                                <span asp-validation-for="stake_fo_outcome_val_5" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="stake_fo_outcome_desc_5" class="control-label"></label>
+                                <input asp-for="stake_fo_outcome_desc_5" class="form-control" />
+                                <span asp-validation-for="stake_fo_outcome_desc_5" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="stake_ro_outcome_val_1" class="control-label"></label>
+                                <input asp-for="stake_ro_outcome_val_1" class="form-control" />
+                                <span asp-validation-for="stake_ro_outcome_val_1" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="stake_ro_outcome_desc_1" class="control-label"></label>
+                                <input asp-for="stake_ro_outcome_desc_1" class="form-control" />
+                                <span asp-validation-for="stake_ro_outcome_desc_1" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="stake_ro_outcome_val_2" class="control-label"></label>
+                                <input asp-for="stake_ro_outcome_val_2" class="form-control" />
+                                <span asp-validation-for="stake_ro_outcome_val_2" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="stake_ro_outcome_desc_2" class="control-label"></label>
+                                <input asp-for="stake_ro_outcome_desc_2" class="form-control" />
+                                <span asp-validation-for="stake_ro_outcome_desc_2" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="stake_ro_outcome_val_3" class="control-label"></label>
+                                <input asp-for="stake_ro_outcome_val_3" class="form-control" />
+                                <span asp-validation-for="stake_ro_outcome_val_3" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="stake_ro_outcome_desc_3" class="control-label"></label>
+                                <input asp-for="stake_ro_outcome_desc_3" class="form-control" />
+                                <span asp-validation-for="stake_ro_outcome_desc_3" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="stake_ro_outcome_val_4" class="control-label"></label>
+                                <input asp-for="stake_ro_outcome_val_4" class="form-control" />
+                                <span asp-validation-for="stake_ro_outcome_val_4" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="stake_ro_outcome_desc_4" class="control-label"></label>
+                                <input asp-for="stake_ro_outcome_desc_4" class="form-control" />
+                                <span asp-validation-for="stake_ro_outcome_desc_4" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="stake_ro_outcome_val_5" class="control-label"></label>
+                                <input asp-for="stake_ro_outcome_val_5" class="form-control" />
+                                <span asp-validation-for="stake_ro_outcome_val_5" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="stake_ro_outcome_desc_5" class="control-label"></label>
+                                <input asp-for="stake_ro_outcome_desc_5" class="form-control" />
+                                <span asp-validation-for="stake_ro_outcome_desc_5" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="oper_fo_outcome_val_1" class="control-label"></label>
+                                <input asp-for="oper_fo_outcome_val_1" class="form-control" />
+                                <span asp-validation-for="oper_fo_outcome_val_1" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="oper_fo_outcome_desc_1" class="control-label"></label>
+                                <input asp-for="oper_fo_outcome_desc_1" class="form-control" />
+                                <span asp-validation-for="oper_fo_outcome_desc_1" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="oper_fo_outcome_val_2" class="control-label"></label>
+                                <input asp-for="oper_fo_outcome_val_2" class="form-control" />
+                                <span asp-validation-for="oper_fo_outcome_val_2" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="oper_fo_outcome_desc_2" class="control-label"></label>
+                                <input asp-for="oper_fo_outcome_desc_2" class="form-control" />
+                                <span asp-validation-for="oper_fo_outcome_desc_2" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="oper_fo_outcome_val_3" class="control-label"></label>
+                                <input asp-for="oper_fo_outcome_val_3" class="form-control" />
+                                <span asp-validation-for="oper_fo_outcome_val_3" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="oper_fo_outcome_desc_3" class="control-label"></label>
+                                <input asp-for="oper_fo_outcome_desc_3" class="form-control" />
+                                <span asp-validation-for="oper_fo_outcome_desc_3" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="oper_fo_outcome_val_4" class="control-label"></label>
+                                <input asp-for="oper_fo_outcome_val_4" class="form-control" />
+                                <span asp-validation-for="oper_fo_outcome_val_4" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="oper_fo_outcome_desc_4" class="control-label"></label>
+                                <input asp-for="oper_fo_outcome_desc_4" class="form-control" />
+                                <span asp-validation-for="oper_fo_outcome_desc_4" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="oper_fo_outcome_val_5" class="control-label"></label>
+                                <input asp-for="oper_fo_outcome_val_5" class="form-control" />
+                                <span asp-validation-for="oper_fo_outcome_val_5" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="oper_fo_outcome_desc_5" class="control-label"></label>
+                                <input asp-for="oper_fo_outcome_desc_5" class="form-control" />
+                                <span asp-validation-for="oper_fo_outcome_desc_5" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="oper_ro_outcome_val_1" class="control-label"></label>
+                                <input asp-for="oper_ro_outcome_val_1" class="form-control" />
+                                <span asp-validation-for="oper_ro_outcome_val_1" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="oper_ro_outcome_desc_1" class="control-label"></label>
+                                <input asp-for="oper_ro_outcome_desc_1" class="form-control" />
+                                <span asp-validation-for="oper_ro_outcome_desc_1" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="oper_ro_outcome_val_2" class="control-label"></label>
+                                <input asp-for="oper_ro_outcome_val_2" class="form-control" />
+                                <span asp-validation-for="oper_ro_outcome_val_2" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="oper_ro_outcome_desc_2" class="control-label"></label>
+                                <input asp-for="oper_ro_outcome_desc_2" class="form-control" />
+                                <span asp-validation-for="oper_ro_outcome_desc_2" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="oper_ro_outcome_val_3" class="control-label"></label>
+                                <input asp-for="oper_ro_outcome_val_3" class="form-control" />
+                                <span asp-validation-for="oper_ro_outcome_val_3" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="oper_ro_outcome_desc_3" class="control-label"></label>
+                                <input asp-for="oper_ro_outcome_desc_3" class="form-control" />
+                                <span asp-validation-for="oper_ro_outcome_desc_3" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="oper_ro_outcome_val_4" class="control-label"></label>
+                                <input asp-for="oper_ro_outcome_val_4" class="form-control" />
+                                <span asp-validation-for="oper_ro_outcome_val_4" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="oper_ro_outcome_desc_4" class="control-label"></label>
+                                <input asp-for="oper_ro_outcome_desc_4" class="form-control" />
+                                <span asp-validation-for="oper_ro_outcome_desc_4" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="oper_ro_outcome_val_5" class="control-label"></label>
+                                <input asp-for="oper_ro_outcome_val_5" class="form-control" />
+                                <span asp-validation-for="oper_ro_outcome_val_5" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="oper_ro_outcome_desc_5" class="control-label"></label>
+                                <input asp-for="oper_ro_outcome_desc_5" class="form-control" />
+                                <span asp-validation-for="oper_ro_outcome_desc_5" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="risk_fo_outcome_val_1" class="control-label"></label>
+                                <input asp-for="risk_fo_outcome_val_1" class="form-control" />
+                                <span asp-validation-for="risk_fo_outcome_val_1" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="risk_fo_outcome_desc_1" class="control-label"></label>
+                                <input asp-for="risk_fo_outcome_desc_1" class="form-control" />
+                                <span asp-validation-for="risk_fo_outcome_desc_1" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="risk_fo_outcome_val_2" class="control-label"></label>
+                                <input asp-for="risk_fo_outcome_val_2" class="form-control" />
+                                <span asp-validation-for="risk_fo_outcome_val_2" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="risk_fo_outcome_desc_2" class="control-label"></label>
+                                <input asp-for="risk_fo_outcome_desc_2" class="form-control" />
+                                <span asp-validation-for="risk_fo_outcome_desc_2" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="risk_fo_outcome_val_3" class="control-label"></label>
+                                <input asp-for="risk_fo_outcome_val_3" class="form-control" />
+                                <span asp-validation-for="risk_fo_outcome_val_3" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="risk_fo_outcome_desc_3" class="control-label"></label>
+                                <input asp-for="risk_fo_outcome_desc_3" class="form-control" />
+                                <span asp-validation-for="risk_fo_outcome_desc_3" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="risk_fo_outcome_val_4" class="control-label"></label>
+                                <input asp-for="risk_fo_outcome_val_4" class="form-control" />
+                                <span asp-validation-for="risk_fo_outcome_val_4" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="risk_fo_outcome_desc_4" class="control-label"></label>
+                                <input asp-for="risk_fo_outcome_desc_4" class="form-control" />
+                                <span asp-validation-for="risk_fo_outcome_desc_4" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="risk_fo_outcome_val_5" class="control-label"></label>
+                                <input asp-for="risk_fo_outcome_val_5" class="form-control" />
+                                <span asp-validation-for="risk_fo_outcome_val_5" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="risk_fo_outcome_desc_5" class="control-label"></label>
+                                <input asp-for="risk_fo_outcome_desc_5" class="form-control" />
+                                <span asp-validation-for="risk_fo_outcome_desc_5" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="risk_ro_outcome_val_1" class="control-label"></label>
+                                <input asp-for="risk_ro_outcome_val_1" class="form-control" />
+                                <span asp-validation-for="risk_ro_outcome_val_1" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="risk_ro_outcome_desc_1" class="control-label"></label>
+                                <input asp-for="risk_ro_outcome_desc_1" class="form-control" />
+                                <span asp-validation-for="risk_ro_outcome_desc_1" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="risk_ro_outcome_val_2" class="control-label"></label>
+                                <input asp-for="risk_ro_outcome_val_2" class="form-control" />
+                                <span asp-validation-for="risk_ro_outcome_val_2" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="risk_ro_outcome_desc_2" class="control-label"></label>
+                                <input asp-for="risk_ro_outcome_desc_2" class="form-control" />
+                                <span asp-validation-for="risk_ro_outcome_desc_2" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="risk_ro_outcome_val_3" class="control-label"></label>
+                                <input asp-for="risk_ro_outcome_val_3" class="form-control" />
+                                <span asp-validation-for="risk_ro_outcome_val_3" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="risk_ro_outcome_desc_3" class="control-label"></label>
+                                <input asp-for="risk_ro_outcome_desc_3" class="form-control" />
+                                <span asp-validation-for="risk_ro_outcome_desc_3" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="risk_ro_outcome_val_4" class="control-label"></label>
+                                <input asp-for="risk_ro_outcome_val_4" class="form-control" />
+                                <span asp-validation-for="risk_ro_outcome_val_4" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="risk_ro_outcome_desc_4" class="control-label"></label>
+                                <input asp-for="risk_ro_outcome_desc_4" class="form-control" />
+                                <span asp-validation-for="risk_ro_outcome_desc_4" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="risk_ro_outcome_val_5" class="control-label"></label>
+                                <input asp-for="risk_ro_outcome_val_5" class="form-control" />
+                                <span asp-validation-for="risk_ro_outcome_val_5" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="risk_ro_outcome_desc_5" class="control-label"></label>
+                                <input asp-for="risk_ro_outcome_desc_5" class="form-control" />
+                                <span asp-validation-for="risk_ro_outcome_desc_5" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+                <div>
+                    <a asp-action="Index">Back to List</a>
+                </div>*@
+
+            @section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            }

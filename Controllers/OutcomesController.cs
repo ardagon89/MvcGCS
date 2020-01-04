@@ -1,11 +1,10 @@
-﻿using System;
+﻿using GCS.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using GCS.Models;
 
 namespace GCS
 {
@@ -18,15 +17,48 @@ namespace GCS
             _context = context;
         }
 
+        public Boolean IsLoggedIn()
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return false;
+            }
+            return true;
+        }
+
         // GET: Outcomes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Outcome.ToListAsync());
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
+            List<Outcome> outcomes = await _context.Outcome.ToListAsync();
+            List<Company> companies = await _context.Companies.ToListAsync();
+
+            var innerJoin = outcomes.Join(// outer sequence 
+                      companies,  // inner sequence 
+                      outcome => outcome.Company_id,    // outerKeySelector
+                      company => company.Id,  // innerKeySelector
+                      (outcome, company) => new OutcomeCompanyViewModel // result selector
+                      {
+                          outcome = outcome,
+                          company = company
+                      });
+
+            return View(innerJoin);
         }
 
         // GET: Outcomes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
             if (id == null)
             {
                 return NotFound();
@@ -38,13 +70,21 @@ namespace GCS
             {
                 return NotFound();
             }
+            ViewBag.company = await _context.Companies
+                .FirstOrDefaultAsync(c => c.Id == outcome.Company_id);
 
             return View(outcome);
         }
 
         // GET: Outcomes/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
+            ViewBag.companies = await _context.Companies.ToListAsync();
             return View();
         }
 
@@ -55,6 +95,11 @@ namespace GCS
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Company_id,Assessment_date,strat_fo_outcome_val_1,strat_fo_outcome_desc_1,strat_fo_outcome_val_2,strat_fo_outcome_desc_2,strat_fo_outcome_val_3,strat_fo_outcome_desc_3,strat_fo_outcome_val_4,strat_fo_outcome_desc_4,strat_fo_outcome_val_5,strat_fo_outcome_desc_5,strat_ro_outcome_val_1,strat_ro_outcome_desc_1,strat_ro_outcome_val_2,strat_ro_outcome_desc_2,strat_ro_outcome_val_3,strat_ro_outcome_desc_3,strat_ro_outcome_val_4,strat_ro_outcome_desc_4,strat_ro_outcome_val_5,strat_ro_outcome_desc_5,stake_fo_outcome_val_1,stake_fo_outcome_desc_1,stake_fo_outcome_val_2,stake_fo_outcome_desc_2,stake_fo_outcome_val_3,stake_fo_outcome_desc_3,stake_fo_outcome_val_4,stake_fo_outcome_desc_4,stake_fo_outcome_val_5,stake_fo_outcome_desc_5,stake_ro_outcome_val_1,stake_ro_outcome_desc_1,stake_ro_outcome_val_2,stake_ro_outcome_desc_2,stake_ro_outcome_val_3,stake_ro_outcome_desc_3,stake_ro_outcome_val_4,stake_ro_outcome_desc_4,stake_ro_outcome_val_5,stake_ro_outcome_desc_5,oper_fo_outcome_val_1,oper_fo_outcome_desc_1,oper_fo_outcome_val_2,oper_fo_outcome_desc_2,oper_fo_outcome_val_3,oper_fo_outcome_desc_3,oper_fo_outcome_val_4,oper_fo_outcome_desc_4,oper_fo_outcome_val_5,oper_fo_outcome_desc_5,oper_ro_outcome_val_1,oper_ro_outcome_desc_1,oper_ro_outcome_val_2,oper_ro_outcome_desc_2,oper_ro_outcome_val_3,oper_ro_outcome_desc_3,oper_ro_outcome_val_4,oper_ro_outcome_desc_4,oper_ro_outcome_val_5,oper_ro_outcome_desc_5,risk_fo_outcome_val_1,risk_fo_outcome_desc_1,risk_fo_outcome_val_2,risk_fo_outcome_desc_2,risk_fo_outcome_val_3,risk_fo_outcome_desc_3,risk_fo_outcome_val_4,risk_fo_outcome_desc_4,risk_fo_outcome_val_5,risk_fo_outcome_desc_5,risk_ro_outcome_val_1,risk_ro_outcome_desc_1,risk_ro_outcome_val_2,risk_ro_outcome_desc_2,risk_ro_outcome_val_3,risk_ro_outcome_desc_3,risk_ro_outcome_val_4,risk_ro_outcome_desc_4,risk_ro_outcome_val_5,risk_ro_outcome_desc_5")] Outcome outcome)
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
             if (ModelState.IsValid)
             {
                 _context.Add(outcome);
@@ -67,6 +112,12 @@ namespace GCS
         // GET: Outcomes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
+
             if (id == null)
             {
                 return NotFound();
@@ -77,6 +128,8 @@ namespace GCS
             {
                 return NotFound();
             }
+            ViewBag.company = await _context.Companies.ToListAsync();
+
             return View(outcome);
         }
 
@@ -87,6 +140,11 @@ namespace GCS
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Company_id,Assessment_date,strat_fo_outcome_val_1,strat_fo_outcome_desc_1,strat_fo_outcome_val_2,strat_fo_outcome_desc_2,strat_fo_outcome_val_3,strat_fo_outcome_desc_3,strat_fo_outcome_val_4,strat_fo_outcome_desc_4,strat_fo_outcome_val_5,strat_fo_outcome_desc_5,strat_ro_outcome_val_1,strat_ro_outcome_desc_1,strat_ro_outcome_val_2,strat_ro_outcome_desc_2,strat_ro_outcome_val_3,strat_ro_outcome_desc_3,strat_ro_outcome_val_4,strat_ro_outcome_desc_4,strat_ro_outcome_val_5,strat_ro_outcome_desc_5,stake_fo_outcome_val_1,stake_fo_outcome_desc_1,stake_fo_outcome_val_2,stake_fo_outcome_desc_2,stake_fo_outcome_val_3,stake_fo_outcome_desc_3,stake_fo_outcome_val_4,stake_fo_outcome_desc_4,stake_fo_outcome_val_5,stake_fo_outcome_desc_5,stake_ro_outcome_val_1,stake_ro_outcome_desc_1,stake_ro_outcome_val_2,stake_ro_outcome_desc_2,stake_ro_outcome_val_3,stake_ro_outcome_desc_3,stake_ro_outcome_val_4,stake_ro_outcome_desc_4,stake_ro_outcome_val_5,stake_ro_outcome_desc_5,oper_fo_outcome_val_1,oper_fo_outcome_desc_1,oper_fo_outcome_val_2,oper_fo_outcome_desc_2,oper_fo_outcome_val_3,oper_fo_outcome_desc_3,oper_fo_outcome_val_4,oper_fo_outcome_desc_4,oper_fo_outcome_val_5,oper_fo_outcome_desc_5,oper_ro_outcome_val_1,oper_ro_outcome_desc_1,oper_ro_outcome_val_2,oper_ro_outcome_desc_2,oper_ro_outcome_val_3,oper_ro_outcome_desc_3,oper_ro_outcome_val_4,oper_ro_outcome_desc_4,oper_ro_outcome_val_5,oper_ro_outcome_desc_5,risk_fo_outcome_val_1,risk_fo_outcome_desc_1,risk_fo_outcome_val_2,risk_fo_outcome_desc_2,risk_fo_outcome_val_3,risk_fo_outcome_desc_3,risk_fo_outcome_val_4,risk_fo_outcome_desc_4,risk_fo_outcome_val_5,risk_fo_outcome_desc_5,risk_ro_outcome_val_1,risk_ro_outcome_desc_1,risk_ro_outcome_val_2,risk_ro_outcome_desc_2,risk_ro_outcome_val_3,risk_ro_outcome_desc_3,risk_ro_outcome_val_4,risk_ro_outcome_desc_4,risk_ro_outcome_val_5,risk_ro_outcome_desc_5")] Outcome outcome)
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
             if (id != outcome.Id)
             {
                 return NotFound();
@@ -118,6 +176,11 @@ namespace GCS
         // GET: Outcomes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
             if (id == null)
             {
                 return NotFound();
@@ -129,6 +192,8 @@ namespace GCS
             {
                 return NotFound();
             }
+            ViewBag.company = await _context.Companies
+                .FirstOrDefaultAsync(c => c.Id == outcome.Company_id);
 
             return View(outcome);
         }
@@ -138,12 +203,16 @@ namespace GCS
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
             var outcome = await _context.Outcome.FindAsync(id);
             _context.Outcome.Remove(outcome);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         private bool OutcomeExists(int id)
         {
             return _context.Outcome.Any(e => e.Id == id);

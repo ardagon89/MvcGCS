@@ -4,84 +4,160 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Company</a>
+        </li>
+        <li class="breadcrumb-item active">Edit</li>
+    </ol>
 
-<h4>Company</h4>
 <hr />
+
 <div class="row">
-    <div class="col-md-4">
+    <div class="container">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div>
+                            <label asp-for="Name" class="control-label">Company Name</label>
+                            <input asp-for="Name"  class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <label asp-for="Website" class="control-label">Website</label>
+                            <input asp-for="Website" class="form-control" />
+                            <span asp-validation-for="Website" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div>
+                            <label asp-for="Email" class="control-label">Company Email</label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <label asp-for="Phone" class="control-label">Contact Phone</label>
+                            <input asp-for="Phone" class="form-control" />
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="height: 0.5px; background: #808080;">
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div>
+                            <label asp-for="Revenue_band" class="control-label">Company Revenue</label>
+                            <select asp-for="Revenue_band" class="form-control" asp-items="@(new SelectList(@ViewBag.RevenueList, "Code", "Description"))"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <label asp-for="Type" class="control-label">Company Type</label>
+                            <select asp-for="Type" class="form-control" asp-items="@(new SelectList(@ViewBag.CompTypeList, "Code", "Description"))"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div>
+                            <label asp-for="Stage" class="control-label">Company Stage</label>
+                            <select asp-for="Stage" class="form-control" asp-items="@(new SelectList(@ViewBag.StageList, "Code", "Description"))"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <label asp-for="Employee_band" class="control-label">Company Employee</label>
+                            <select asp-for="Employee_band" class="form-control" asp-items="@(new SelectList(@ViewBag.EmployeeList, "Code", "Description"))"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="height: 0.5px; background: #808080;">
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div>
+                            <label class="control-label">Address 1</label>
+                            <input asp-for="Address1" type="text" id="address1" class="form-control" autofocus="autofocus">
+                            <span for="address1"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <label class="control-label">Address 2</label>
+                            <input asp-for="Address2" type="text" id="address2" class="form-control" autofocus="autofocus">
+                            <span for="address2"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div>
+                            <label class="control-label">City</label>
+                            <input asp-for="City" type="text" id="city" class="form-control" autofocus="autofocus">
+                            <span for="city"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <label class="control-label">State</label>
+                            <input asp-for="State" type="text" id="state" class="form-control" autofocus="autofocus">
+                            <span for="state"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div>
+                            <label class="control-label">Zip</label>
+                            <input asp-for="Zip" type="text" id="zip" class="form-control" autofocus="autofocus">
+                            <span for="zip"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <label class="control-label">Country</label>
+                            <input asp-for="Country" type="text" id="country" class="form-control" autofocus="autofocus">
+                            <span for="country"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Website" class="control-label"></label>
-                <input asp-for="Website" class="form-control" />
-                <span asp-validation-for="Website" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Phone" class="control-label"></label>
-                <input asp-for="Phone" class="form-control" />
-                <span asp-validation-for="Phone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Vision" class="control-label"></label>
-                <input asp-for="Vision" class="form-control" />
-                <span asp-validation-for="Vision" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Mission" class="control-label"></label>
-                <input asp-for="Mission" class="form-control" />
-                <span asp-validation-for="Mission" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Value" class="control-label"></label>
-                <input asp-for="Value" class="form-control" />
-                <span asp-validation-for="Value" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Type" class="control-label"></label>
-                <input asp-for="Type" class="form-control" />
-                <span asp-validation-for="Type" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Revenue_band" class="control-label"></label>
-                <input asp-for="Revenue_band" class="form-control" />
-                <span asp-validation-for="Revenue_band" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Employee_band" class="control-label"></label>
-                <input asp-for="Employee_band" class="form-control" />
-                <span asp-validation-for="Employee_band" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Stage" class="control-label"></label>
-                <input asp-for="Stage" class="form-control" />
-                <span asp-validation-for="Stage" class="text-danger"></span>
-            </div>
+            <hr style="height: 0.5px; background: #808080;">
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index"><input type="submit" value="Cancel" class="btn btn-primary" /> </a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

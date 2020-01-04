@@ -14,6 +14,8 @@ namespace GCS.Models
         {
         }
 
+
+
         public DbSet<GCS.Models.User> Users { get; set; }
 
         public DbSet<GCS.Models.Company> Companies { get; set; }
@@ -24,5 +26,6 @@ namespace GCS.Models
 
         public DbSet<GCS.Models.Assessment> Assessment { get; set; }
         public DbSet<GCS.Models.Dropdown_code> Dropdown_Code { get; set; }
+
     }
 }

@@ -4,106 +4,54 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="#">Home</a>
+    </li>
+    <li class="breadcrumb-item active">Users</li>
+</ol>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.company.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.user.Fname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.user.Lname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.user.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.user.Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.user.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.user.Password)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.user.Is_admin)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.user.Gender)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.user.Race)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.user.Role)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.user.Company_length)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.user.Role_length)
-            </th>
+ <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fas fa-table"></i>
+                        Users List
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <p>
+                                <a asp-action="Create">Create New</a>
+                            </p>
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.company.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.Fname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.Lname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.Is_admin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.Race)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.Role)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.Company_length)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.Role_length)
-            </td>
+                                <thead>
+                                    <tr>
+                                        <th>Last Name</th>
+                                        <th>First Name</th>
+                                        <th>Company Name</th>
+                                        <th>Email</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td> @Html.DisplayFor(modelItem => item.user.Lname) </td>
+                                            <td> @Html.DisplayFor(modelItem => item.user.Fname) </td>
+                                            <td> @Html.DisplayFor(modelItem =>  item.company.Name) </td>
+                                            <td> @Html.DisplayFor(modelItem => item.user.Email) </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.user.Id">Edit</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.user.Id">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--  <div class="card-footer small text-muted"></div> -->
+                </div>
 
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.user.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.user.Id">Details</a>
-                <a asp-action="Delete" asp-route-id="@item.user.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+
