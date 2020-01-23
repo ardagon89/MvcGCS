@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\shari\\source\\repos\\MvcGCS-master\\GCS.csproj": {}
+    "C:\\Users\\shari\\source\\repos\\MvcGCS\\GCS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\shari\\source\\repos\\MvcGCS-master\\GCS.csproj": {
+    "C:\\Users\\shari\\source\\repos\\MvcGCS\\GCS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shari\\source\\repos\\MvcGCS-master\\GCS.csproj",
+        "projectUniqueName": "C:\\Users\\shari\\source\\repos\\MvcGCS\\GCS.csproj",
         "projectName": "GCS",
-        "projectPath": "C:\\Users\\shari\\source\\repos\\MvcGCS-master\\GCS.csproj",
+        "projectPath": "C:\\Users\\shari\\source\\repos\\MvcGCS\\GCS.csproj",
         "packagesPath": "C:\\Users\\shari\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shari\\source\\repos\\MvcGCS-master\\obj\\",
+        "outputPath": "C:\\Users\\shari\\source\\repos\\MvcGCS\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
