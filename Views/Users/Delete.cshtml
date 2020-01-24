@@ -16,109 +16,111 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.company.Name)
+            @*@Html.DisplayNameFor(model => model.company.Name)*@
+            Company Name :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.company.Name)
         </dd>
+
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.user.Fname)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.user.Fname)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.user.Lname)
+            Last Name :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.user.Lname)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.user.Address1)
+            First Name :
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.user.Fname)
+        </dd>
+        <dt class="col-sm-2">
+            Address 1: 
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.user.Address1)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.user.Address2)
+            Address 2:
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.user.Address2)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.user.City)
+            City :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.user.City)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.user.State)
+            State :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.user.State)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.user.Zip)
+            Zip :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.user.Zip)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.user.Country)
+            Country :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.user.Country)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.user.Phone)
+            Phone :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.user.Phone)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.user.Email)
+            Email :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.user.Email)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.user.Password)
+            Password :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.user.Password)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.user.Is_admin)
+            Is Admin :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.user.Is_admin)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.user.Gender)
+            Gender :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.user.Gender)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.user.Race)
+            Race :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.user.Race)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.user.Role)
+            Role :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.user.Role)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.user.Company_length)
+            Time with Company :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.user.Company_length)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.user.Role_length)
+            Time in same role :
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.user.Role_length)
@@ -129,6 +131,6 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="user.Id" />
         <input type="submit" value="Delete" class="btn btn-danger" />
-        <a asp-action="Index"><input type="submit" value="Cancel" class="btn btn-primary" /> </a>
+        <a asp-action="Index"><input type="button" value="Cancel" class="btn btn-primary" /> </a>
     </form>
 </div>

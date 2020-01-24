@@ -6,7 +6,7 @@
 
 <ol class="breadcrumb">
     <li class="breadcrumb-item">
-        <a href="#">Company</a>
+        <a href="#">Users</a>
     </li>
     <li class="breadcrumb-item active">Edit</li>
 </ol>
@@ -83,7 +83,7 @@
                 <div class="form-row">
                     <div class="col-md-6" hidden="hidden">
                         <label class="control-label">Company Type</label>
-                            <select name="Company" id="company" class="form-control" placeholder="Company" required="required" autofocus="autofocus">
+                            <select name="Company" id="company" class="form-control" placeholder="Company" required="required">
                                 <option value=""></option>
                                 <option value="Startup and early Stage " selected="selected">Startup and early Stage </option>
                                 <option value="High Growth">High Growth</option>
@@ -136,7 +136,7 @@
                     <div class="col-md-6">
                         <div>
                             <label asp-for="Address1" class="control-label">Address 1</label>
-                            <input asp-for="Address1" type="text" id="address1" class="form-control" autofocus="autofocus">
+                            <input asp-for="Address1" type="text" id="address1" class="form-control">
 
                         </div>
                     </div>
@@ -154,7 +154,7 @@
                     <div class="col-md-6">
                         <div>
                             <label asp-for="City" class="control-label">City</label>
-                            <input asp-for="City" type="text" id="city" class="form-control" autofocus="autofocus">
+                            <input asp-for="City" type="text" id="city" class="form-control">
 
                         </div>
                     </div>
@@ -172,7 +172,7 @@
                     <div class="col-md-6">
                         <div>
                             <label asp-for="Zip" class="control-label">Zip</label>
-                            <input asp-for="Zip" type="text" id="zip" class="form-control" placeholder="Zip" autofocus="autofocus">
+                            <input asp-for="Zip" type="text" id="zip" class="form-control" placeholder="Zip">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -198,7 +198,7 @@
 
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
-                <a asp-action="Index"><input type="submit" value="Cancel" class="btn btn-primary" /> </a>
+                <a asp-action="Index"><input type="button" value="Cancel" class="btn btn-primary" /> </a>
             </div>
         </form>
     </div>
