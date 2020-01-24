@@ -136,7 +136,29 @@ where deleted_on is null and id={0}", id).FirstOrDefaultAsync<User>();
             }
             ViewBag.Admin = User.Claims.ToList()[2].Value;
             List<Company> companylist = new List<Company>();
-            companylist = (await _context.Companies.ToListAsync());
+            companylist = (await _context.Companies.FromSql(@"
+        SELECT [id]
+      ,[name]
+      ,[address1]
+        ,[address2]
+        ,[city]
+        ,[state]
+        ,[zip]
+        ,[country]
+      ,[email]
+      ,[website]
+      ,[phone]
+      ,[vision]
+      ,[mission]
+      ,[value]
+      ,[outcome]
+      ,[strategy]
+      ,[type]
+      ,[revenue_band]
+      ,[employee_band]
+      ,[stage]
+  FROM [company]
+  where deleted_on is null").ToListAsync());
             ViewBag.CompanyList = companylist;
             ViewBag.GenderList = await _context.Dropdown_Code
                 .Where(x => x.Table_name == "Gender").ToListAsync();
@@ -271,7 +293,29 @@ INSERT INTO [user]
 FROM [user] where deleted_on is null and id={0}", id).FirstOrDefaultAsync<User>();
 
             List<Company> companylist = new List<Company>();
-            companylist = (await _context.Companies.ToListAsync());
+            companylist = (await _context.Companies.FromSql(@"
+        SELECT [id]
+      ,[name]
+      ,[address1]
+        ,[address2]
+        ,[city]
+        ,[state]
+        ,[zip]
+        ,[country]
+      ,[email]
+      ,[website]
+      ,[phone]
+      ,[vision]
+      ,[mission]
+      ,[value]
+      ,[outcome]
+      ,[strategy]
+      ,[type]
+      ,[revenue_band]
+      ,[employee_band]
+      ,[stage]
+  FROM [company]
+  where deleted_on is null").ToListAsync());
             ViewBag.CompanyList = companylist;
             ViewBag.GenderList = await _context.Dropdown_Code
                 .Where(x => x.Table_name == "Gender").ToListAsync();
