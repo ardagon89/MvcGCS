@@ -41,8 +41,8 @@
             <div class="form-group">
                 <div class="form-row">
                     <div class="col-md-6">
-                        <div
-                             <label asp-for="Email" class="control-label">Company Email</label>
+                        <div>
+                            <label asp-for="Email" class="control-label">Company Email</label>
                             <input asp-for="Email" class="form-control" />
                             <span asp-validation-for="Email" class="text-danger"></span>
 
@@ -150,6 +150,66 @@
                 </div>
             </div>
             <hr style="height: 0.5px; background: #808080;">
+
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div>
+                            <label asp-for="Vision" class="control-label">Vision</label>
+                            <input asp-for="Vision" class="form-control" />
+                            <span asp-validation-for="Vision" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <label asp-for="Value" class="control-label">Core Values</label>
+                            <input asp-for="Value" class="form-control" />
+                            <span asp-validation-for="Value" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div>
+                            <label asp-for="Mission" class="control-label">Mission Statement</label>
+                            <input asp-for="Mission" class="form-control" />
+                            <span asp-validation-for="Mission" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <label asp-for="Outcome" class="control-label">Mission Outcome</label>
+                            <input asp-for="Outcome" class="form-control" />
+                            <span asp-validation-for="Outcome" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div>
+                            <label asp-for="Strategy" class="control-label">Competitive Strategy</label>
+                            <input asp-for="Strategy" class="form-control" />
+                            <span asp-validation-for="Strategy" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <hr style="height: 0.5px; background: #808080;">
+
 
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

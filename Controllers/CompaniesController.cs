@@ -137,7 +137,7 @@ namespace GCS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Address1,Address2,City,State,Zip,Country,Email,Website,Phone,Vision,Mission,Value,Type,Revenue_band,Employee_band,Stage")] Company company)
+        public async Task<IActionResult> Create([Bind("Id,Name,Address1,Address2,City,State,Zip,Country,Email,Website,Phone,Vision,Mission,Value,Outcome,Strategy,Type,Revenue_band,Employee_band,Stage")] Company company)
         {
             if (!IsLoggedIn())
             {
@@ -163,6 +163,8 @@ INSERT INTO [company]
            ,[vision]
            ,[mission]
            ,[value]
+           ,[outcome]
+           ,[strategy]
            ,[type]
            ,[revenue_band]
            ,[employee_band]
@@ -183,6 +185,8 @@ INSERT INTO [company]
            ,@vision
            ,@mission
            ,@value
+           ,@outcome
+           ,@strategy
            ,@type
            ,@revenue_band
            ,@employee_band
@@ -201,6 +205,8 @@ INSERT INTO [company]
              new SqlParameter("@vision", (object)company.Vision ?? DBNull.Value),
              new SqlParameter("@mission", (object)company.Mission ?? DBNull.Value),
              new SqlParameter("@value", (object)company.Value ?? DBNull.Value),
+             new SqlParameter("@outcome", (object)company.Outcome ?? DBNull.Value),
+             new SqlParameter("@strategy", (object)company.Strategy ?? DBNull.Value),
              new SqlParameter("@type", (object)company.Type ?? DBNull.Value),
              new SqlParameter("@revenue_band", (object)company.Revenue_band ?? DBNull.Value),
              new SqlParameter("@employee_band", (object)company.Employee_band ?? DBNull.Value),
@@ -273,7 +279,7 @@ INSERT INTO [company]
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Address1,Address2,City,State,Zip,Country,Email,Website,Phone,Vision,Mission,Value,Type,Revenue_band,Employee_band,Stage")] Company company)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Address1,Address2,City,State,Zip,Country,Email,Website,Phone,Vision,Mission,Value,Outcome,Strategy,Type,Revenue_band,Employee_band,Stage")] Company company)
         {
             if (!IsLoggedIn())
             {
@@ -307,6 +313,8 @@ INSERT INTO [company]
       ,[vision] = @vision
       ,[mission] = @mission
       ,[value] = @value
+       ,[outcome] = @outcome
+        ,[strategy] = @strategy
       ,[type] = @type
       ,[revenue_band] = @revenue_band
       ,[employee_band] = @employee_band
@@ -326,6 +334,8 @@ INSERT INTO [company]
              new SqlParameter("@vision", (object)company.Vision ?? DBNull.Value),
              new SqlParameter("@mission", (object)company.Mission ?? DBNull.Value),
              new SqlParameter("@value", (object)company.Value ?? DBNull.Value),
+             new SqlParameter("@outcome", (object)company.Outcome ?? DBNull.Value),
+             new SqlParameter("@strategy", (object)company.Strategy ?? DBNull.Value),
              new SqlParameter("@type", (object)company.Type ?? DBNull.Value),
              new SqlParameter("@revenue_band", (object)company.Revenue_band ?? DBNull.Value),
              new SqlParameter("@employee_band", (object)company.Employee_band ?? DBNull.Value),
