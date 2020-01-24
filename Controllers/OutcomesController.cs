@@ -36,7 +36,29 @@ namespace GCS
 
             ViewBag.Admin = User.Claims.ToList()[2].Value;
             List<Outcome> outcomes = await _context.Outcome.ToListAsync();
-            List<Company> companies = await _context.Companies.ToListAsync();
+            List<Company> companies = await _context.Companies.FromSql(@"
+        SELECT [id]
+      ,[name]
+      ,[address1]
+        ,[address2]
+        ,[city]
+        ,[state]
+        ,[zip]
+        ,[country]
+      ,[email]
+      ,[website]
+      ,[phone]
+      ,[vision]
+      ,[mission]
+      ,[value]
+      ,[outcome]
+      ,[strategy]
+      ,[type]
+      ,[revenue_band]
+      ,[employee_band]
+      ,[stage]
+  FROM [company]
+  where deleted_on is null").ToListAsync();
 
             var innerJoin = outcomes.Join(// outer sequence 
                       companies,  // inner sequence 
@@ -70,7 +92,29 @@ namespace GCS
             {
                 return NotFound();
             }
-            ViewBag.company = await _context.Companies
+            ViewBag.company = await _context.Companies.FromSql(@"
+        SELECT [id]
+      ,[name]
+      ,[address1]
+        ,[address2]
+        ,[city]
+        ,[state]
+        ,[zip]
+        ,[country]
+      ,[email]
+      ,[website]
+      ,[phone]
+      ,[vision]
+      ,[mission]
+      ,[value]
+      ,[outcome]
+      ,[strategy]
+      ,[type]
+      ,[revenue_band]
+      ,[employee_band]
+      ,[stage]
+  FROM [company]
+  where deleted_on is null")
                 .FirstOrDefaultAsync(c => c.Id == outcome.Company_id);
 
             return View(outcome);
@@ -84,7 +128,29 @@ namespace GCS
                 return RedirectToAction("Index", "Account");
             }
             ViewBag.Admin = User.Claims.ToList()[2].Value;
-            ViewBag.companies = await _context.Companies.ToListAsync();
+            ViewBag.companies = await _context.Companies.FromSql(@"
+        SELECT [id]
+      ,[name]
+      ,[address1]
+        ,[address2]
+        ,[city]
+        ,[state]
+        ,[zip]
+        ,[country]
+      ,[email]
+      ,[website]
+      ,[phone]
+      ,[vision]
+      ,[mission]
+      ,[value]
+      ,[outcome]
+      ,[strategy]
+      ,[type]
+      ,[revenue_band]
+      ,[employee_band]
+      ,[stage]
+  FROM [company]
+  where deleted_on is null").ToListAsync();
             return View();
         }
 
@@ -128,7 +194,29 @@ namespace GCS
             {
                 return NotFound();
             }
-            ViewBag.company = await _context.Companies.ToListAsync();
+            ViewBag.company = await _context.Companies.FromSql(@"
+        SELECT [id]
+      ,[name]
+      ,[address1]
+        ,[address2]
+        ,[city]
+        ,[state]
+        ,[zip]
+        ,[country]
+      ,[email]
+      ,[website]
+      ,[phone]
+      ,[vision]
+      ,[mission]
+      ,[value]
+      ,[outcome]
+      ,[strategy]
+      ,[type]
+      ,[revenue_band]
+      ,[employee_band]
+      ,[stage]
+  FROM [company]
+  where deleted_on is null").ToListAsync();
 
             return View(outcome);
         }
@@ -192,7 +280,29 @@ namespace GCS
             {
                 return NotFound();
             }
-            ViewBag.company = await _context.Companies
+            ViewBag.company = await _context.Companies.FromSql(@"
+        SELECT [id]
+      ,[name]
+      ,[address1]
+        ,[address2]
+        ,[city]
+        ,[state]
+        ,[zip]
+        ,[country]
+      ,[email]
+      ,[website]
+      ,[phone]
+      ,[vision]
+      ,[mission]
+      ,[value]
+      ,[outcome]
+      ,[strategy]
+      ,[type]
+      ,[revenue_band]
+      ,[employee_band]
+      ,[stage]
+  FROM [company]
+  where deleted_on is null")
                 .FirstOrDefaultAsync(c => c.Id == outcome.Company_id);
 
             return View(outcome);
