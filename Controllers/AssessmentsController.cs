@@ -36,6 +36,8 @@ namespace GCS
             }
 
             ViewBag.Admin = User.Claims.ToList()[2].Value;
+            User user = await _context.Users.FirstOrDefaultAsync(u => u.Id == int.Parse(User.Identity.Name));
+            ViewBag.OutCount =  _context.Outcome.Where(o => o.Company_id == user.Company_id).Count().ToString();
             List<Assessment> assessments;
             if (ViewBag.Admin == "False")
             {

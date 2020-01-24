@@ -18,9 +18,12 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <p>
-                <a asp-action="Create">Create New</a>
-            </p>
+            @if (int.Parse(ViewBag.OutCount) > 0)
+            {
+                <p>
+                    <a asp-action="Create">Create New</a>
+                </p>
+            }
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
                 <thead>
