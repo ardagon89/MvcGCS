@@ -6,7 +6,7 @@
 
 <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="#">Company</a>
+            <a href="@Url.Action("Index", "Companies")">Company</a>
         </li>
         <li class="breadcrumb-item active">Edit</li>
     </ol>
@@ -23,7 +23,7 @@
                     <div class="col-md-6">
                         <div>
                             <label asp-for="Name" class="control-label">Company Name</label>
-                            <input asp-for="Name" class="form-control" />
+                            <input asp-for="Name" class="form-control" required />
                             <span asp-validation-for="Name" class="text-danger"></span>
 
                         </div>
@@ -43,16 +43,39 @@
                 <div class="form-row">
                     <div class="col-md-6">
                         <div>
-                            <label asp-for="Email" class="control-label">Company Email</label>
-                            <input asp-for="Email" class="form-control" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
+                            <label asp-for="KeyContact" class="control-label">Key Contact</label>
+                            <input asp-for="KeyContact" class="form-control" />
+                            <span asp-validation-for="KeyContact" class="text-danger"></span>
 
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div>
+                            <label asp-for="Email" class="control-label">Contact Email</label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
                             <label asp-for="Phone" class="control-label">Contact Phone</label>
-                            <input asp-for="Phone" class="form-control" />
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                            <input asp-for="Phone" name="phone" class="form-control" />
+                            <script type="text/javascript">
+                                $("input[name='phone']").keyup(function () {
+                                    $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d{4})$/, "($1)$2-$3"));
+                                });
+                            </script>
                             <span asp-validation-for="Phone" class="text-danger"></span>
 
                         </div>
@@ -154,18 +177,24 @@
 
             <div class="form-group">
                 <div class="form-row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div>
                             <label asp-for="Vision" class="control-label">Vision</label>
-                            <input asp-for="Vision" class="form-control" />
+                            <textarea asp-for="Vision" class="form-control"></textarea>
                             <span asp-validation-for="Vision" class="text-danger"></span>
 
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-12">
                         <div>
                             <label asp-for="Value" class="control-label">Core Values</label>
-                            <input asp-for="Value" class="form-control" />
+                            <textarea asp-for="Value" class="form-control"></textarea>
                             <span asp-validation-for="Value" class="text-danger"></span>
 
                         </div>
@@ -175,18 +204,24 @@
 
             <div class="form-group">
                 <div class="form-row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div>
                             <label asp-for="Mission" class="control-label">Mission Statement</label>
-                            <input asp-for="Mission" class="form-control" />
+                            <textarea asp-for="Mission" class="form-control"></textarea>
                             <span asp-validation-for="Mission" class="text-danger"></span>
 
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-12">
                         <div>
                             <label asp-for="Outcome" class="control-label">Mission Outcome</label>
-                            <input asp-for="Outcome" class="form-control" />
+                            <textarea asp-for="Outcome" class="form-control"></textarea>
                             <span asp-validation-for="Outcome" class="text-danger"></span>
 
                         </div>
@@ -196,10 +231,10 @@
 
             <div class="form-group">
                 <div class="form-row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div>
                             <label asp-for="Strategy" class="control-label">Competitive Strategy</label>
-                            <input asp-for="Strategy" class="form-control" />
+                            <textarea asp-for="Strategy" class="form-control"></textarea>
                             <span asp-validation-for="Strategy" class="text-danger"></span>
                         </div>
                     </div>

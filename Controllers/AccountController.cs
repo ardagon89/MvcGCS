@@ -57,7 +57,7 @@ namespace GCS.Controllers
                   ,[company_length]
                   ,[role_length]
                 FROM [user]
-                where email=@email and password=@password",
+                where deleted_on is null and email=@email and password=@password COLLATE SQL_Latin1_General_CP1_CS_AS",
                 new SqlParameter("@email", (object)credential.Email),
                 new SqlParameter("@password", (object)credential.Password)).FirstOrDefaultAsync();
 

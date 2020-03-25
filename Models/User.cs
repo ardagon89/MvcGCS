@@ -17,7 +17,9 @@ namespace GCS.Models
         public string State { get; set; }
         public string Zip { get; set; }
         public string Country { get; set; }
+        [RegularExpression(@"((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}", ErrorMessage = "Please enter in format (xxx) xxx-xxxx or xxx-xxx-xxxx.")]
         public string Phone { get; set; }
+        [RegularExpression(@"^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$", ErrorMessage = "Invalid email address")]
         public string Email { get; set; }
         public string Password { get; set; }
         public Boolean Is_admin { get; set; }

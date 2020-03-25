@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace GCS.Models
 {
@@ -13,8 +14,10 @@ namespace GCS.Models
         public string State { get; set; }
         public string Zip { get; set; }
         public string Country { get; set; }
+        [RegularExpression(@"^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$", ErrorMessage = "Invalid email address")]
         public string Email { get; set; }
         public string Website { get; set; }
+        [RegularExpression(@"((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}", ErrorMessage = "Please enter in format (xxx) xxx-xxxx or xxx-xxx-xxxx.")]
         public string Phone { get; set; }
         public string Vision { get; set; }
         public string Mission { get; set; }
@@ -25,5 +28,6 @@ namespace GCS.Models
         public string Revenue_band { get; set; }
         public string Employee_band { get; set; }
         public string Stage { get; set; }
+        public string KeyContact { get; set; }
     }
 }

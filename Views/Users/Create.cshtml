@@ -6,7 +6,7 @@
 <!-- Breadcrumbs-->
 <ol class="breadcrumb">
     <li class="breadcrumb-item">
-        <a href="#">Users</a>
+        <a href="@Url.Action("Index", "Users")">Users</a>
     </li>
     <li class="breadcrumb-item active">Create</li>
 </ol>
@@ -16,31 +16,20 @@
     <div class="container">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <div class="form-row">
-                    <div class="col-md-12">
-                        <div>
-                            <label asp-for="Company_id" class="control-label">Company Name</label>
-                            <select asp-for="Company_id" class="form-control" asp-items="@(new SelectList(@ViewBag.CompanyList, "Id", "Name"))"></select>
-                            <span asp-validation-for="Company_id" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr style="height: 0.5px; background: #808080;">
+            
             <div class="form-group">
                 <div class="form-row">
                     <div class="col-md-6">
                         <div>
                             <label asp-for="Lname" class="control-label">Last Name</label>
-                            <input asp-for="Lname" class="form-control" />
+                            <input asp-for="Lname" class="form-control" required/>
                             <span asp-validation-for="Lname" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div>
                             <label asp-for="Fname" class="control-label">First Name</label>
-                            <input asp-for="Fname" class="form-control" />
+                            <input asp-for="Fname" class="form-control" required/>
                             <span asp-validation-for="Fname" class="text-danger"></span>
                         </div>
                     </div>
@@ -78,7 +67,20 @@
 
             <div class="form-group">
                 <div class="form-row">
-                    <div class="col-md-6" hidden="hidden">
+                    <div class="col-md-6">
+                        <div>
+                            <label asp-for="Company_id" class="control-label">Company Name</label>
+                            <select asp-for="Company_id" class="form-control" asp-items="@(new SelectList(@ViewBag.CompanyList, "Id", "Name"))"></select>
+                            <span asp-validation-for="Company_id" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label">Time in same role with other Companies</label>
+                        <select asp-for="Role_length" class="form-control" asp-items="@(new SelectList(@ViewBag.RoleTimeList, "Code", "Description"))"></select>
+                    </div>
+                </div>
+            </div>
+                    @*<div class="col-md-6" hidden="hidden">
                         <label class="control-label">Company Type</label>
                             <select name="Company" id="company" class="form-control" required="required">
                                 <option value=""></option>
@@ -88,13 +90,9 @@
                                 <option value="Distressed/Turnaround">Distressed/Turnaround</option>
                             </select>
                         
-                    </div>
-                    <div class="col-md-6">
-                        <label  class="control-label">Time in same role with other Companies</label>
-                        <select asp-for="Role_length" class="form-control" asp-items="@(new SelectList(@ViewBag.RoleTimeList, "Code", "Description"))"></select>
-                    </div>
-                </div>
-            </div>
+                    </div>*@
+                    
+                
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Is_admin" /> @Html.DisplayNameFor(model => model.Is_admin)
@@ -107,14 +105,20 @@
                     <div class="col-md-6">
                         <div>
                             <label asp-for="Phone" class="control-label">Phone</label>
-                            <input asp-for="Phone" class="form-control" />
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                            <input asp-for="Phone" name="phone" class="form-control" />
+                            <script type="text/javascript">
+                                $("input[name='phone']").keyup(function () {
+                                    $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d{4})$/, "($1)$2-$3"));
+                                });
+                            </script>
                             <span asp-validation-for="Phone" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div>
-                            <label asp-for="Email" class="control-label">Email</label>
-                            <input asp-for="Email" class="form-control" />
+                            <label asp-for="Email" class="control-label">Email/Login</label>
+                            <input asp-for="Email" class="form-control" required/>
                             <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
                     </div>
@@ -184,7 +188,7 @@
                     <div class="col-md-12">
                         <div>
                             <label class="control-label">Password</label>
-                            <input asp-for="Password" class="form-control" />
+                            <input asp-for="Password" class="form-control" required/>
                             <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
                     </div>
@@ -199,6 +203,7 @@
         </form>
     </div>
 </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

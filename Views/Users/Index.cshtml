@@ -6,7 +6,7 @@
 
 <ol class="breadcrumb">
     <li class="breadcrumb-item">
-        <a href="#">Home</a>
+        <a href="@Url.Action("Index", "Home")">Home</a>
     </li>
     <li class="breadcrumb-item active">Users</li>
 </ol>
@@ -18,9 +18,13 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <p>
-                                <a asp-action="Create">Create New</a>
-                            </p>
+                            @if (ViewBag.Admin == "True")
+                            {
+                                <p>
+                                    <a asp-action="Create">Create New</a>
+                                </p>
+                            }
+
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
                                 <thead>
@@ -38,7 +42,7 @@
                                         <tr>
                                             <td> @Html.DisplayFor(modelItem => item.user.Lname) </td>
                                             <td> @Html.DisplayFor(modelItem => item.user.Fname) </td>
-                                            <td> @Html.DisplayFor(modelItem =>  item.company.Name) </td>
+                                            <td> @Html.DisplayFor(modelItem => item.company.Name) </td>
                                             <td> @Html.DisplayFor(modelItem => item.user.Email) </td>
                                             <td>
                                                 <a asp-action="Edit" asp-route-id="@item.user.Id">Edit</a> |

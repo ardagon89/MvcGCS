@@ -57,8 +57,10 @@ namespace GCS
       ,[revenue_band]
       ,[employee_band]
       ,[stage]
+      ,[keycontact]
   FROM [company]
-  where deleted_on is null").ToListAsync();
+  where deleted_on is null
+order by [name]").ToListAsync();
 
             var innerJoin = outcomes.Join(// outer sequence 
                       companies,  // inner sequence 
@@ -113,8 +115,10 @@ namespace GCS
       ,[revenue_band]
       ,[employee_band]
       ,[stage]
+      ,[keycontact]
   FROM [company]
-  where deleted_on is null")
+  where deleted_on is null
+order by [name]")
                 .FirstOrDefaultAsync(c => c.Id == outcome.Company_id);
 
             return View(outcome);
@@ -149,8 +153,10 @@ namespace GCS
       ,[revenue_band]
       ,[employee_band]
       ,[stage]
+      ,[keycontact]
   FROM [company]
-  where deleted_on is null").ToListAsync();
+  where deleted_on is null
+order by [name]").ToListAsync();
             return View();
         }
 
@@ -215,8 +221,10 @@ namespace GCS
       ,[revenue_band]
       ,[employee_band]
       ,[stage]
+      ,[keycontact]
   FROM [company]
-  where deleted_on is null").ToListAsync();
+  where deleted_on is null
+order by [name]").ToListAsync();
 
             return View(outcome);
         }
@@ -301,8 +309,10 @@ namespace GCS
       ,[revenue_band]
       ,[employee_band]
       ,[stage]
+      ,[keycontact]
   FROM [company]
-  where deleted_on is null")
+  where deleted_on is null
+order by [name]")
                 .FirstOrDefaultAsync(c => c.Id == outcome.Company_id);
 
             return View(outcome);

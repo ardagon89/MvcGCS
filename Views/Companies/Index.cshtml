@@ -7,7 +7,7 @@
 <!-- Breadcrumbs-->
 <ol class="breadcrumb">
     <li class="breadcrumb-item">
-        <a href="#">Home</a>
+        <a href="@Url.Action("Index", "Home")">Home</a>
     </li>
     <li class="breadcrumb-item active">Company</li>
 </ol>
@@ -30,9 +30,9 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Name)
                         </th>
-                        <th>
+                        @*<th>
                             @Html.DisplayNameFor(model => model.Email)
-                        </th>
+                        </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.Website)
                         </th>
@@ -50,14 +50,14 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Name)
                             </td>
-                            <td>
+                            @*<td>
                                 @Html.DisplayFor(modelItem => item.Email)
-                            </td>
+                            </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Website)
                             </td>
                             <td>
-                                @Html.DisplayNameFor(model => model.Phone)
+                                @Html.DisplayFor(model => item.Phone)
                             </td>
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

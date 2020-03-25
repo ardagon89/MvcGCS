@@ -59,6 +59,7 @@ namespace GCS.Controllers
       ,[revenue_band]
       ,[employee_band]
       ,[stage]
+      ,[keycontact]
   FROM [company]
   where deleted_on is null").ToListAsync();
 
@@ -100,6 +101,7 @@ namespace GCS.Controllers
       ,[revenue_band]
       ,[employee_band]
       ,[stage]
+      ,[keycontact]
   FROM [company]
   where deleted_on is null and id={0}", id)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -137,7 +139,7 @@ namespace GCS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Address1,Address2,City,State,Zip,Country,Email,Website,Phone,Vision,Mission,Value,Outcome,Strategy,Type,Revenue_band,Employee_band,Stage")] Company company)
+        public async Task<IActionResult> Create([Bind("Id,Name,Address1,Address2,City,State,Zip,Country,Email,Website,Phone,Vision,Mission,Value,Outcome,Strategy,Type,Revenue_band,Employee_band,Stage,KeyContact")] Company company)
         {
             if (!IsLoggedIn())
             {
@@ -168,7 +170,8 @@ INSERT INTO [company]
            ,[type]
            ,[revenue_band]
            ,[employee_band]
-           ,[stage])
+           ,[stage]
+        ,[keycontact])
      VALUES
            (@name
            ,@address1
@@ -190,7 +193,8 @@ INSERT INTO [company]
            ,@type
            ,@revenue_band
            ,@employee_band
-           ,@stage)",
+           ,@stage
+            ,@keycontact)",
              new SqlParameter("@name", (object)company.Name ?? DBNull.Value),
              new SqlParameter("@address1", (object)company.Address1 ?? DBNull.Value),
              new SqlParameter("@address2", (object)company.Address2 ?? DBNull.Value),
@@ -210,7 +214,8 @@ INSERT INTO [company]
              new SqlParameter("@type", (object)company.Type ?? DBNull.Value),
              new SqlParameter("@revenue_band", (object)company.Revenue_band ?? DBNull.Value),
              new SqlParameter("@employee_band", (object)company.Employee_band ?? DBNull.Value),
-             new SqlParameter("@stage", (object)company.Stage ?? DBNull.Value)
+             new SqlParameter("@stage", (object)company.Stage ?? DBNull.Value),
+             new SqlParameter("@keycontact", (object)company.KeyContact ?? DBNull.Value)
              );
                 //_context.Add(company);
                 //await _context.SaveChangesAsync();
@@ -263,6 +268,7 @@ INSERT INTO [company]
       ,[revenue_band]
       ,[employee_band]
       ,[stage]
+      ,[keycontact]
   FROM [company]
   where deleted_on is null and id={0}", id)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -279,7 +285,7 @@ INSERT INTO [company]
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Address1,Address2,City,State,Zip,Country,Email,Website,Phone,Vision,Mission,Value,Outcome,Strategy,Type,Revenue_band,Employee_band,Stage")] Company company)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Address1,Address2,City,State,Zip,Country,Email,Website,Phone,Vision,Mission,Value,Outcome,Strategy,Type,Revenue_band,Employee_band,Stage,KeyContact")] Company company)
         {
             if (!IsLoggedIn())
             {
@@ -319,6 +325,7 @@ INSERT INTO [company]
       ,[revenue_band] = @revenue_band
       ,[employee_band] = @employee_band
       ,[stage] = @stage
+        ,[keycontact] = @keycontact
  WHERE deleted_on is null and id=@id",
              new SqlParameter("@name", (object)company.Name ?? DBNull.Value),
              new SqlParameter("@address1", (object)company.Address1 ?? DBNull.Value),
@@ -340,6 +347,7 @@ INSERT INTO [company]
              new SqlParameter("@revenue_band", (object)company.Revenue_band ?? DBNull.Value),
              new SqlParameter("@employee_band", (object)company.Employee_band ?? DBNull.Value),
              new SqlParameter("@stage", (object)company.Stage ?? DBNull.Value),
+             new SqlParameter("@keycontact", (object)company.KeyContact ?? DBNull.Value),
              new SqlParameter("@id", id)
              );
                 }
@@ -396,6 +404,7 @@ INSERT INTO [company]
       ,[revenue_band]
       ,[employee_band]
       ,[stage]
+      ,[keycontact]
   FROM [company]
   where deleted_on is null and id={0}", id)
                 .FirstOrDefaultAsync(m => m.Id == id);

@@ -20,7 +20,6 @@
     <link href="~/css/bootstrap.css" rel="stylesheet">
     <link href="~/css/sb-admin.css" rel="stylesheet">
     <link href="~/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
 <body>
 
@@ -51,15 +50,19 @@
 
             @if (ViewBag.Admin == "True")
             {
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item dropdown show">
+                    <a class="nav-link dropdown-toggle" href="#" onclick="func()" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         <i class="fas fa-user-cog"></i>
                         <span>Admin</span>
                     </a>
-                    <div id="dropdown" class="dropdown-menu" aria-labelledby="pagesDropdown">
-                        <a class="dropdown-item" href="@Url.Action("Index", "Users")">Users</a>
-                        <a class="dropdown-item" href="@Url.Action("Index", "Companies")">Companies</a>
-                        <a class="dropdown-item" href="@Url.Action("Index", "Outcomes")">Outcomes</a>
+                    <script>
+                        function func() {
+                        }
+                    </script>
+                    <div id="dropdown" class="dropdown-menu show" style="background-color:#212529;" aria-labelledby="pagesDropdown">
+                        <a class="dropdown-item" id="userlink" style="color:rgba(255, 255, 255, 0.5);" href="@Url.Action("Index", "Users")">Users</a>
+                        <a class="dropdown-item" id="companylink" style="color:rgba(255, 255, 255, 0.5);" href="@Url.Action("Index", "Companies")">Companies</a>
+                        <a class="dropdown-item" id="outcomelink" style="color:rgba(255, 255, 255, 0.5);" href="@Url.Action("Index", "Outcomes")">Outcomes</a>
                     </div>
                 </li>
             }

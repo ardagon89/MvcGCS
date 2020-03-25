@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\shari\\source\\repos\\ASP.net-master\\ASP.net-master\\MvcGCS-master (1)\\MvcGCS-master\\New folder\\MvcGCS\\GCS.csproj": {}
+    "C:\\Users\\shari\\source\\repos\\MvcGCS-master (1)\\MvcGCS-master\\GCS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\shari\\source\\repos\\ASP.net-master\\ASP.net-master\\MvcGCS-master (1)\\MvcGCS-master\\New folder\\MvcGCS\\GCS.csproj": {
+    "C:\\Users\\shari\\source\\repos\\MvcGCS-master (1)\\MvcGCS-master\\GCS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shari\\source\\repos\\ASP.net-master\\ASP.net-master\\MvcGCS-master (1)\\MvcGCS-master\\New folder\\MvcGCS\\GCS.csproj",
+        "projectUniqueName": "C:\\Users\\shari\\source\\repos\\MvcGCS-master (1)\\MvcGCS-master\\GCS.csproj",
         "projectName": "GCS",
-        "projectPath": "C:\\Users\\shari\\source\\repos\\ASP.net-master\\ASP.net-master\\MvcGCS-master (1)\\MvcGCS-master\\New folder\\MvcGCS\\GCS.csproj",
+        "projectPath": "C:\\Users\\shari\\source\\repos\\MvcGCS-master (1)\\MvcGCS-master\\GCS.csproj",
         "packagesPath": "C:\\Users\\shari\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shari\\source\\repos\\ASP.net-master\\ASP.net-master\\MvcGCS-master (1)\\MvcGCS-master\\New folder\\MvcGCS\\obj\\",
+        "outputPath": "C:\\Users\\shari\\source\\repos\\MvcGCS-master (1)\\MvcGCS-master\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

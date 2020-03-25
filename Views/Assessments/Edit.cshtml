@@ -7,7 +7,7 @@
 <!-- Breadcrumbs-->
 <ol class="breadcrumb">
     <li class="breadcrumb-item">
-        <a href="#">Assessment</a>
+        <a href="@Url.Action("Index", "Assessments")">Assessment</a>
     </li>
     <li class="breadcrumb-item active">Edit</li>
 </ol>
@@ -298,14 +298,14 @@
                 <div class="form-row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label asp-for="Company_id" class="control-label"></label>
+                            <label asp-for="Company_id" class="control-label">Company Name</label>
                             <select asp-for="Company_id" class="form-control" asp-items="@(new SelectList(@ViewBag.company, "Id", "Name"))"></select>
                             <span asp-validation-for="Company_id" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label asp-for="Assessment_date" class="control-label"></label>
+                            <label asp-for="Assessment_date" class="control-label">Assessment Date</label>
                             <input asp-for="Assessment_date" class="form-control" readonly="readonly" />
                             <span asp-validation-for="Assessment_date" class="text-danger"></span>
                         </div>
@@ -385,7 +385,7 @@
             </div>
             <hr style="height: 1px; background: #808080;">
 
-            <div><p><b>Strategy Management(Formulation, Communication/Alignment, Review, Revision)</b></p></div>
+            <div><p><b>Strategy Management (Formulation, Communication/Alignment, Review, Revision)</b></p></div>
             <div class="form-group">
                 <div class="form-row">
                     <div class="col-md-4">
@@ -414,7 +414,26 @@
                             <label class="control-label">: @ViewBag.outcome.strat_ro_outcome_desc_1</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
+                        <p align="right">
+                            <b>
+                                <i href="#" data-toggle="tooltip" title="Does the Organization have the “Right People”
+each of the (i) Board Level, (ii) Senior
+Management Level, and (iii) General
+Organizational Level(s) to actually achieve all of
+the Performance Outcomes that create
+sustainable competitive advantage?&#0010;&#0010;“Right People” includes (i) people with the right
+leadership abilities to govern themselves and
+others, (ii) the right talent mix of people with the
+right experience/skill sets and organized in the
+right teams, and (iii) teams of people with the
+right agility (ability to continuously learn,
+innovate, and adapt to a changing competitive
+environment).">*People Score</i>
+                            </b>
+                        </p>
+                    </div>
+                    <div class="col-md-2">
                         <div class="form-group">
                             <!--peoplerating-->        <select asp-for="Strat_people_score" class="form-control" asp-items="@(new SelectList(@ViewBag.peopleratinglist, "Code", "Description"))" onchange="update_strategy_score()"></select>
                             <span asp-validation-for="Strat_people_score" class="text-danger"></span>
@@ -437,7 +456,27 @@
                             <label class="control-label">: @ViewBag.outcome.strat_ro_outcome_desc_2</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+
+                    <div class="col-md-2">
+                        <p align="right">
+                            <b>
+                                <i href="#" data-toggle="tooltip" title="Does the Organization have the “Right Resources”
+of (i) Financial Capital, (ii) Tangible/Intangible
+Assets (i.e., physical facilities, technology systems/
+equipment, learning content, intellectual
+property, etc.), and (iii) third-party Business
+Partners (i.e., suppliers, vendors, auditors, Legal
+Professionals, etc.) to actually achieve all of the
+Performance Outcomes that create sustainable
+competitive advantage?&#0010;&#0010;“Right Resources” includes resources that are
+(i) sufficient to achieve Outcomes, (ii) deployable
+and leverageable on demand, and (iii) sustainable
+over a defined time period.">*Resources Score</i>
+                            </b>
+                        </p>
+                    </div>
+
+                    <div class="col-md-2">
                         <div class="form-group">
                             <select asp-for="Strat_resources_score" class="form-control" asp-items="@(new SelectList(@ViewBag.resourcesratinglist, "Code", "Description"))" onchange="update_strategy_score()"></select>
                             <span asp-validation-for="Strat_resources_score" class="text-danger"></span>
@@ -460,7 +499,28 @@
                             <label class="control-label">: @ViewBag.outcome.strat_ro_outcome_desc_3</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+
+                    <div class="col-md-2">
+                        <p align="right">
+                            <b>
+                                <i href="#" data-toggle="tooltip" title="Does the Organization have the “Right Processes”
+of (i) internal operating processes that create
+efficiency and effectiveness, (ii) external operating
+processes to deliver value, and (iii)
+internal/external administrative processes to
+report on value created to actually achieve all of
+the Performance Outcomes that create
+sustainable competitive advantage?&#0010;&#0010;“Right Processes” include operational and
+administrative reporting processes that (i) are
+measurable and formalized, (ii) are transparent
+and followed, and (iii) reviewed regularly and
+revised as needed.">*Processes Score</i>
+                            </b>
+                        </p>
+                    </div>
+
+
+                    <div class="col-md-2">
                         <div class="form-group">
                             <select asp-for="Strat_processes_score" class="form-control" asp-items="@(new SelectList(@ViewBag.processesratinglist, "Code", "Description"))" onchange="update_strategy_score()"></select>
                             <span asp-validation-for="Strat_processes_score" class="text-danger"></span>
@@ -483,7 +543,24 @@
                             <label class="control-label">: @ViewBag.outcome.strat_ro_outcome_desc_4</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+
+
+                    <div class="col-md-2">
+                        <p align="right">
+                            <b>
+                                <i href="#" data-toggle="tooltip" title="Does the Organization have the “Right Culture”
+that is (i) self-governing, (ii) Performance driven,
+and (iii) Innovative to actually achieve all of the
+Performance Outcomes that create sustainable
+competitive advantage?&#0010;&#0010;“Right Culture” includes an organizational culture
+that (i) can be clearly defined, (ii) is completely
+aligned at every organizational level, and
+(iii) constantly reinforced.">*Culture Score</i>
+                            </b>
+                        </p>
+                    </div>
+
+                    <div class="col-md-2">
                         <div class="form-group">
                             <select asp-for="Strat_culture_score" class="form-control" asp-items="@(new SelectList(@ViewBag.cultureratinglist, "Code", "Description"))" onchange="update_strategy_score()"></select>
                             <span asp-validation-for="Strat_culture_score" class="text-danger"></span>
@@ -506,7 +583,9 @@
                             <label class="control-label">: @ViewBag.outcome.strat_ro_outcome_desc_5</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-2">
                         <div class="form-group">
                             <input asp-for="Strat_composite_score" class="form-control" />
                             <span asp-validation-for="Strat_composite_score" class="text-danger"></span>
@@ -517,7 +596,7 @@
             <hr style="height: 1px; background: #808080;">
 
             <!--Stakeholder-->
-            <div><p><b>Stakeholder Management(Employees, Investors/Owners, Business Partners, Regulators)</b></p></div>
+            <div><p><b>Stakeholder Management (Employees, Investors/Owners, Business Partners, Regulators)</b></p></div>
             <div class="form-group">
                 <div class="form-row">
                     <div class="col-md-4">
@@ -546,7 +625,26 @@
                             <label class="control-label">: @ViewBag.outcome.stake_ro_outcome_desc_1</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
+                        <p align="right">
+                            <b>
+                                <i href="#" data-toggle="tooltip" title="Does the Organization have the “Right People”
+each of the (i) Board Level, (ii) Senior
+Management Level, and (iii) General
+Organizational Level(s) to actually achieve all of
+the Performance Outcomes that create
+sustainable competitive advantage?&#0010;&#0010;“Right People” includes (i) people with the right
+leadership abilities to govern themselves and
+others, (ii) the right talent mix of people with the
+right experience/skill sets and organized in the
+right teams, and (iii) teams of people with the
+right agility (ability to continuously learn,
+innovate, and adapt to a changing competitive
+environment).">*People Score</i>
+                            </b>
+                        </p>
+                    </div>
+                    <div class="col-md-2">
                         <div class="form-group">
                             <select asp-for="Stake_people_score" class="form-control" asp-items="@(new SelectList(@ViewBag.peopleratinglist, "Code", "Description"))" onchange="update_stakeholder_score()"></select>
                             <span asp-validation-for="Stake_people_score" class="text-danger"></span>
@@ -569,7 +667,27 @@
                             <label class="control-label">: @ViewBag.outcome.stake_ro_outcome_desc_2</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+
+                    <div class="col-md-2">
+                        <p align="right">
+                            <b>
+                                <i href="#" data-toggle="tooltip" title="Does the Organization have the “Right Resources”
+of (i) Financial Capital, (ii) Tangible/Intangible
+Assets (i.e., physical facilities, technology systems/
+equipment, learning content, intellectual
+property, etc.), and (iii) third-party Business
+Partners (i.e., suppliers, vendors, auditors, Legal
+Professionals, etc.) to actually achieve all of the
+Performance Outcomes that create sustainable
+competitive advantage?&#0010;&#0010;“Right Resources” includes resources that are
+(i) sufficient to achieve Outcomes, (ii) deployable
+and leverageable on demand, and (iii) sustainable
+over a defined time period.">*Resources Score</i>
+                            </b>
+                        </p>
+                    </div>
+
+                    <div class="col-md-2">
                         <div class="form-group">
                             <select asp-for="Stake_resources_score" class="form-control" asp-items="@(new SelectList(@ViewBag.resourcesratinglist, "Code", "Description"))" onchange="update_stakeholder_score()"></select>
                             <span asp-validation-for="Stake_resources_score" class="text-danger"></span>
@@ -592,7 +710,27 @@
                             <label class="control-label">: @ViewBag.outcome.stake_ro_outcome_desc_3</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+
+                    <div class="col-md-2">
+                        <p align="right">
+                            <b>
+                                <i href="#" data-toggle="tooltip" title="Does the Organization have the “Right Processes”
+of (i) internal operating processes that create
+efficiency and effectiveness, (ii) external operating
+processes to deliver value, and (iii)
+internal/external administrative processes to
+report on value created to actually achieve all of
+the Performance Outcomes that create
+sustainable competitive advantage?&#0010;&#0010;“Right Processes” include operational and
+administrative reporting processes that (i) are
+measurable and formalized, (ii) are transparent
+and followed, and (iii) reviewed regularly and
+revised as needed.">*Processes Score</i>
+                            </b>
+                        </p>
+                    </div>
+
+                    <div class="col-md-2">
                         <div class="form-group">
                             <select asp-for="Stake_processes_score" class="form-control" asp-items="@(new SelectList(@ViewBag.processesratinglist, "Code", "Description"))" onchange="update_stakeholder_score()"></select>
                             <span asp-validation-for="Stake_processes_score" class="text-danger"></span>
@@ -615,7 +753,24 @@
                             <label class="control-label">: @ViewBag.outcome.stake_ro_outcome_desc_4</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+
+
+                    <div class="col-md-2">
+                        <p align="right">
+                            <b>
+                                <i href="#" data-toggle="tooltip" title="Does the Organization have the “Right Culture”
+that is (i) self-governing, (ii) Performance driven,
+and (iii) Innovative to actually achieve all of the
+Performance Outcomes that create sustainable
+competitive advantage?&#0010;&#0010;“Right Culture” includes an organizational culture
+that (i) can be clearly defined, (ii) is completely
+aligned at every organizational level, and
+(iii) constantly reinforced.">*Culture Score</i>
+                            </b>
+                        </p>
+                    </div>
+
+                    <div class="col-md-2">
                         <div class="form-group">
                             <select asp-for="Stake_culture_score" class="form-control" asp-items="@(new SelectList(@ViewBag.cultureratinglist, "Code", "Description"))" onchange="update_stakeholder_score()"></select>
                             <span asp-validation-for="Stake_culture_score" class="text-danger"></span>
@@ -638,7 +793,9 @@
                             <label class="control-label">: @ViewBag.outcome.stake_ro_outcome_desc_5</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-2">
                         <div class="form-group">
                             <input asp-for="Stake_composite_score" class="form-control" />
                             <span asp-validation-for="Stake_composite_score" class="text-danger"></span>
@@ -650,7 +807,7 @@
 
 
             <!--Operations-->
-            <div><p><b>Operations Management(Finance/Accounting, Technology/Systems, Product/Services, Production, Innovation/R&D)</b></p></div>
+            <div><p><b>Operations Management (Finance/Accounting, Technology/Systems, Product/Services, Production, Innovation/R&D)</b></p></div>
             <div class="form-group">
                 <div class="form-row">
                     <div class="col-md-4">
@@ -679,7 +836,28 @@
                             <label class="control-label">: @ViewBag.outcome.oper_ro_outcome_desc_1</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+
+                    <div class="col-md-2">
+                        <p align="right">
+                            <b>
+                                <i href="#" data-toggle="tooltip" title="Does the Organization have the “Right People”
+each of the (i) Board Level, (ii) Senior
+Management Level, and (iii) General
+Organizational Level(s) to actually achieve all of
+the Performance Outcomes that create
+sustainable competitive advantage?&#0010;&#0010;“Right People” includes (i) people with the right
+leadership abilities to govern themselves and
+others, (ii) the right talent mix of people with the
+right experience/skill sets and organized in the
+right teams, and (iii) teams of people with the
+right agility (ability to continuously learn,
+innovate, and adapt to a changing competitive
+environment).">*People Score</i>
+                            </b>
+                        </p>
+                    </div>
+
+                    <div class="col-md-2">
                         <div class="form-group">
                             <select asp-for="Oper_people_score" class="form-control" asp-items="@(new SelectList(@ViewBag.peopleratinglist, "Code", "Description"))" onchange="update_operational_score()"></select>
                             <span asp-validation-for="Oper_people_score" class="text-danger"></span>
@@ -702,7 +880,27 @@
                             <label class="control-label">: @ViewBag.outcome.oper_ro_outcome_desc_2</label>>
                         </div>
                     </div>
-                    <div class="col-md-4">
+
+                    <div class="col-md-2">
+                        <p align="right">
+                            <b>
+                                <i href="#" data-toggle="tooltip" title="Does the Organization have the “Right Resources”
+of (i) Financial Capital, (ii) Tangible/Intangible
+Assets (i.e., physical facilities, technology systems/
+equipment, learning content, intellectual
+property, etc.), and (iii) third-party Business
+Partners (i.e., suppliers, vendors, auditors, Legal
+Professionals, etc.) to actually achieve all of the
+Performance Outcomes that create sustainable
+competitive advantage?&#0010;&#0010;“Right Resources” includes resources that are
+(i) sufficient to achieve Outcomes, (ii) deployable
+and leverageable on demand, and (iii) sustainable
+over a defined time period.">*Resources Score</i>
+                            </b>
+                        </p>
+                    </div>
+
+                    <div class="col-md-2">
                         <div class="form-group">
                             <select asp-for="Oper_resources_score" class="form-control" asp-items="@(new SelectList(@ViewBag.resourcesratinglist, "Code", "Description"))" onchange="update_operational_score()"></select>
                             <span asp-validation-for="Oper_resources_score" class="text-danger"></span>
@@ -725,7 +923,27 @@
                             <label class="control-label">: @ViewBag.outcome.oper_ro_outcome_desc_3</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+
+                    <div class="col-md-2">
+                        <p align="right">
+                            <b>
+                                <i href="#" data-toggle="tooltip" title="Does the Organization have the “Right Processes”
+of (i) internal operating processes that create
+efficiency and effectiveness, (ii) external operating
+processes to deliver value, and (iii)
+internal/external administrative processes to
+report on value created to actually achieve all of
+the Performance Outcomes that create
+sustainable competitive advantage?&#0010;&#0010;“Right Processes” include operational and
+administrative reporting processes that (i) are
+measurable and formalized, (ii) are transparent
+and followed, and (iii) reviewed regularly and
+revised as needed.">*Processes Score</i>
+                            </b>
+                        </p>
+                    </div>
+
+                    <div class="col-md-2">
                         <div class="form-group">
                             <select asp-for="Oper_processes_score" class="form-control" asp-items="@(new SelectList(@ViewBag.processesratinglist, "Code", "Description"))" onchange="update_operational_score()"></select>
                             <span asp-validation-for="Oper_processes_score" class="text-danger"></span>
@@ -748,7 +966,24 @@
                             <label class="control-label">: @ViewBag.outcome.oper_ro_outcome_desc_4</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+
+
+                    <div class="col-md-2">
+                        <p align="right">
+                            <b>
+                                <i href="#" data-toggle="tooltip" title="Does the Organization have the “Right Culture”
+that is (i) self-governing, (ii) Performance driven,
+and (iii) Innovative to actually achieve all of the
+Performance Outcomes that create sustainable
+competitive advantage?&#0010;&#0010;“Right Culture” includes an organizational culture
+that (i) can be clearly defined, (ii) is completely
+aligned at every organizational level, and
+(iii) constantly reinforced.">*Culture Score</i>
+                            </b>
+                        </p>
+                    </div>
+
+                    <div class="col-md-2">
                         <div class="form-group">
                             <select asp-for="Oper_culture_score" class="form-control" asp-items="@(new SelectList(@ViewBag.cultureratinglist, "Code", "Description"))" onchange="update_operational_score()"></select>
                             <span asp-validation-for="Oper_culture_score" class="text-danger"></span>
@@ -771,7 +1006,9 @@
                             <label class="control-label">: @ViewBag.outcome.oper_ro_outcome_desc_5</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-2">
                         <div class="form-group">
                             <input asp-for="Oper_composite_score" class="form-control" />
                             <span asp-validation-for="Oper_composite_score" class="text-danger"></span>
@@ -782,7 +1019,7 @@
             <hr style="height: 1px; background: #808080;">
 
             <!--Risk-->
-            <div><p><b>Risk Management(HR, Operations, Security, Strategy Disruption)</b></p></div>
+            <div><p><b>Risk Management (HR, Operations, Security, Strategy Disruption)</b></p></div>
             <div class="form-group">
                 <div class="form-row">
                     <div class="col-md-4">
@@ -811,7 +1048,28 @@
                             <label class="control-label">: @ViewBag.outcome.risk_ro_outcome_desc_1</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+
+                    <div class="col-md-2">
+                        <p align="right">
+                            <b>
+                                <i href="#" data-toggle="tooltip" title="Does the Organization have the “Right People”
+each of the (i) Board Level, (ii) Senior
+Management Level, and (iii) General
+Organizational Level(s) to actually achieve all of
+the Performance Outcomes that create
+sustainable competitive advantage?&#0010;&#0010;“Right People” includes (i) people with the right
+leadership abilities to govern themselves and
+others, (ii) the right talent mix of people with the
+right experience/skill sets and organized in the
+right teams, and (iii) teams of people with the
+right agility (ability to continuously learn,
+innovate, and adapt to a changing competitive
+environment).">*People Score</i>
+                            </b>
+                        </p>
+                    </div>
+
+                    <div class="col-md-2">
                         <div class="form-group">
                             <select asp-for="Risk_people_score" class="form-control" asp-items="@(new SelectList(@ViewBag.peopleratinglist, "Code", "Description"))" onchange="update_risk_score()"></select>
                             <span asp-validation-for="Risk_people_score" class="text-danger"></span>
@@ -834,7 +1092,27 @@
                             <label class="control-label">: @ViewBag.outcome.risk_ro_outcome_desc_2</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+
+                    <div class="col-md-2">
+                        <p align="right">
+                            <b>
+                                <i href="#" data-toggle="tooltip" title="Does the Organization have the “Right Resources”
+of (i) Financial Capital, (ii) Tangible/Intangible
+Assets (i.e., physical facilities, technology systems/
+equipment, learning content, intellectual
+property, etc.), and (iii) third-party Business
+Partners (i.e., suppliers, vendors, auditors, Legal
+Professionals, etc.) to actually achieve all of the
+Performance Outcomes that create sustainable
+competitive advantage?&#0010;&#0010;“Right Resources” includes resources that are
+(i) sufficient to achieve Outcomes, (ii) deployable
+and leverageable on demand, and (iii) sustainable
+over a defined time period.">*Resources Score</i>
+                            </b>
+                        </p>
+                    </div>
+
+                    <div class="col-md-2">
                         <div class="form-group">
                             <select asp-for="Risk_resources_score" class="form-control" asp-items="@(new SelectList(@ViewBag.resourcesratinglist, "Code", "Description"))" onchange="update_risk_score()"></select>
                             <span asp-validation-for="Risk_resources_score" class="text-danger"></span>
@@ -857,7 +1135,27 @@
                             <label class="control-label">: @ViewBag.outcome.risk_ro_outcome_desc_3</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+
+                    <div class="col-md-2">
+                        <p align="right">
+                            <b>
+                                <i href="#" data-toggle="tooltip" title="Does the Organization have the “Right Processes”
+of (i) internal operating processes that create
+efficiency and effectiveness, (ii) external operating
+processes to deliver value, and (iii)
+internal/external administrative processes to
+report on value created to actually achieve all of
+the Performance Outcomes that create
+sustainable competitive advantage?&#0010;&#0010;“Right Processes” include operational and
+administrative reporting processes that (i) are
+measurable and formalized, (ii) are transparent
+and followed, and (iii) reviewed regularly and
+revised as needed.">*Processes Score</i>
+                            </b>
+                        </p>
+                    </div>
+
+                    <div class="col-md-2">
                         <div class="form-group">
                             <select asp-for="Risk_processes_score" class="form-control" asp-items="@(new SelectList(@ViewBag.processesratinglist, "Code", "Description"))" onchange="update_risk_score()"></select>
                             <span asp-validation-for="Risk_processes_score" class="text-danger"></span>
@@ -880,7 +1178,24 @@
                             <label class="control-label">: @ViewBag.outcome.risk_ro_outcome_desc_4</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+
+
+                    <div class="col-md-2">
+                        <p align="right">
+                            <b>
+                                <i href="#" data-toggle="tooltip" title="Does the Organization have the “Right Culture”
+that is (i) self-governing, (ii) Performance driven,
+and (iii) Innovative to actually achieve all of the
+Performance Outcomes that create sustainable
+competitive advantage?&#0010;&#0010;“Right Culture” includes an organizational culture
+that (i) can be clearly defined, (ii) is completely
+aligned at every organizational level, and
+(iii) constantly reinforced.">*Culture Score</i>
+                            </b>
+                        </p>
+                    </div>
+
+                    <div class="col-md-2">
                         <div class="form-group">
                             <select asp-for="Risk_culture_score" class="form-control" asp-items="@(new SelectList(@ViewBag.cultureratinglist, "Code", "Description"))" onchange="update_risk_score()"></select>
                             <span asp-validation-for="Risk_culture_score" class="text-danger"></span>
@@ -903,7 +1218,11 @@
                             <label class="control-label">: @ViewBag.outcome.risk_ro_outcome_desc_5</label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+
+                    <div class="col-md-2">
+                    </div>
+
+                    <div class="col-md-2">
                         <div class="form-group">
                             <input asp-for="Risk_composite_score" class="form-control" />
                             <span asp-validation-for="Risk_composite_score" class="text-danger"></span>

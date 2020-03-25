@@ -5,6 +5,14 @@ namespace GCS.Models
 {
     public class Assessment
     {
+        public Assessment()
+        {
+        }
+        public Assessment(int Company_id, DateTime Assessment_date)
+        {
+            this.Company_id = Company_id;
+            this.Assessment_date = Assessment_date;
+        }
         public int Id { get; set; }
         public int Company_id { get; set; }
         [DataType(DataType.Date)]

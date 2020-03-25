@@ -157,8 +157,10 @@ where deleted_on is null and id={0}", id).FirstOrDefaultAsync<User>();
       ,[revenue_band]
       ,[employee_band]
       ,[stage]
+      ,[keycontact]
   FROM [company]
-  where deleted_on is null").ToListAsync());
+  where deleted_on is null
+order by [name]").ToListAsync());
             ViewBag.CompanyList = companylist;
             ViewBag.GenderList = await _context.Dropdown_Code
                 .Where(x => x.Table_name == "Gender").ToListAsync();
@@ -314,8 +316,10 @@ FROM [user] where deleted_on is null and id={0}", id).FirstOrDefaultAsync<User>(
       ,[revenue_band]
       ,[employee_band]
       ,[stage]
+      ,[keycontact]
   FROM [company]
-  where deleted_on is null").ToListAsync());
+  where deleted_on is null
+order by [name]").ToListAsync());
             ViewBag.CompanyList = companylist;
             ViewBag.GenderList = await _context.Dropdown_Code
                 .Where(x => x.Table_name == "Gender").ToListAsync();

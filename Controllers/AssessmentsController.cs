@@ -37,171 +37,12 @@ namespace GCS
 
             ViewBag.Admin = User.Claims.ToList()[2].Value;
             User user = await _context.Users.FirstOrDefaultAsync(u => u.Id == int.Parse(User.Identity.Name));
-            ViewBag.OutCount =  _context.Outcome.Where(o => o.Company_id == user.Company_id).Count().ToString();
+            
             List<Assessment> assessments;
             if (ViewBag.Admin == "False")
             {
-                 assessments = await _context.Assessment
-                    .FromSql(@"
-SELECT TOP (1000) [id]
-      ,[company_id]
-      ,[assessment_date]
-      ,[Vision_agreement]
-      ,[Core_values_agreement]
-      ,[Mission_statement_agreement]
-      ,[Vision_outcome_agreement]
-      ,[Competitive_strategy_agreement]
-      ,[Company_composite_score]
-      ,[Strat_people_score]
-      ,[Strat_resources_score]
-      ,[Strat_processes_score]
-      ,[Strat_culture_score]
-      ,[Strat_composite_score]
-      ,[Stake_people_score]
-      ,[Stake_resources_score]
-      ,[Stake_processes_score]
-      ,[Stake_culture_score]
-      ,[Stake_composite_score]
-      ,[Oper_people_score]
-      ,[Oper_resources_score]
-      ,[Oper_processes_score]
-      ,[Oper_culture_score]
-      ,[Oper_composite_score]
-      ,[Risk_people_score]
-      ,[Risk_resources_score]
-      ,[Risk_processes_score]
-      ,[Risk_culture_score]
-      ,[Risk_composite_score]
-  FROM [GovCapSurvey_DB].[dbo].[assessment]
-  where inserted_by = {0} and deleted_on is null
-  order by assessment_date desc", User.Identity.Name)
-                    .ToListAsync();
-            }
-            else
-            {
-                 assessments = await _context.Assessment.OrderByDescending(a => a.Assessment_date).ToListAsync();
-            }
-
-            List<Company> companies = await _context.Companies.ToListAsync();
-
-            var innerJoin = assessments.Join(// outer sequence 
-                      companies,  // inner sequence 
-                      assessment => assessment.Company_id,    // outerKeySelector
-                      company => company.Id,  // innerKeySelector
-                      (assessment, company) => new AssessmentCompanyViewModel // result selector
-                      {
-                          assessment = assessment,
-                          company = company
-                      });
-
-            return View(innerJoin);
-        }
-
-        // GET: Assessments/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (!IsLoggedIn())
-            {
-                return RedirectToAction("Index", "Account");
-            }
-            ViewBag.Admin = User.Claims.ToList()[2].Value;
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var assessment = await _context.Assessment
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            ViewBag.company = await _context.Companies
-                .FirstOrDefaultAsync(c => c.Id == assessment.Company_id);
-
-            if (assessment == null)
-            {
-                return NotFound();
-            }
-
-            return View(assessment);
-        }
-
-        // GET: Assessments/ChangeDate
-        public async Task<IActionResult> ChangeDate(string value)
-        {
-            if (!IsLoggedIn())
-            {
-                return RedirectToAction("Index", "Account");
-            }
-            ViewBag.Admin = User.Claims.ToList()[2].Value;
-
-            ViewBag.dropdownlist = await _context.Dropdown_Code
-                .Where(x => x.Table_name == "Assessment-Agreement").ToListAsync();
-
-            ViewBag.peopleratinglist = await _context.Dropdown_Code
-                .Where(x => x.Table_name == "Assessment-People").ToListAsync();
-
-            ViewBag.resourcesratinglist = await _context.Dropdown_Code
-                .Where(x => x.Table_name == "Assessment-Resources").ToListAsync();
-
-            ViewBag.processesratinglist = await _context.Dropdown_Code
-                .Where(x => x.Table_name == "Assessment-Processes").ToListAsync();
-
-            ViewBag.cultureratinglist = await _context.Dropdown_Code
-                .Where(x => x.Table_name == "Assessment-Culture").ToListAsync();
-
-            User user = await _context.Users.FirstOrDefaultAsync(u => u.Id == int.Parse(User.Identity.Name));
-
-            ViewBag.company = await _context.Companies.Where(c => c.Id == user.Company_id).ToListAsync();
-
-            ViewBag.outcomes = await _context.Outcome
-                .Where(m => m.Company_id == user.Company_id)
-                .OrderByDescending(n => n.Assessment_date).ToListAsync();
-
-
-            ViewBag.outcome = ViewBag.outcomes[0];
-            foreach (Outcome o in ViewBag.outcomes)
-            {
-                if(o.Assessment_date == DateTime.Parse(value))
-                {
-                    ViewBag.outcome = o;
-                }
-            }
-
-            return View("Create");
-        }
-
-        // GET: Assessments/Create
-        public async Task<IActionResult> Create(string value)
-        {
-            if (!IsLoggedIn())
-            {
-                return RedirectToAction("Index", "Account");
-            }
-            ViewBag.Admin = User.Claims.ToList()[2].Value;
-
-            ViewBag.dropdownlist = await _context.Dropdown_Code
-                .Where(x => x.Table_name == "Assessment-Agreement").ToListAsync();
-
-            ViewBag.peopleratinglist = await _context.Dropdown_Code
-                .Where(x => x.Table_name == "Assessment-People").ToListAsync();
-
-            ViewBag.resourcesratinglist = await _context.Dropdown_Code
-                .Where(x => x.Table_name == "Assessment-Resources").ToListAsync();
-
-            ViewBag.processesratinglist = await _context.Dropdown_Code
-                .Where(x => x.Table_name == "Assessment-Processes").ToListAsync();
-
-            ViewBag.cultureratinglist = await _context.Dropdown_Code
-                .Where(x => x.Table_name == "Assessment-Culture").ToListAsync();
-
-            User user =await _context.Users.FirstOrDefaultAsync(u => u.Id == int.Parse(User.Identity.Name));
-
-            ViewBag.company = await _context.Companies.Where(c => c.Id == user.Company_id).ToListAsync();
-
-            if(value == null)
-            {
-                ViewBag.outcomes = await _context.Outcome
-                    /*.Where(m => m.Company_id == user.Company_id)*/
-                    .FromSql(@"
+                ViewBag.OutCount = _context.Outcome
+                .FromSql(@"
 SELECT TOP (1000) [id]
       ,[company_id]
       ,[assessment_date]
@@ -288,22 +129,497 @@ SELECT TOP (1000) [id]
   FROM [GovCapSurvey_DB].[dbo].[outcome] o
   where company_id = {0}
   and not exists (select 1 from assessment a where a.inserted_by={1} and a.company_id = o.company_id and a.assessment_date=o.assessment_date)
-  order by assessment_date desc", user.Company_id, user.Id)
-                    /*.OrderByDescending(n => n.Assessment_date)*/
+  and exists (select 1 from dbo.company c where c.id=o.company_id and c.deleted_on is null)
+  order by assessment_date desc", user.Company_id, user.Id).Count().ToString();
+                assessments = await _context.Assessment
+                    .FromSql(@"
+SELECT TOP (1000) [id]
+      ,[company_id]
+      ,[assessment_date]
+      ,[Vision_agreement]
+      ,[Core_values_agreement]
+      ,[Mission_statement_agreement]
+      ,[Vision_outcome_agreement]
+      ,[Competitive_strategy_agreement]
+      ,[Company_composite_score]
+      ,[Strat_people_score]
+      ,[Strat_resources_score]
+      ,[Strat_processes_score]
+      ,[Strat_culture_score]
+      ,[Strat_composite_score]
+      ,[Stake_people_score]
+      ,[Stake_resources_score]
+      ,[Stake_processes_score]
+      ,[Stake_culture_score]
+      ,[Stake_composite_score]
+      ,[Oper_people_score]
+      ,[Oper_resources_score]
+      ,[Oper_processes_score]
+      ,[Oper_culture_score]
+      ,[Oper_composite_score]
+      ,[Risk_people_score]
+      ,[Risk_resources_score]
+      ,[Risk_processes_score]
+      ,[Risk_culture_score]
+      ,[Risk_composite_score]
+  FROM [GovCapSurvey_DB].[dbo].[assessment]
+  where inserted_by = {0} and deleted_on is null
+  order by assessment_date desc", User.Identity.Name)
                     .ToListAsync();
-
-                ViewBag.outcome = ViewBag.outcomes[0];
             }
             else
             {
-                ViewBag.outcomes = await _context.Outcome
-                    .Where(m => m.Company_id == user.Company_id && m.Assessment_date == DateTime.Parse(value))
-                    .ToListAsync();
-
-                ViewBag.outcome = ViewBag.outcomes[0];
+                ViewBag.OutCount = _context.Outcome.FromSql(@"
+SELECT TOP (1000) [id]
+      ,[company_id]
+      ,[assessment_date]
+      ,[strat_fo_outcome_val_1]
+      ,[strat_fo_outcome_desc_1]
+      ,[strat_fo_outcome_val_2]
+      ,[strat_fo_outcome_desc_2]
+      ,[strat_fo_outcome_val_3]
+      ,[strat_fo_outcome_desc_3]
+      ,[strat_fo_outcome_val_4]
+      ,[strat_fo_outcome_desc_4]
+      ,[strat_fo_outcome_val_5]
+      ,[strat_fo_outcome_desc_5]
+      ,[strat_ro_outcome_val_1]
+      ,[strat_ro_outcome_desc_1]
+      ,[strat_ro_outcome_val_2]
+      ,[strat_ro_outcome_desc_2]
+      ,[strat_ro_outcome_val_3]
+      ,[strat_ro_outcome_desc_3]
+      ,[strat_ro_outcome_val_4]
+      ,[strat_ro_outcome_desc_4]
+      ,[strat_ro_outcome_val_5]
+      ,[strat_ro_outcome_desc_5]
+      ,[stake_fo_outcome_val_1]
+      ,[stake_fo_outcome_desc_1]
+      ,[stake_fo_outcome_val_2]
+      ,[stake_fo_outcome_desc_2]
+      ,[stake_fo_outcome_val_3]
+      ,[stake_fo_outcome_desc_3]
+      ,[stake_fo_outcome_val_4]
+      ,[stake_fo_outcome_desc_4]
+      ,[stake_fo_outcome_val_5]
+      ,[stake_fo_outcome_desc_5]
+      ,[stake_ro_outcome_val_1]
+      ,[stake_ro_outcome_desc_1]
+      ,[stake_ro_outcome_val_2]
+      ,[stake_ro_outcome_desc_2]
+      ,[stake_ro_outcome_val_3]
+      ,[stake_ro_outcome_desc_3]
+      ,[stake_ro_outcome_val_4]
+      ,[stake_ro_outcome_desc_4]
+      ,[stake_ro_outcome_val_5]
+      ,[stake_ro_outcome_desc_5]
+      ,[oper_fo_outcome_val_1]
+      ,[oper_fo_outcome_desc_1]
+      ,[oper_fo_outcome_val_2]
+      ,[oper_fo_outcome_desc_2]
+      ,[oper_fo_outcome_val_3]
+      ,[oper_fo_outcome_desc_3]
+      ,[oper_fo_outcome_val_4]
+      ,[oper_fo_outcome_desc_4]
+      ,[oper_fo_outcome_val_5]
+      ,[oper_fo_outcome_desc_5]
+      ,[oper_ro_outcome_val_1]
+      ,[oper_ro_outcome_desc_1]
+      ,[oper_ro_outcome_val_2]
+      ,[oper_ro_outcome_desc_2]
+      ,[oper_ro_outcome_val_3]
+      ,[oper_ro_outcome_desc_3]
+      ,[oper_ro_outcome_val_4]
+      ,[oper_ro_outcome_desc_4]
+      ,[oper_ro_outcome_val_5]
+      ,[oper_ro_outcome_desc_5]
+      ,[risk_fo_outcome_val_1]
+      ,[risk_fo_outcome_desc_1]
+      ,[risk_fo_outcome_val_2]
+      ,[risk_fo_outcome_desc_2]
+      ,[risk_fo_outcome_val_3]
+      ,[risk_fo_outcome_desc_3]
+      ,[risk_fo_outcome_val_4]
+      ,[risk_fo_outcome_desc_4]
+      ,[risk_fo_outcome_val_5]
+      ,[risk_fo_outcome_desc_5]
+      ,[risk_ro_outcome_val_1]
+      ,[risk_ro_outcome_desc_1]
+      ,[risk_ro_outcome_val_2]
+      ,[risk_ro_outcome_desc_2]
+      ,[risk_ro_outcome_val_3]
+      ,[risk_ro_outcome_desc_3]
+      ,[risk_ro_outcome_val_4]
+      ,[risk_ro_outcome_desc_4]
+      ,[risk_ro_outcome_val_5]
+      ,[risk_ro_outcome_desc_5]
+  FROM [GovCapSurvey_DB].[dbo].[outcome] o
+  where not exists (select 1 from assessment a where a.inserted_by={0} and a.company_id = o.company_id and a.assessment_date=o.assessment_date)
+  and exists (select 1 from dbo.company c where c.id=o.company_id and c.deleted_on is null)
+  order by assessment_date desc", user.Id).Count().ToString();
+                assessments = await _context.Assessment.OrderByDescending(a => a.Assessment_date).ToListAsync();
             }
 
-            return View();
+            List<Company> companies = await _context.Companies.OrderBy(c => c.Name).ToListAsync();
+
+            var innerJoin = assessments.Join(// outer sequence 
+                      companies,  // inner sequence 
+                      assessment => assessment.Company_id,    // outerKeySelector
+                      company => company.Id,  // innerKeySelector
+                      (assessment, company) => new AssessmentCompanyViewModel // result selector
+                      {
+                          assessment = assessment,
+                          company = company
+                      });
+
+            return View(innerJoin);
+        }
+
+        // GET: Assessments/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var assessment = await _context.Assessment
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            ViewBag.company = await _context.Companies
+                .FirstOrDefaultAsync(c => c.Id == assessment.Company_id);
+
+            if (assessment == null)
+            {
+                return NotFound();
+            }
+
+            return View(assessment);
+        }
+
+        // GET: Assessments/ChangeDate
+        public async Task<IActionResult> ChangeDate(string value)
+        {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
+
+            ViewBag.dropdownlist = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Assessment-Agreement").ToListAsync();
+
+            ViewBag.peopleratinglist = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Assessment-People").ToListAsync();
+
+            ViewBag.resourcesratinglist = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Assessment-Resources").ToListAsync();
+
+            ViewBag.processesratinglist = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Assessment-Processes").ToListAsync();
+
+            ViewBag.cultureratinglist = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Assessment-Culture").ToListAsync();
+
+            User user = await _context.Users.FirstOrDefaultAsync(u => u.Id == int.Parse(User.Identity.Name));
+
+            ViewBag.company = await _context.Companies.Where(c => c.Id == user.Company_id).OrderBy(c => c.Name).ToListAsync();
+
+            ViewBag.outcomes = await _context.Outcome
+                .Where(m => m.Company_id == user.Company_id)
+                .OrderByDescending(n => n.Assessment_date).ToListAsync();
+
+
+            ViewBag.outcome = ViewBag.outcomes[0];
+            foreach (Outcome o in ViewBag.outcomes)
+            {
+                if(o.Assessment_date == DateTime.Parse(value))
+                {
+                    ViewBag.outcome = o;
+                }
+            }
+
+            return View("Create");
+        }
+
+        // GET: Assessments/Create
+        public async Task<IActionResult> Create(string company, string date)
+        {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            ViewBag.Admin = User.Claims.ToList()[2].Value;
+
+            ViewBag.dropdownlist = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Assessment-Agreement").ToListAsync();
+
+            ViewBag.peopleratinglist = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Assessment-People").ToListAsync();
+
+            ViewBag.resourcesratinglist = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Assessment-Resources").ToListAsync();
+
+            ViewBag.processesratinglist = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Assessment-Processes").ToListAsync();
+
+            ViewBag.cultureratinglist = await _context.Dropdown_Code
+                .Where(x => x.Table_name == "Assessment-Culture").ToListAsync();
+
+            User user =await _context.Users.FirstOrDefaultAsync(u => u.Id == int.Parse(User.Identity.Name));
+            if (ViewBag.Admin == "True")
+            {
+                ViewBag.companies = await _context.Companies
+                    .FromSql(@"
+        SELECT [id]
+      ,[name]
+      ,[address1]
+        ,[address2]
+        ,[city]
+        ,[state]
+        ,[zip]
+        ,[country]
+      ,[email]
+      ,[website]
+      ,[phone]
+      ,[vision]
+      ,[mission]
+      ,[value]
+      ,[outcome]
+      ,[strategy]
+      ,[type]
+      ,[revenue_band]
+      ,[employee_band]
+      ,[stage]
+      ,[keycontact]
+  FROM [company]
+  where deleted_on is null
+and [id] in (SELECT company_id
+              FROM [GovCapSurvey_DB].[dbo].[outcome] o
+              where deleted_on is null
+              and not exists (SELECT 1
+						    FROM [GovCapSurvey_DB].[dbo].[assessment] a
+						    where deleted_on is null
+						    and inserted_by={0} and a.company_id=o.company_id and a.assessment_date=o.assessment_date))", User.Identity.Name).OrderBy(c => c.Name).ToListAsync();
+
+                ViewBag.outcomes = await _context.Outcome
+                        /*.Where(m => m.Company_id == user.Company_id)*/
+                        .FromSql(@"
+SELECT TOP (1000) [id]
+      ,[company_id]
+      ,[assessment_date]
+      ,dbo.val_trunc(strat_fo_outcome_val_1) [strat_fo_outcome_val_1]
+      ,dbo.desc_trunc(strat_fo_outcome_val_1, strat_fo_outcome_desc_1) [strat_fo_outcome_desc_1]
+      ,dbo.val_trunc(strat_fo_outcome_val_2) [strat_fo_outcome_val_2]
+      ,dbo.desc_trunc(strat_fo_outcome_val_2, strat_fo_outcome_desc_2) [strat_fo_outcome_desc_2]
+      ,dbo.val_trunc(strat_fo_outcome_val_3) [strat_fo_outcome_val_3]
+      ,dbo.desc_trunc(strat_fo_outcome_val_3, strat_fo_outcome_desc_3) [strat_fo_outcome_desc_3]
+      ,dbo.val_trunc(strat_fo_outcome_val_4) [strat_fo_outcome_val_4]
+      ,dbo.desc_trunc(strat_fo_outcome_val_4, strat_fo_outcome_desc_4) [strat_fo_outcome_desc_4]
+      ,dbo.val_trunc(strat_fo_outcome_val_5) [strat_fo_outcome_val_5]
+      ,dbo.desc_trunc(strat_fo_outcome_val_5, strat_fo_outcome_desc_5) [strat_fo_outcome_desc_5]
+      ,dbo.val_trunc(strat_ro_outcome_val_1) [strat_ro_outcome_val_1]
+      ,dbo.desc_trunc(strat_ro_outcome_val_1, strat_ro_outcome_desc_1) [strat_ro_outcome_desc_1]
+      ,dbo.val_trunc(strat_ro_outcome_val_2) [strat_ro_outcome_val_2]
+      ,dbo.desc_trunc(strat_ro_outcome_val_2, strat_ro_outcome_desc_2) [strat_ro_outcome_desc_2]
+      ,dbo.val_trunc(strat_ro_outcome_val_3) [strat_ro_outcome_val_3]
+      ,dbo.desc_trunc(strat_ro_outcome_val_3, strat_ro_outcome_desc_3) [strat_ro_outcome_desc_3]
+      ,dbo.val_trunc(strat_ro_outcome_val_4) [strat_ro_outcome_val_4]
+      ,dbo.desc_trunc(strat_ro_outcome_val_4, strat_ro_outcome_desc_4) [strat_ro_outcome_desc_4]
+      ,dbo.val_trunc(strat_ro_outcome_val_5) [strat_ro_outcome_val_5]
+      ,dbo.desc_trunc(strat_ro_outcome_val_5, strat_ro_outcome_desc_5) [strat_ro_outcome_desc_5]
+      ,dbo.val_trunc(stake_fo_outcome_val_1) [stake_fo_outcome_val_1]
+      ,dbo.desc_trunc(stake_fo_outcome_val_1, stake_fo_outcome_desc_1)  [stake_fo_outcome_desc_1]
+      ,dbo.val_trunc(stake_fo_outcome_val_2) [stake_fo_outcome_val_2]
+      ,dbo.desc_trunc(stake_fo_outcome_val_2, stake_fo_outcome_desc_2) [stake_fo_outcome_desc_2]
+      ,dbo.val_trunc(stake_fo_outcome_val_3) [stake_fo_outcome_val_3]
+      ,dbo.desc_trunc(stake_fo_outcome_val_3, stake_fo_outcome_desc_3) [stake_fo_outcome_desc_3]
+      ,dbo.val_trunc(stake_fo_outcome_val_4) [stake_fo_outcome_val_4]
+      ,dbo.desc_trunc(stake_fo_outcome_val_4, stake_fo_outcome_desc_4) [stake_fo_outcome_desc_4]
+      ,dbo.val_trunc(stake_fo_outcome_val_5) [stake_fo_outcome_val_5]
+      ,dbo.desc_trunc(stake_fo_outcome_val_5, stake_fo_outcome_desc_5) [stake_fo_outcome_desc_5]
+      ,dbo.val_trunc(stake_ro_outcome_val_1) [stake_ro_outcome_val_1]
+      ,dbo.desc_trunc(stake_ro_outcome_val_1, stake_ro_outcome_desc_1) [stake_ro_outcome_desc_1]
+      ,dbo.val_trunc(stake_ro_outcome_val_2) [stake_ro_outcome_val_2]
+      ,dbo.desc_trunc(stake_ro_outcome_val_2, stake_ro_outcome_desc_2) [stake_ro_outcome_desc_2]
+      ,dbo.val_trunc(stake_ro_outcome_val_3) [stake_ro_outcome_val_3]
+      ,dbo.desc_trunc(stake_ro_outcome_val_3, stake_ro_outcome_desc_3) [stake_ro_outcome_desc_3]
+      ,dbo.val_trunc(stake_ro_outcome_val_4) [stake_ro_outcome_val_4]
+      ,dbo.desc_trunc(stake_ro_outcome_val_4, stake_ro_outcome_desc_4) [stake_ro_outcome_desc_4]
+      ,dbo.val_trunc(stake_ro_outcome_val_5) [stake_ro_outcome_val_5]
+      ,dbo.desc_trunc(stake_ro_outcome_val_5, stake_ro_outcome_desc_5) [stake_ro_outcome_desc_5]
+      ,dbo.val_trunc(oper_fo_outcome_val_1) [oper_fo_outcome_val_1]
+      ,dbo.desc_trunc(oper_fo_outcome_val_1, oper_fo_outcome_desc_1) [oper_fo_outcome_desc_1]
+      ,dbo.val_trunc(oper_fo_outcome_val_2) [oper_fo_outcome_val_2]
+      ,dbo.desc_trunc(oper_fo_outcome_val_2, oper_fo_outcome_desc_2) [oper_fo_outcome_desc_2]
+      ,dbo.val_trunc(oper_fo_outcome_val_3) [oper_fo_outcome_val_3]
+      ,dbo.desc_trunc(oper_fo_outcome_val_3, oper_fo_outcome_desc_3) [oper_fo_outcome_desc_3]
+      ,dbo.val_trunc(oper_fo_outcome_val_4) [oper_fo_outcome_val_4]
+      ,dbo.desc_trunc(oper_fo_outcome_val_4, oper_fo_outcome_desc_4) [oper_fo_outcome_desc_4]
+      ,dbo.val_trunc(oper_fo_outcome_val_5) [oper_fo_outcome_val_5]
+      ,dbo.desc_trunc(oper_fo_outcome_val_5, oper_fo_outcome_desc_5) [oper_fo_outcome_desc_5]
+      ,dbo.val_trunc(oper_ro_outcome_val_1) [oper_ro_outcome_val_1]
+      ,dbo.desc_trunc(oper_ro_outcome_val_1, oper_ro_outcome_desc_1) [oper_ro_outcome_desc_1]
+      ,dbo.val_trunc(oper_ro_outcome_val_2) [oper_ro_outcome_val_2]
+      ,dbo.desc_trunc(oper_ro_outcome_val_2, oper_ro_outcome_desc_2) [oper_ro_outcome_desc_2]
+      ,dbo.val_trunc(oper_ro_outcome_val_3) [oper_ro_outcome_val_3]
+      ,dbo.desc_trunc(oper_ro_outcome_val_3, oper_ro_outcome_desc_3) [oper_ro_outcome_desc_3]
+      ,dbo.val_trunc(oper_ro_outcome_val_4) [oper_ro_outcome_val_4]
+      ,dbo.desc_trunc(oper_ro_outcome_val_4, oper_ro_outcome_desc_4) [oper_ro_outcome_desc_4]
+      ,dbo.val_trunc(oper_ro_outcome_val_5) [oper_ro_outcome_val_5]
+      ,dbo.desc_trunc(oper_ro_outcome_val_5, oper_ro_outcome_desc_5) [oper_ro_outcome_desc_5]
+      ,dbo.val_trunc(risk_fo_outcome_val_1) [risk_fo_outcome_val_1]
+      ,dbo.desc_trunc(risk_fo_outcome_val_1, risk_fo_outcome_desc_1) [risk_fo_outcome_desc_1]
+      ,dbo.val_trunc(risk_fo_outcome_val_2) [risk_fo_outcome_val_2]
+      ,dbo.desc_trunc(risk_fo_outcome_val_2, risk_fo_outcome_desc_2) [risk_fo_outcome_desc_2]
+      ,dbo.val_trunc(risk_fo_outcome_val_3) [risk_fo_outcome_val_3]
+      ,dbo.desc_trunc(risk_fo_outcome_val_3, risk_fo_outcome_desc_3) [risk_fo_outcome_desc_3]
+      ,dbo.val_trunc(risk_fo_outcome_val_4) [risk_fo_outcome_val_4]
+      ,dbo.desc_trunc(risk_fo_outcome_val_4, risk_fo_outcome_desc_4) [risk_fo_outcome_desc_4]
+      ,dbo.val_trunc(risk_fo_outcome_val_5) [risk_fo_outcome_val_5]
+      ,dbo.desc_trunc(risk_fo_outcome_val_5, risk_fo_outcome_desc_5) [risk_fo_outcome_desc_5]
+      ,dbo.val_trunc(risk_ro_outcome_val_1) [risk_ro_outcome_val_1]
+      ,dbo.desc_trunc(risk_ro_outcome_val_1, risk_ro_outcome_desc_1) [risk_ro_outcome_desc_1]
+      ,dbo.val_trunc(risk_ro_outcome_val_2) [risk_ro_outcome_val_2]
+      ,dbo.desc_trunc(risk_ro_outcome_val_2, risk_ro_outcome_desc_2) [risk_ro_outcome_desc_2]
+      ,dbo.val_trunc(risk_ro_outcome_val_3) [risk_ro_outcome_val_3]
+      ,dbo.desc_trunc(risk_ro_outcome_val_3, risk_ro_outcome_desc_3) [risk_ro_outcome_desc_3]
+      ,dbo.val_trunc(risk_ro_outcome_val_4) [risk_ro_outcome_val_4]
+      ,dbo.desc_trunc(risk_ro_outcome_val_4, risk_ro_outcome_desc_4) [risk_ro_outcome_desc_4]
+      ,dbo.val_trunc(risk_ro_outcome_val_5) [risk_ro_outcome_val_5]
+      ,dbo.desc_trunc(risk_ro_outcome_val_5, risk_ro_outcome_desc_5) [risk_ro_outcome_desc_5]
+  FROM [GovCapSurvey_DB].[dbo].[outcome] o
+  where not exists (select 1 from assessment a where a.inserted_by={0} and a.company_id = o.company_id and a.assessment_date=o.assessment_date)
+  and exists (select 1 from dbo.company c where c.id=o.company_id and c.deleted_on is null)
+  order by assessment_date desc", user.Id)
+                        .OrderBy(n => _context.Companies.Where(c=> c.Id == n.Company_id).FirstOrDefault().Name)
+                        .ToListAsync();
+            }
+            else
+            {
+                ViewBag.companies = await _context.Companies.Where(c => c.Id == user.Company_id).OrderBy(c => c.Name).ToListAsync();
+
+                ViewBag.outcomes = await _context.Outcome
+                        /*.Where(m => m.Company_id == user.Company_id)*/
+                        .FromSql(@"
+SELECT TOP (1000) [id]
+      ,[company_id]
+      ,[assessment_date]
+      ,[strat_fo_outcome_val_1]
+      ,[strat_fo_outcome_desc_1]
+      ,[strat_fo_outcome_val_2]
+      ,[strat_fo_outcome_desc_2]
+      ,[strat_fo_outcome_val_3]
+      ,[strat_fo_outcome_desc_3]
+      ,[strat_fo_outcome_val_4]
+      ,[strat_fo_outcome_desc_4]
+      ,[strat_fo_outcome_val_5]
+      ,[strat_fo_outcome_desc_5]
+      ,[strat_ro_outcome_val_1]
+      ,[strat_ro_outcome_desc_1]
+      ,[strat_ro_outcome_val_2]
+      ,[strat_ro_outcome_desc_2]
+      ,[strat_ro_outcome_val_3]
+      ,[strat_ro_outcome_desc_3]
+      ,[strat_ro_outcome_val_4]
+      ,[strat_ro_outcome_desc_4]
+      ,[strat_ro_outcome_val_5]
+      ,[strat_ro_outcome_desc_5]
+      ,[stake_fo_outcome_val_1]
+      ,[stake_fo_outcome_desc_1]
+      ,[stake_fo_outcome_val_2]
+      ,[stake_fo_outcome_desc_2]
+      ,[stake_fo_outcome_val_3]
+      ,[stake_fo_outcome_desc_3]
+      ,[stake_fo_outcome_val_4]
+      ,[stake_fo_outcome_desc_4]
+      ,[stake_fo_outcome_val_5]
+      ,[stake_fo_outcome_desc_5]
+      ,[stake_ro_outcome_val_1]
+      ,[stake_ro_outcome_desc_1]
+      ,[stake_ro_outcome_val_2]
+      ,[stake_ro_outcome_desc_2]
+      ,[stake_ro_outcome_val_3]
+      ,[stake_ro_outcome_desc_3]
+      ,[stake_ro_outcome_val_4]
+      ,[stake_ro_outcome_desc_4]
+      ,[stake_ro_outcome_val_5]
+      ,[stake_ro_outcome_desc_5]
+      ,[oper_fo_outcome_val_1]
+      ,[oper_fo_outcome_desc_1]
+      ,[oper_fo_outcome_val_2]
+      ,[oper_fo_outcome_desc_2]
+      ,[oper_fo_outcome_val_3]
+      ,[oper_fo_outcome_desc_3]
+      ,[oper_fo_outcome_val_4]
+      ,[oper_fo_outcome_desc_4]
+      ,[oper_fo_outcome_val_5]
+      ,[oper_fo_outcome_desc_5]
+      ,[oper_ro_outcome_val_1]
+      ,[oper_ro_outcome_desc_1]
+      ,[oper_ro_outcome_val_2]
+      ,[oper_ro_outcome_desc_2]
+      ,[oper_ro_outcome_val_3]
+      ,[oper_ro_outcome_desc_3]
+      ,[oper_ro_outcome_val_4]
+      ,[oper_ro_outcome_desc_4]
+      ,[oper_ro_outcome_val_5]
+      ,[oper_ro_outcome_desc_5]
+      ,[risk_fo_outcome_val_1]
+      ,[risk_fo_outcome_desc_1]
+      ,[risk_fo_outcome_val_2]
+      ,[risk_fo_outcome_desc_2]
+      ,[risk_fo_outcome_val_3]
+      ,[risk_fo_outcome_desc_3]
+      ,[risk_fo_outcome_val_4]
+      ,[risk_fo_outcome_desc_4]
+      ,[risk_fo_outcome_val_5]
+      ,[risk_fo_outcome_desc_5]
+      ,[risk_ro_outcome_val_1]
+      ,[risk_ro_outcome_desc_1]
+      ,[risk_ro_outcome_val_2]
+      ,[risk_ro_outcome_desc_2]
+      ,[risk_ro_outcome_val_3]
+      ,[risk_ro_outcome_desc_3]
+      ,[risk_ro_outcome_val_4]
+      ,[risk_ro_outcome_desc_4]
+      ,[risk_ro_outcome_val_5]
+      ,[risk_ro_outcome_desc_5]
+  FROM [GovCapSurvey_DB].[dbo].[outcome] o
+  where company_id = {0}
+  and not exists (select 1 from assessment a where a.inserted_by={1} and a.company_id = o.company_id and a.assessment_date=o.assessment_date)
+  and exists (select 1 from dbo.company c where c.id=o.company_id and c.deleted_on is null)
+  order by assessment_date desc", user.Company_id, user.Id)
+                        .OrderBy(n => _context.Companies.Where(c => c.Id == n.Company_id).FirstOrDefault().Name)
+                        .ToListAsync();
+            }
+
+            Assessment assessment;
+            if (date == null && company == null)
+            {
+                ViewBag.outcome = ViewBag.outcomes[0];
+            }
+            else if (date == null)
+            {
+                /*ViewBag.outcomes = await _context.Outcome
+                    .Where(m => m.Company_id == user.Company_id && m.Assessment_date == DateTime.Parse(date))
+                    .ToListAsync();*/
+
+                ViewBag.outcome = ((List<Outcome>)ViewBag.outcomes).Where(m => m.Company_id == int.Parse(company)).FirstOrDefault();
+            }
+            else
+            {
+                ViewBag.outcome = ((List<Outcome>)ViewBag.outcomes).Where(m => m.Assessment_date == DateTime.Parse(date)).FirstOrDefault();
+            }
+            assessment = new Assessment(((Outcome)ViewBag.outcome).Company_id, ((Outcome)ViewBag.outcome).Assessment_date);
+            ViewBag.company = ((List<Company>)ViewBag.companies).Where(c => c.Id == assessment.Company_id).FirstOrDefault();
+
+            return View(assessment);
         }
 
         // POST: Assessments/Create
@@ -454,8 +770,18 @@ INSERT INTO [dbo].[assessment]
             ViewBag.cultureratinglist = await _context.Dropdown_Code
                 .Where(x => x.Table_name == "Assessment-Culture").ToListAsync();
 
-            ViewBag.company = await _context.Companies
-                .Where(c => c.Id == assessment.Company_id).ToListAsync();
+            if (ViewBag.Admin == "True")
+            {
+                ViewBag.company = await _context.Companies
+                    .Where(c => c.Id == assessment.Company_id)
+                    .OrderBy(c => c.Name).ToListAsync();
+            }
+            else
+            {
+                ViewBag.company = await _context.Companies
+                    .Where(c => c.Id == assessment.Company_id)
+                    .OrderBy(c => c.Name).ToListAsync();
+            }
 
             ViewBag.outcome = await _context.Outcome
                 .FirstOrDefaultAsync(m => m.Company_id == assessment.Company_id && m.Assessment_date == assessment.Assessment_date);
